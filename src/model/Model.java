@@ -13,7 +13,7 @@ public interface Model {
      * @param width of Tank
      * @param height of Tank
      */
-    void configPlayerTank(Pair<Double, Double> position, int lifes, double speed, double width, double height);
+    void configPlayerTank(Pair<Double, Double> position, int lifes, double speed);
     /**
      * Create a {@link Tank} controlled by computer.
      * 
@@ -23,27 +23,21 @@ public interface Model {
      * @param width of Tank
      * @param height of Tank
      */
-    void configEnemyTank(Pair<Double, Double> position, int lifes, double speed, double width, double height);
+    void configEnemyTank(Pair<Double, Double> position, int lifes, double speed);
     /**
      * Getter for player.
      * @return player's Tank
      */
     Tank getPlayer();
     /**
-     * Getter for enemie
+     * Getter for enemy
      * @return enemie's Tank
      */
     Tank getEnemy();
     /**
      * Getter for bounds of World
-     * @return bounds
+     * @return bounds First = width, Second = height
      * @see Pair
      */
     Pair<Double, Double> getBounds();
-    /**
-     * Setter for bounds of world
-     * @param dimensions of world
-     * @see Pair
-     */
-    void setBounds(Pair<Double, Double> dimensions);
 }
