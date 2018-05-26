@@ -23,7 +23,7 @@ public class InputImpl implements DirectionInput, CannonInput {
 	 * @param target
 	 *     position where is aiming the cannon
 	 */
-	public InputImpl(Map<Direction, Boolean> movement, Pair<Double, Double> target) {
+	public InputImpl(final Map<Direction, Boolean> movement, final Pair<Double, Double> target) {
 		this.movement = movement;
 		this.target = target;
 	}
@@ -33,13 +33,13 @@ public class InputImpl implements DirectionInput, CannonInput {
 	}
 
 	@Override
-	public void setTarget(Pair<Double, Double> target) {
+	public void setTarget(final Pair<Double, Double> target) {
 		this.target = target;
 		
 	}
 
 	@Override
-	public void setMovement(Map<Direction, Boolean> movement) {
+	public void setMovement(final Map<Direction, Boolean> movement) {
 		this.movement = movement;	
 	}
 

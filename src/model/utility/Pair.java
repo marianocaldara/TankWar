@@ -16,7 +16,7 @@ public class Pair<X, Y> {
      * @param x first object
      * @param y second object 
      */
-    public Pair(X x, Y y) {
+    public Pair(final X x, final Y y) {
         this.x = x;
         this.y = y;
     }
@@ -38,14 +38,14 @@ public class Pair<X, Y> {
      * Setter.
      * @param x first object to set
      */
-    public void setFirst(X x) {
+    public void setFirst(final X x) {
         this.x=x;
     }
     /**
      * Setter.
      * @param y second object to set
      */
-    public void setSecond(Y y) {
+    public void setSecond(final Y y) {
         this.y=y;
     }
 
@@ -59,27 +59,27 @@ public class Pair<X, Y> {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;}
+        if (obj == null) {
+            return false;}
+        if (getClass() != obj.getClass()) {
+            return false;}
         if(!(obj instanceof Pair) || !(obj instanceof Pair<?, ?>)) {
             return false;
         }
-        Pair<X, Y> other = (Pair<X, Y>) obj;
+        final Pair<?, ?> other = (Pair<?, ?>) obj;
         if (x == null) {
-            if (other.x != null)
-                return false;
-        } else if (!x.equals(other.x))
-            return false;
+            if (other.x != null) {
+                return false;}
+        } else if (!x.equals(other.x)) {
+            return false;}
         if (y == null) {
-            if (other.y != null)
-                return false;
-        } else if (!y.equals(other.y))
-            return false;
+            if (other.y != null) {
+                return false;}
+        } else if (!y.equals(other.y)) {
+            return false;}
         return true;
     }
 }

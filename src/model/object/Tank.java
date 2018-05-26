@@ -65,8 +65,7 @@ public interface Tank {
 	void damage(int damage);
 	/**
 	 * Get a bounds of Tank
-	 * @return
-	 *     Rectangle according to height and widht of Tank
+	 * @return {@link Rectangle2D} according to height and widht of Tank
 	 * @see controller.collision
 	 */
 	Rectangle2D getBounds();

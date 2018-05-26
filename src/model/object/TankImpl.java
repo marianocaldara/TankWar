@@ -15,7 +15,7 @@ import model.utility.Pair;
 public class TankImpl implements Tank {
     private int lifes;
     private Pair<Double, Double> position;
-    private Pair<Double, Double> dimension = new Pair<Double, Double>(0.0, 0.0);
+    private final static Pair<Double, Double> DIMENSION = new Pair<>(37.5, 25.0);
     private double speed = 3;
     private double speedX;
     private double speedY;
@@ -34,12 +34,10 @@ public class TankImpl implements Tank {
      * @param height
      *     height of Tank
      */
-    public TankImpl(Pair<Double, Double> position, int lifes, double speed, double width, double height) {
+    public TankImpl(final Pair<Double, Double> position, final int lifes, final double speed) {
         this.position = position;
         this.lifes = lifes;
         this.speed = speed;
-        this.dimension.setFirst(width);
-        this.dimension.setSecond(height);
     }
 
     @Override
@@ -48,7 +46,7 @@ public class TankImpl implements Tank {
     }
 
     @Override
-    public void setPosition(Pair<Double, Double> position) {
+    public void setPosition(final Pair<Double, Double> position) {
         this.position = position;
     }
 
@@ -63,24 +61,24 @@ public class TankImpl implements Tank {
     }
 
     @Override
-    public void update(InputImpl i) {
+    public void update(final InputImpl i) {
         this.setDirection(i.getMovement());
         updatePosition();
         this.updateCannon(i.getTargetPosition());
     }
 
     @Override
-    public void damage(int damage) {
+    public void damage(final int damage) {
         this.lifes -= damage;
     }
 
     @Override
     public Rectangle2D getBounds() {
-        return new Rectangle2D(this.position.getFirst(), this.position.getSecond(), this.dimension.getFirst(), this.dimension.getSecond());
+        return new Rectangle2D(this.position.getFirst(), this.position.getSecond(), DIMENSION.getFirst(), DIMENSION.getSecond());
     }
 
     @Override
-    public void setSpeed(double speed) {
+    public void setSpeed(final double speed) {
         this.speed = speed;
     }
     /**
@@ -89,9 +87,9 @@ public class TankImpl implements Tank {
      *     movement to do
      * @see Map
      */
-    private void setDirection(Map<Direction, Boolean> movement) {
+    private void setDirection(final Map<Direction, Boolean> movement) {
         // Da testare
-        ConsumerSpeed cons = new ConsumerSpeed(speed);
+        final ConsumerSpeed cons = new ConsumerSpeed(speed);
         movement.entrySet().stream().filter(e->e.getValue().equals(true)).collect(Collectors.toSet()).forEach(e->cons.accept(e.getKey()));
 
         this.speedX = cons.getSpeeds().getFirst();
@@ -123,19 +121,19 @@ public class TankImpl implements Tank {
      *     target to aim.
      * @see InputImpl
      */
-    private void updateCannon(Pair<Double, Double> target) {
-        Pair<Double, Double> cannon_pos = new Pair<Double, Double>(this.position.getFirst()-2.0, this.position.getSecond()-2.0);
+    private void updateCannon(final Pair<Double, Double> target) {
+        final Pair<Double, Double> cannon_pos = new Pair<Double, Double>(this.position.getFirst()-2.0, this.position.getSecond()-2.0);
         this.cannon.update(cannon_pos, Calculate.angle(cannon_pos, target));
     }
     @Override
-    public void keepBetweenBorders(double arenaWidth, double arenaHeight) {
-        if (this.position.getFirst() + this.dimension.getFirst() >= arenaWidth) {       // Exceeding right
-            this.position.setFirst(arenaWidth - this.dimension.getFirst());
+    public void keepBetweenBorders(final double arenaWidth, final double arenaHeight) {
+        if (this.position.getFirst() + DIMENSION.getFirst() >= arenaWidth) {       // Exceeding right
+            this.position.setFirst(arenaWidth - DIMENSION.getFirst());
         } else if (this.position.getFirst() < 0) {                // Exceeding left
             this.position.setFirst(0.0);
         }
-        if (this.position.getSecond() + this.dimension.getSecond() >= arenaHeight) {      // Exceeding down
-            this.position.setSecond(arenaHeight - this.dimension.getSecond());
+        if (this.position.getSecond() + DIMENSION.getSecond() >= arenaHeight) {      // Exceeding down
+            this.position.setSecond(arenaHeight - DIMENSION.getSecond());
         } else if (this.position.getSecond() < 0) {                // Exceeding up
             this.position.setSecond(0.0);
         }
@@ -145,7 +143,7 @@ public class TankImpl implements Tank {
      * Cannon is the object that allow shot by Tank.
      */
     private class Cannon {
-        private Pair<Double, Double> cannon_position;
+        private Pair<Double, Double> cannonposition;
         private double angle;
         /**
          * Update the position, it follows the tank position.
@@ -154,8 +152,8 @@ public class TankImpl implements Tank {
          * @param angle
          *      the angle in degrees of cannon, the horizon is 0.
          */
-        public void update(Pair<Double, Double> position, double angle) {
-            this.cannon_position = position;
+        public void update(final Pair<Double, Double> position, final double angle) {
+            this.cannonposition = position;
             this.angle = angle;
         }
         /**
@@ -164,7 +162,7 @@ public class TankImpl implements Tank {
          * @return the projectile jet shooted
          */
         public Projectile shot() {
-            return new Projectile(cannon_position, this.angle, 2);
+            return new Projectile(cannonposition, this.angle, 2);
         }
     }
 

@@ -18,7 +18,7 @@ public enum Direction {
          *      Allow to speed up operation to calculate speed
          * @see TankImpl#update(model.input.InputImpl);
          */
-        private Direction(int sign) {
+        private Direction(final int sign) {
             this.sign = sign;
         }
 }

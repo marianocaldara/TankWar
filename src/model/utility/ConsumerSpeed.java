@@ -7,7 +7,7 @@ import java.util.function.Consumer;
  */
 public class ConsumerSpeed implements Consumer<Direction>{
 
-    private double speed;
+    final private double speed;
     private double speedX;
     private double speedY;
     /**
@@ -15,12 +15,12 @@ public class ConsumerSpeed implements Consumer<Direction>{
      * @param speed
      *          the speed for calculate {@link #speedX} and {@link #speedY}
      */
-    public ConsumerSpeed(double speed) {
+    public ConsumerSpeed(final double speed) {
        this.speed = speed;
     }
 
     @Override
-    public void accept(Direction dir) {
+    public void accept(final Direction dir) {
         if(dir.equals(Direction.UP) || dir.equals(Direction.DOWN)) {
             this.speedY = speed * (dir.equals(Direction.UP) ? Direction.UP.sign : Direction.DOWN.sign);
         }

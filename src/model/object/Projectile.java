@@ -1,5 +1,6 @@
 package model.object;
 
+import javafx.geometry.Rectangle2D;
 import model.utility.Direction;
 import model.utility.Pair;
 /**
@@ -12,13 +13,13 @@ import model.utility.Pair;
  * @see Pair
  */
 public class Projectile {
-	private Pair<Double, Double> position;
+	final private Pair<Double, Double> position;
 	private double speedX;
 	private double speedY;
-	private boolean isAlive = true;
-	private int nr_bounced;
-	private static int MAX_BOUNCE = 1;
-	
+	private boolean alive = true;
+	private int nrbounced;
+	private final static int MAX_BOUNCE = 1;
+	private final static Pair<Double, Double> DIMENSION = new Pair<>(5.0, 5.0);
 	/**
 	 * Constructor.
 	 * @param position when projectile is shooted. Pay attention to shoot out of position of own Tank
@@ -29,7 +30,7 @@ public class Projectile {
 	 * @see Math#cos(double)
          * @see Math#sin(double)
 	 */
-	public Projectile(Pair<Double, Double> position, double angle, double speed) {
+	public Projectile(final Pair<Double, Double> position, final double angle, final double speed) {
 		this.position = position;
 		this.speedX = speed*Math.cos(Math.toRadians(angle));
 		this.speedY = speed*Math.sin(Math.toRadians(angle));
@@ -47,11 +48,11 @@ public class Projectile {
 	 * @param dir the direction of the border where projectile bounce
 	 * @see Direction
 	 */
-	public void bounce(Direction dir) {
-		if(nr_bounced>=MAX_BOUNCE) {
+	public void bounce(final Direction dir) {
+		if(nrbounced>=MAX_BOUNCE) {
 			throw new IllegalStateException();
 		}
-		nr_bounced++;
+		nrbounced++;
 		if(dir.equals(Direction.UP) || dir.equals(Direction.DOWN)){
 			this.speedY = -speedY; 
 		}
@@ -63,14 +64,21 @@ public class Projectile {
 	 * Set dead projectile
 	 */
 	public void setDead() {
-		this.isAlive = false;
+		this.alive = false;
 	}
 	/**
 	 * Getter for {@link #isAlive}
 	 * @return a boolean, true if is alive, false if this projectile have collided
 	 */
 	public boolean isAlive() {
-		return this.isAlive;
+		return this.alive;
+	}
+	/**
+	 * Get projectile's bounds.
+	 * @return {@link Rectangle2D} according to {@link #dimension} of Projectile
+	 */
+	public Rectangle2D getBounds() {
+        return new Rectangle2D(this.position.getFirst(), this.position.getSecond(), DIMENSION.getFirst(), DIMENSION.getSecond());
 	}
 	/**
 	 * update position of projectile according to speed

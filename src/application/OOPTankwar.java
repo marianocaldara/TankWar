@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class OOPTankwar extends Application {
 	
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(final Stage primaryStage) {
 	}
 	
 	/**
@@ -17,7 +17,7 @@ public class OOPTankwar extends Application {
 	 * @param args
 	 * 		additional argument.
 	 */
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		launch(args);
 	}
 }

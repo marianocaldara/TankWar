@@ -26,7 +26,7 @@ public class FileControllerImpl implements FileController {
 	 * @param level
 	 * 		the level to load.
 	 */
-	public FileControllerImpl(Levels level) {	
+	public FileControllerImpl(final Levels level) {	
 		super();
 		this.level = level;
 		this.json = new JSONParser();
@@ -45,7 +45,7 @@ public class FileControllerImpl implements FileController {
 	}
 
 	@Override
-	public void setLevel(Levels currentLevel) {
+	public void setLevel(final Levels currentLevel) {
 		this.level = currentLevel;
 		
 	}

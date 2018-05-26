@@ -19,7 +19,7 @@ public class ControllerInputImpl implements MouseInput, KeyboardInput {
 	}
 
 	@Override
-	public void setKeyInput(KeyEvent keyEvent) {
+	public void setKeyInput(final KeyEvent keyEvent) {
 		this.keyEvent = keyEvent;
 
 	}
@@ -30,7 +30,7 @@ public class ControllerInputImpl implements MouseInput, KeyboardInput {
 	}
 
 	@Override
-	public void setMouseInput(MouseEvent mouseEvent) {
+	public void setMouseInput(final MouseEvent mouseEvent) {
 		this.mouseEvent = mouseEvent;
 
 	}
