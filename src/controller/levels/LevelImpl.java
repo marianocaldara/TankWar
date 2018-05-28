@@ -47,6 +47,13 @@ public class LevelImpl implements Level {
 	public Levels getCurrentLevel() {
 		return this.currentLevel;
 	}
+	
+	/*
+	@Override
+	public void setCurrentLevel(Levels currentLevel) {
+		this.currentLevel = currentLevel;
+		while(this.levels.hasNext() && !this.levels.next().equals(this.currentLevel));
+	}*/
 
 	@Override
 	public void updateLevel() {

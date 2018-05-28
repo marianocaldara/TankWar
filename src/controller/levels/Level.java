@@ -34,6 +34,14 @@ public interface Level {
 	Levels getCurrentLevel();
 	
 	/**
+	 * Setter for the current level.
+	 * @param currentLevel
+	 * 		the current level.
+	 */
+	/*
+	void setCurrentLevel(Levels currentLevel);*/
+	
+	/**
 	 * Update the current level.
 	 */
 	void updateLevel();

@@ -10,6 +10,7 @@ public class OOPTankwar extends Application {
 	
 	@Override
 	public void start(final Stage primaryStage) {
+			
 	}
 	
 	/**
