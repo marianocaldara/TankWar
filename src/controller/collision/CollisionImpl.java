@@ -7,6 +7,7 @@ import model.Model;
 import model.object.Projectile;
 import model.object.Tank;
 import model.utility.Direction;
+import model.utility.Pair;
 
 /**
  * Concrete implementation of {@link Collision}.
@@ -32,17 +33,28 @@ public class CollisionImpl implements Collision {
 	}
 
 	@Override
-	public void tankWithTank() {
-		if(this.checkCollisionTankWithTank(this.world.getPlayer(), this.world.getEnemy())) {
-			//da implementare
+	public void tankWithTank(List<Direction> movement) {
+		try {
+			this.checkCollisionTankWithTank(this.world.getPlayer(), this.world.getEnemy());
+		}
+		catch (IllegalStateException e) {
+			if(this.world.getPlayer().getPosition().getFirst() + this.world.getPlayer().getBounds().getWidth() >=
+					this.world.getEnemy().getPosition().getFirst() && movement.contains(Direction.RIGHT)){
+				this.world.getPlayer().setPosition(new Pair<Double, Double>(this.world.getEnemy().getPosition().getFirst(), 
+						this.world.getPlayer().getPosition().getSecond()));
+			}
+			//da completare
+			
 		}
 
 	}
 
 	@Override
 	public void tankWithProjectile() {
-		this.updateTankLifeAndProjectiles(this.world.getPlayer(), this.getCollisionTankWithProjectiles(this.world.getPlayer(), this.projectiles));
-		this.updateTankLifeAndProjectiles(this.world.getEnemy(), this.getCollisionTankWithProjectiles(this.world.getEnemy(), this.projectiles));
+		this.updateTankLifeAndProjectiles(this.world.getPlayer(), 
+				projectiles.stream().filter(p -> p.getBounds().intersects(this.world.getPlayer().getBounds())).collect(Collectors.toList()));
+		this.updateTankLifeAndProjectiles(this.world.getEnemy(), 
+				projectiles.stream().filter(p -> p.getBounds().intersects(this.world.getPlayer().getBounds())).collect(Collectors.toList()));
 	}
 
 	@Override
@@ -53,7 +65,7 @@ public class CollisionImpl implements Collision {
 
 	@Override
 	public void projectileWithBorders() {
-		this.projectiles.forEach(p -> this.bounceProjectileBetweenBorder(p));
+		this.projectiles.forEach(p -> this.projectileBounce(p));
 	}
 	
 	/**
@@ -62,22 +74,11 @@ public class CollisionImpl implements Collision {
 	 * 		the player {@link Tank}.
 	 * @param enemyTank
 	 * 		the enemy {@link Tank}.
-	 * @return true if there is any collision, false otherwise.
 	 */
-	private boolean checkCollisionTankWithTank(Tank playerTank, Tank enemyTank) {
-		return playerTank.getBounds().intersects(enemyTank.getBounds());
-	}
-	
-	/**
-	 * Getter for the {@link Projectile} that collide with a {@link Tank}.
-	 * @param tank
-	 * 		the {@link Tank}.
-	 * @param projectiles
-	 * 		the {@link Projectile}.
-	 * @return a list of {@link Projectile} that collide.
-	 */
-	private List<Projectile> getCollisionTankWithProjectiles(Tank tank, List<Projectile> projectiles) {
-		return projectiles.stream().filter(p -> p.getBounds().intersects(tank.getBounds())).collect(Collectors.toList());
+	private void checkCollisionTankWithTank(Tank playerTank, Tank enemyTank) {
+		if(playerTank.getBounds().intersects(enemyTank.getBounds())) {
+			throw new IllegalStateException();
+		}
 	}
 	
 	/**
@@ -113,11 +114,11 @@ public class CollisionImpl implements Collision {
 	}
 	
 	/**
-	 * Keep a {@link Projectile} between the {@link World} borders.
+	 * Control if a {@link Projectile} is between the {@link World} borders.
 	 * @param projectile
 	 *		the {@link Projectile}.
 	 */
-	private void bounceProjectileBetweenBorder(Projectile projectile) {
+	private void projectileBounce(Projectile projectile) {
 		try {
 			if(projectile.getPosition().getFirst() + projectile.getBounds().getWidth() >= this.world.getBounds().getFirst()) {
 				projectile.bounce(Direction.RIGHT);
@@ -133,11 +134,10 @@ public class CollisionImpl implements Collision {
 			}
 		} catch(IllegalStateException e) {
 			projectile.setDead();
-		}	
+		}
+		
 				
 	}
-	
-	
 	
 	//fare metodo Per tank con dimension e projectile con ray divisi  per il check.
 	

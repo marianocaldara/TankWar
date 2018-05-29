@@ -1,6 +1,9 @@
 package controller.collision;
 
+import java.util.List;
+
 import model.object.Projectile;
+import model.utility.*;
 
 /**
  * Interface to control the objects' collisions.
@@ -11,7 +14,7 @@ public interface Collision {
 	/**
 	 * Manage the collision between the two {@link Tank}.
 	 */
-	 void tankWithTank();
+	 void tankWithTank(List<Direction> movement);
 	 
 	 /**
 	  * Manage the collision between {@link Tank} and {@link Projectile}.
