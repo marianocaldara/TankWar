@@ -1,6 +1,6 @@
 package controller.collision;
 
-import java.util.List;
+import java.util.Map;
 
 import model.object.Projectile;
 import model.utility.*;
@@ -14,7 +14,7 @@ public interface Collision {
 	/**
 	 * Manage the collision between the two {@link Tank}.
 	 */
-	 void tankWithTank(List<Direction> movement);
+	 void tankWithTank(Map<Direction, Boolean> movement);
 	 
 	 /**
 	  * Manage the collision between {@link Tank} and {@link Projectile}.

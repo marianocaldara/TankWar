@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import controller.collision.Collision;
 import controller.input.KeyboardInput;
 import controller.input.MouseInput;
 import controller.utility.Convertitor;
@@ -28,6 +29,7 @@ public class ControllerObjects implements ControllerProjectile, ControllerTank {
 	private Map<Direction, Boolean> movements;
 	private List<Projectile> projectiles;
 	private Convertitor convertitor;
+	private final Collision collision;
 	
 	/**
 	 * Constructor.
@@ -44,13 +46,14 @@ public class ControllerObjects implements ControllerProjectile, ControllerTank {
 	 * 		a convertitor for position and dimension.
 	 * 		@see Convertitor.
 	 */
-	public ControllerObjects(Tank playerTank, Tank enemyTank, InputImpl playerInput, Convertitor convertitor) {
+	public ControllerObjects(Tank playerTank, Tank enemyTank, InputImpl playerInput, Convertitor convertitor, Collision collision) {
 		this.playerTank = playerTank;
 		this.enemyTank = enemyTank;
 		this.playerInput = playerInput;
 		this.movements = new HashMap<>();
 		this.projectiles = new ArrayList<>();
 		this.convertitor = convertitor;
+		this.collision = collision;
 	}
 
 	@Override
@@ -62,6 +65,7 @@ public class ControllerObjects implements ControllerProjectile, ControllerTank {
 		case RIGHT: this.movements.put(Direction.RIGHT, b); break;
 		default: ;
 		}
+		this.collision.tankWithTank(this.movements);
 		this.playerInput.setMovement(this.movements);
 	}
 	
@@ -85,9 +89,13 @@ public class ControllerObjects implements ControllerProjectile, ControllerTank {
 	}
 
 	@Override
-	public List<Projectile> getProjectiles() {
+	public List<Pair<Pair<Double, Double>, Pair<Double, Double>>> getProjectiles() {
 		this.deleteProjectiles(this.getDeadProjectiles());
-		return Collections.unmodifiableList(this.projectiles);
+		List<Pair<Pair<Double, Double>, Pair<Double, Double>>> projectilesToView = new ArrayList<>();
+		this.projectiles.forEach(p -> projectilesToView.add(new Pair<Pair<Double, Double>, Pair<Double, Double>>
+		(this.convertitor.modelToViewPosition(p.getPosition()), this.convertitor.modelToViewDimension(new Pair<Double, Double>(
+				p.getBounds().getWidth(), p.getBounds().getHeight())))));
+		return Collections.unmodifiableList(projectilesToView);
 	}	
 	
 	public void updateTank() {

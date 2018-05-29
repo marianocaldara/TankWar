@@ -4,6 +4,7 @@ import java.util.List;
 
 import controller.input.MouseInput;
 import model.object.Projectile;
+import model.utility.Pair;
 
 /**
  * Interface to control {@link Projectile}.
@@ -18,9 +19,9 @@ public interface ControllerProjectile {
 	void playerShot(MouseInput e);
 	
 	/**
-	 * Getter for the list of projectiles.
-	 * @return the list of {@link Projectile}.
+	 * Transform the position and the dimension of the list of {@link Projectile} from the {@link Model} to the {@link View}.
+	 * @return a list of {@link Pair} positions and dimensions.
 	 */
-	List<Projectile> getProjectiles();
+	 List<Pair<Pair<Double, Double>, Pair<Double, Double>>> getProjectiles();
 
 }
