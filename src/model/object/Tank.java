@@ -1,6 +1,5 @@
 package model.object;
 
-import javafx.geometry.Rectangle2D;
 import model.input.InputImpl;
 import model.utility.Pair;
 /**
@@ -50,23 +49,15 @@ public interface Tank {
 	 */
 	void setSpeed(double speed);
 	/**
-	 * Keep between borders the tank.
-	 * @param arenaWidth
-	 *     Widht of border of Game.
-	 * @param arenaHeight
-	 *     Height of border of Game.
-	 */
-	void keepBetweenBorders(double arenaWidth, double arenaHeight);
-	/**
 	 * Reduce number of lifes
 	 * @param damage
 	 *     nr lifes to decrease
 	 */
 	void damage(int damage);
 	/**
-	 * Get a bounds of Tank
-	 * @return {@link Rectangle2D} according to height and widht of Tank
+	 * Get a dimension of Tank
+	 * @return {@link Pair} according to height and width of Tank
 	 * @see controller.collision
 	 */
-	Rectangle2D getBounds();
+	Pair<Double, Double> getDimension();
 }

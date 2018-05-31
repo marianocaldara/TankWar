@@ -3,7 +3,6 @@ package model.object;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import javafx.geometry.Rectangle2D;
 import model.input.InputImpl;
 import model.utility.Calculate;
 import model.utility.ConsumerSpeed;
@@ -73,8 +72,8 @@ public class TankImpl implements Tank {
     }
 
     @Override
-    public Rectangle2D getBounds() {
-        return new Rectangle2D(this.position.getFirst(), this.position.getSecond(), DIMENSION.getFirst(), DIMENSION.getSecond());
+    public Pair<Double, Double> getDimension() {
+        return DIMENSION;
     }
 
     @Override
@@ -125,20 +124,6 @@ public class TankImpl implements Tank {
         final Pair<Double, Double> cannon_pos = new Pair<Double, Double>(this.position.getFirst()-2.0, this.position.getSecond()-2.0);
         this.cannon.update(cannon_pos, Calculate.angle(cannon_pos, target));
     }
-    @Override
-    public void keepBetweenBorders(final double arenaWidth, final double arenaHeight) {
-        if (this.position.getFirst() + DIMENSION.getFirst() >= arenaWidth) {       // Exceeding right
-            this.position.setFirst(arenaWidth - DIMENSION.getFirst());
-        } else if (this.position.getFirst() < 0) {                // Exceeding left
-            this.position.setFirst(0.0);
-        }
-        if (this.position.getSecond() + DIMENSION.getSecond() >= arenaHeight) {      // Exceeding down
-            this.position.setSecond(arenaHeight - DIMENSION.getSecond());
-        } else if (this.position.getSecond() < 0) {                // Exceeding up
-            this.position.setSecond(0.0);
-        }
-    }
-
     /**
      * Cannon is the object that allow shot by Tank.
      */
