@@ -1,6 +1,5 @@
 package model.object;
 
-import javafx.geometry.Rectangle2D;
 import model.utility.Direction;
 import model.utility.Pair;
 /**
@@ -74,11 +73,11 @@ public class Projectile {
 		return this.alive;
 	}
 	/**
-	 * Get projectile's bounds.
-	 * @return {@link Rectangle2D} according to {@link #dimension} of Projectile
+	 * Get projectile's dimension.
+	 * @return {@link Pair} according to {@link #dimension} of Projectile
 	 */
-	public Rectangle2D getBounds() {
-        return new Rectangle2D(this.position.getFirst(), this.position.getSecond(), DIMENSION.getFirst(), DIMENSION.getSecond());
+	public Pair<Double, Double> getBounds() {
+        return DIMENSION;
 	}
 	/**
 	 * update position of projectile according to speed
