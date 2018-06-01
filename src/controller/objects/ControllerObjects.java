@@ -92,9 +92,8 @@ public class ControllerObjects implements ControllerProjectile, ControllerTank {
 	public List<Pair<Pair<Double, Double>, Pair<Double, Double>>> getProjectiles() {
 		this.deleteProjectiles(this.getDeadProjectiles());
 		List<Pair<Pair<Double, Double>, Pair<Double, Double>>> projectilesToView = new ArrayList<>();
-		this.projectiles.forEach(p -> projectilesToView.add(new Pair<Pair<Double, Double>, Pair<Double, Double>>
-		(this.convertitor.modelToViewPosition(p.getPosition()), this.convertitor.modelToViewDimension(new Pair<Double, Double>(
-				p.getBounds().getWidth(), p.getBounds().getHeight())))));
+		this.projectiles.forEach(p -> projectilesToView.add(new Pair<> (this.convertitor.modelToViewPosition(p.getPosition()), 
+				this.convertitor.modelToViewDimension(p.getBounds()))));
 		return Collections.unmodifiableList(projectilesToView);
 	}	
 	

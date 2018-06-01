@@ -61,28 +61,28 @@ public class CollisionImpl implements Collision {
 							movement.put(Direction.DOWN, true);
 				}*/
 			
-			if(this.world.getPlayer().getPosition().getFirst() + this.world.getPlayer().getBounds().getWidth() >=
+			if(this.world.getPlayer().getPosition().getFirst() + this.world.getPlayer().getDimension().getFirst() >=
 				this.world.getEnemy().getPosition().getFirst() && movement.get(Direction.RIGHT)){
 					this.world.getPlayer().setPosition(new Pair<Double, Double>(this.world.getEnemy().getPosition().getFirst() -
-					this.world.getPlayer().getBounds().getWidth(), this.world.getPlayer().getPosition().getSecond()));
+					this.world.getPlayer().getDimension().getFirst(), this.world.getPlayer().getPosition().getSecond()));
 					movement.remove(Direction.RIGHT);
 			}
 			else if(this.world.getPlayer().getPosition().getFirst() < this.world.getEnemy().getPosition().getFirst() + 
-					this.world.getEnemy().getBounds().getWidth() && movement.get(Direction.LEFT)) {
+					this.world.getEnemy().getDimension().getFirst() && movement.get(Direction.LEFT)) {
 						this.world.getPlayer().setPosition(new Pair<Double, Double>(this.world.getEnemy().getPosition().getFirst() + 
-						this.world.getEnemy().getBounds().getWidth(), this.world.getPlayer().getPosition().getSecond()));
+						this.world.getEnemy().getDimension().getFirst(), this.world.getPlayer().getPosition().getSecond()));
 						movement.remove(Direction.LEFT);
 			}
-			if(this.world.getPlayer().getPosition().getSecond() + this.world.getPlayer().getBounds().getHeight() >=
+			if(this.world.getPlayer().getPosition().getSecond() + this.world.getPlayer().getDimension().getSecond() >=
 				this.world.getEnemy().getPosition().getSecond() && movement.get(Direction.DOWN)) {
 					this.world.getPlayer().setPosition(new Pair<Double, Double>(this.world.getPlayer().getPosition().getFirst(), 
-					this.world.getEnemy().getPosition().getSecond() - this.world.getPlayer().getBounds().getHeight()));
+					this.world.getEnemy().getPosition().getSecond() - this.world.getPlayer().getDimension().getSecond()));
 					movement.remove(Direction.DOWN);
 			}
 			else if(this.world.getPlayer().getPosition().getSecond() < this.world.getEnemy().getPosition().getSecond() +
-					this.world.getEnemy().getBounds().getHeight() && movement.get(Direction.UP)) {
+					this.world.getEnemy().getDimension().getSecond() && movement.get(Direction.UP)) {
 						this.world.getPlayer().setPosition(new Pair<Double, Double>(this.world.getPlayer().getPosition().getFirst(),
-						this.world.getEnemy().getPosition().getSecond() + this.world.getPlayer().getBounds().getHeight()));
+						this.world.getEnemy().getPosition().getSecond() + this.world.getPlayer().getDimension().getSecond()));
 						movement.remove(Direction.UP);
 			}
 			
@@ -94,9 +94,9 @@ public class CollisionImpl implements Collision {
 	@Override
 	public void tankWithProjectile() {
 		this.updateTankLifeAndProjectiles(this.world.getPlayer(), 
-				projectiles.stream().filter(p -> p.getBounds().intersects(this.world.getPlayer().getBounds())).collect(Collectors.toList()));
+				projectiles.stream().filter(p -> this.intersects(p.getPosition(), p.getBounds(), this.world.getPlayer().getPosition(), this.world.getPlayer().getDimension())).collect(Collectors.toList()));
 		this.updateTankLifeAndProjectiles(this.world.getEnemy(), 
-				projectiles.stream().filter(p -> p.getBounds().intersects(this.world.getPlayer().getBounds())).collect(Collectors.toList()));
+				projectiles.stream().filter(p -> this.intersects(p.getPosition(), p.getBounds(), this.world.getEnemy().getPosition(), this.world.getEnemy().getDimension())).collect(Collectors.toList()));
 	}
 
 	@Override
@@ -118,7 +118,7 @@ public class CollisionImpl implements Collision {
 	 * 		the enemy {@link Tank}.
 	 */
 	private void checkCollisionTankWithTank(Tank playerTank, Tank enemyTank) {
-		if(playerTank.getBounds().intersects(enemyTank.getBounds())) {
+		if(this.intersects(playerTank.getPosition(), playerTank.getDimension(), enemyTank.getPosition(), enemyTank.getDimension())) {
 			throw new IllegalStateException();
 		}
 	}
@@ -143,13 +143,13 @@ public class CollisionImpl implements Collision {
 	 * 		the {@link Tank}.
 	 */
 	private void keepTankBetweenBorders(Tank tank) {
-		if (tank.getPosition().getFirst() + tank.getBounds().getWidth() >= this.world.getBounds().getFirst()) {       // Exceeding right
-            tank.getPosition().setFirst(this.world.getBounds().getFirst() - tank.getBounds().getWidth());
+		if (tank.getPosition().getFirst() + tank.getDimension().getFirst() >= this.world.getBounds().getFirst()) {       // Exceeding right
+            tank.getPosition().setFirst(this.world.getBounds().getFirst() - tank.getDimension().getFirst());
         } else if (tank.getPosition().getFirst() < 0) {                // Exceeding left
         	tank.getPosition().setFirst(0.0);
         }
-        if (tank.getPosition().getSecond() + tank.getBounds().getHeight() >= this.world.getBounds().getSecond()) {      // Exceeding down
-        	tank.getPosition().setSecond(this.world.getBounds().getSecond() - tank.getBounds().getHeight());
+        if (tank.getPosition().getSecond() + tank.getDimension().getSecond() >= this.world.getBounds().getSecond()) {      // Exceeding down
+        	tank.getPosition().setSecond(this.world.getBounds().getSecond() - tank.getDimension().getSecond());
         } else if (tank.getPosition().getSecond() < 0) {                // Exceeding up
         	tank.getPosition().setSecond(0.0);
         }
@@ -162,13 +162,13 @@ public class CollisionImpl implements Collision {
 	 */
 	private void projectileBounce(Projectile projectile) {
 		try {
-			if(projectile.getPosition().getFirst() + projectile.getBounds().getWidth() >= this.world.getBounds().getFirst()) {
+			if(projectile.getPosition().getFirst() + projectile.getBounds().getFirst() >= this.world.getBounds().getFirst()) {
 				projectile.bounce(Direction.RIGHT);
 			}
 			else if(projectile.getPosition().getFirst() < 0) {
 				projectile.bounce(Direction.LEFT);
 			}
-			if(projectile.getPosition().getSecond() + projectile.getBounds().getHeight() >= this.world.getBounds().getSecond()) {
+			if(projectile.getPosition().getSecond() + projectile.getBounds().getSecond() >= this.world.getBounds().getSecond()) {
 				projectile.bounce(Direction.DOWN);
 			}
 			else if(projectile.getPosition().getSecond() < 0) {
@@ -179,6 +179,25 @@ public class CollisionImpl implements Collision {
 		}
 		
 				
+	}
+	
+	/**
+	 * Control if two objects collide.
+	 * @param positionFirst
+	 * 		the position of the first object.
+	 * @param dimensionFirst
+	 * 		the dimension of the first object.
+	 * @param positionSecond
+	 * 		the position of the second object.
+	 * @param dimensionSecond
+	 * 		the dimension of the second object.
+	 * @return true if the two objects collide, false otherwise.
+	 */
+	private boolean intersects(Pair<Double, Double> positionFirst, Pair<Double, Double> dimensionFirst, Pair<Double, Double> positionSecond, Pair<Double, Double> dimensionSecond) {
+		return positionFirst.getFirst() + dimensionFirst.getFirst() > positionSecond.getFirst() &&
+				positionFirst.getSecond() + dimensionFirst.getSecond() > positionSecond.getSecond() &&
+				positionFirst.getFirst() < positionSecond.getFirst() + dimensionSecond.getFirst() &&
+				positionFirst.getSecond() < positionSecond.getSecond() + dimensionSecond.getSecond();
 	}
 	
 	//fare metodo Per tank con dimension e projectile con ray divisi  per il check.
