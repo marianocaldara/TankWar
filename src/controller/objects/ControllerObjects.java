@@ -77,7 +77,7 @@ public class ControllerObjects implements ControllerProjectile, ControllerTank {
 	@Override
 	public void movePlayerCannon(MouseInput mouseInput) {
 		this.playerInput.setTarget(convertitor.viewToModelPosition(
-				new Pair<Double, Double>(mouseInput.getMouseInput().getSceneX(), mouseInput.getMouseInput().getSceneY())));
+				new Pair<>(mouseInput.getMouseInput().getSceneX(), mouseInput.getMouseInput().getSceneY())));
 	}
 
 	@Override

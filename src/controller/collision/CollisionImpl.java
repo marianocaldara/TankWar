@@ -63,25 +63,25 @@ public class CollisionImpl implements Collision {
 			
 			if(this.world.getPlayer().getPosition().getFirst() + this.world.getPlayer().getDimension().getFirst() >=
 				this.world.getEnemy().getPosition().getFirst() && movement.get(Direction.RIGHT)){
-					this.world.getPlayer().setPosition(new Pair<Double, Double>(this.world.getEnemy().getPosition().getFirst() -
+					this.world.getPlayer().setPosition(new Pair<>(this.world.getEnemy().getPosition().getFirst() -
 					this.world.getPlayer().getDimension().getFirst(), this.world.getPlayer().getPosition().getSecond()));
 					movement.remove(Direction.RIGHT);
 			}
 			else if(this.world.getPlayer().getPosition().getFirst() < this.world.getEnemy().getPosition().getFirst() + 
 					this.world.getEnemy().getDimension().getFirst() && movement.get(Direction.LEFT)) {
-						this.world.getPlayer().setPosition(new Pair<Double, Double>(this.world.getEnemy().getPosition().getFirst() + 
+						this.world.getPlayer().setPosition(new Pair<>(this.world.getEnemy().getPosition().getFirst() + 
 						this.world.getEnemy().getDimension().getFirst(), this.world.getPlayer().getPosition().getSecond()));
 						movement.remove(Direction.LEFT);
 			}
 			if(this.world.getPlayer().getPosition().getSecond() + this.world.getPlayer().getDimension().getSecond() >=
 				this.world.getEnemy().getPosition().getSecond() && movement.get(Direction.DOWN)) {
-					this.world.getPlayer().setPosition(new Pair<Double, Double>(this.world.getPlayer().getPosition().getFirst(), 
+					this.world.getPlayer().setPosition(new Pair<>(this.world.getPlayer().getPosition().getFirst(), 
 					this.world.getEnemy().getPosition().getSecond() - this.world.getPlayer().getDimension().getSecond()));
 					movement.remove(Direction.DOWN);
 			}
 			else if(this.world.getPlayer().getPosition().getSecond() < this.world.getEnemy().getPosition().getSecond() +
 					this.world.getEnemy().getDimension().getSecond() && movement.get(Direction.UP)) {
-						this.world.getPlayer().setPosition(new Pair<Double, Double>(this.world.getPlayer().getPosition().getFirst(),
+						this.world.getPlayer().setPosition(new Pair<>(this.world.getPlayer().getPosition().getFirst(),
 						this.world.getEnemy().getPosition().getSecond() + this.world.getPlayer().getDimension().getSecond()));
 						movement.remove(Direction.UP);
 			}
@@ -194,6 +194,9 @@ public class CollisionImpl implements Collision {
 	 * @return true if the two objects collide, false otherwise.
 	 */
 	private boolean intersects(Pair<Double, Double> positionFirst, Pair<Double, Double> dimensionFirst, Pair<Double, Double> positionSecond, Pair<Double, Double> dimensionSecond) {
+		if(positionFirst == null || dimensionFirst == null || positionSecond == null || dimensionSecond == null) {
+			return false;
+		}
 		return positionFirst.getFirst() + dimensionFirst.getFirst() > positionSecond.getFirst() &&
 				positionFirst.getSecond() + dimensionFirst.getSecond() > positionSecond.getSecond() &&
 				positionFirst.getFirst() < positionSecond.getFirst() + dimensionSecond.getFirst() &&

@@ -50,7 +50,7 @@ public class ConvertitorImpl implements Convertitor{
 	 * @return the converted object.
 	 */
 	private Pair<Double, Double> convertitor(Pair<Double, Double> toConvert, Pair<Pair<Double, Double>, Pair<Double, Double>> dimension){
-		return new Pair<Double, Double>(toConvert.getFirst() * dimension.getFirst().getFirst() / dimension.getSecond().getFirst(), 
+		return new Pair<>(toConvert.getFirst() * dimension.getFirst().getFirst() / dimension.getSecond().getFirst(), 
 				toConvert.getSecond() * dimension.getFirst().getFirst() / dimension.getSecond().getSecond());		
 	}
 	
