@@ -19,9 +19,9 @@ public interface ControllerProjectile {
 	void playerShot(MouseInput e);
 	
 	/**
-	 * Transform the position and the dimension of the list of {@link Projectile} from the {@link Model} to the {@link View}.
-	 * @return a list of {@link Pair} positions and dimensions.
+	 * Transform the position the list of {@link Projectile} from the {@link Model} to the {@link View}.
+	 * @return a list of position as {@link Pair}.
 	 */
-	 List<Pair<Pair<Double, Double>, Pair<Double, Double>>> getProjectiles();
+	 List<Pair<Double, Double>> getProjectiles();
 
 }

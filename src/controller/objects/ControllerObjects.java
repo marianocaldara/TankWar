@@ -70,14 +70,8 @@ public class ControllerObjects implements ControllerProjectile, ControllerTank {
 	}
 	
 	@Override
-	public void moveEnemyTank() {
-		AI.act(this.enemyTank, this.playerTank);		
-	}
-	
-	@Override
 	public void movePlayerCannon(MouseInput mouseInput) {
-		this.playerInput.setTarget(convertitor.viewToModelPosition(
-				new Pair<>(mouseInput.getMouseInput().getSceneX(), mouseInput.getMouseInput().getSceneY())));
+		this.playerInput.setTarget(convertitor.viewToModel(new Pair<>(mouseInput.getMouseInput().getSceneX(), mouseInput.getMouseInput().getSceneY())));
 	}
 
 	@Override
@@ -89,16 +83,25 @@ public class ControllerObjects implements ControllerProjectile, ControllerTank {
 	}
 
 	@Override
-	public List<Pair<Pair<Double, Double>, Pair<Double, Double>>> getProjectiles() {
+	public List<Pair<Double, Double>> getProjectiles() {
 		this.deleteProjectiles(this.getDeadProjectiles());
-		List<Pair<Pair<Double, Double>, Pair<Double, Double>>> projectilesToView = new ArrayList<>();
-		this.projectiles.forEach(p -> projectilesToView.add(new Pair<> (this.convertitor.modelToViewPosition(p.getPosition()), 
-				this.convertitor.modelToViewDimension(p.getBounds()))));
-		return Collections.unmodifiableList(projectilesToView);
+		return Collections.unmodifiableList(this.projectiles.stream().map(p -> this.convertitor.modelToView(p.getBounds())).collect(Collectors.toList()));
 	}	
 	
+	@Override
 	public void updateTank() {
 		this.playerTank.update(playerInput);
+		this.enemyTank.update(AI.act(this.enemyTank, this.playerTank));
+	}
+	
+	@Override
+	public Pair<Double, Double> getPlayerPosition() {
+		return this.convertitor.modelToView(this.playerTank.getPosition());
+	}
+
+	@Override
+	public Pair<Double, Double> getEnemyPosition() {
+		return this.convertitor.modelToView(this.enemyTank.getPosition());
 	}
 	
 	
@@ -118,4 +121,5 @@ public class ControllerObjects implements ControllerProjectile, ControllerTank {
 	private void deleteProjectiles(List<Projectile> deadProjectiles) {
 		this.projectiles.removeAll(deadProjectiles);
 	}
+
 }

@@ -94,9 +94,11 @@ public class CollisionImpl implements Collision {
 	@Override
 	public void tankWithProjectile() {
 		this.updateTankLifeAndProjectiles(this.world.getPlayer(), 
-				projectiles.stream().filter(p -> this.intersects(p.getPosition(), p.getBounds(), this.world.getPlayer().getPosition(), this.world.getPlayer().getDimension())).collect(Collectors.toList()));
+				projectiles.stream().filter(p -> this.intersects(p.getPosition(), p.getBounds(), this.world.getPlayer().getPosition(), 
+						this.world.getPlayer().getDimension())).collect(Collectors.toList()));
 		this.updateTankLifeAndProjectiles(this.world.getEnemy(), 
-				projectiles.stream().filter(p -> this.intersects(p.getPosition(), p.getBounds(), this.world.getEnemy().getPosition(), this.world.getEnemy().getDimension())).collect(Collectors.toList()));
+				projectiles.stream().filter(p -> this.intersects(p.getPosition(), p.getBounds(), this.world.getEnemy().getPosition(), 
+						this.world.getEnemy().getDimension())).collect(Collectors.toList()));
 	}
 
 	@Override

@@ -7,7 +7,7 @@ import model.utility.Pair;
  */
 public class ConvertitorImpl implements Convertitor{
 	private final Pair<Double, Double> modelDimension;
-	private final Pair<Double, Double> viewDimension;
+	private Pair<Double, Double> viewDimension;
 	
 	/**
 	 * Constructor.
@@ -21,40 +21,35 @@ public class ConvertitorImpl implements Convertitor{
 		this.viewDimension = viewDimension;
 	}
 	
+
 	@Override
-	public Pair<Double, Double> viewToModelPosition(Pair<Double, Double> position){
-		return this.convertitor(position, new Pair<>(this.modelDimension, this.viewDimension));
+	public void setViewDimension(Pair<Double, Double> viewDimension) {
+		this.viewDimension = viewDimension;		
+	}
+		
+	@Override
+	public Pair<Double, Double> viewToModel(Pair<Double, Double> position){
+		return this.convertitor(position, this.modelDimension, this.viewDimension);
 	}
 	
 	@Override
-	public Pair<Double, Double> modelToViewPosition(Pair<Double, Double> position){
-		return this.convertitor(position, new Pair<>(this.viewDimension, this.modelDimension));
+	public Pair<Double, Double> modelToView(Pair<Double, Double> position){
+		return this.convertitor(position, this.viewDimension, this.modelDimension);
 	}
-	
-	@Override
-	public Pair<Double, Double> viewToModelDimension(Pair<Double, Double> dimension){
-		return this.convertitor(dimension, new Pair<>(this.modelDimension, this.viewDimension));
-	}
-	
-	@Override
-	public Pair<Double, Double> modelToViewDimension(Pair<Double, Double> dimension){
-		return this.convertitor(dimension, new Pair<>(this.viewDimension, this.modelDimension));
-	}	
 	
 	/**
 	 * Convertitor of the position and dimension of an object.
 	 * @param toConvert
 	 * 		the object to convert.
-	 * @param dimension
-	 * 		the model and view dimension.
+	 * @param firstDimension
+	 * 		the {@link Model} or the {@link View} dimension.
+	 * @param secondDimension
+	 * 		the {@link Model} or the {@link View} dimension.
 	 * @return the converted object.
 	 */
-	private Pair<Double, Double> convertitor(Pair<Double, Double> toConvert, Pair<Pair<Double, Double>, Pair<Double, Double>> dimension){
-		return new Pair<>(toConvert.getFirst() * dimension.getFirst().getFirst() / dimension.getSecond().getFirst(), 
-				toConvert.getSecond() * dimension.getFirst().getFirst() / dimension.getSecond().getSecond());		
-	}
-	
-	
-	
+	private Pair<Double, Double> convertitor(Pair<Double, Double> toConvert, Pair<Double, Double> firstDimension, Pair<Double, Double> secondDimension){
+		return new Pair<>(toConvert.getFirst() * firstDimension.getFirst() / secondDimension.getFirst(), 
+				toConvert.getSecond() * firstDimension.getSecond() / secondDimension.getSecond());		
+	}	
 	
 }

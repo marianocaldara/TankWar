@@ -8,37 +8,28 @@ import model.utility.Pair;
  *
  */
 public interface Convertitor {
+	
+	/**
+	 * Setter of the {@link View} dimension.
+	 * @param viewDimension
+	 * 		the dimension as a {@link Pair}.
+	 */
+	void setViewDimension(Pair<Double, Double> viewDimension);
 
 	/**
-	 * Convert a position of {@link View} to a position of {@link Model}.
+	 * Convert position or dimension of {@link View} to a position or dimension of {@link Model}.
 	 * @param position
 	 * 		the position of the object.
-	 * @return the modified position.
+	 * @return the new position.
 	 */
-	Pair<Double, Double> viewToModelPosition(Pair<Double, Double> position);
+	Pair<Double, Double> viewToModel(Pair<Double, Double> position);
 	
 	/**
-	 * Convert a position of {@link Model} to a position of {@link View}.
+	 * Convert position or dimension of {@link Model} to position or dimension of {@link View}.
 	 * @param position
 	 * 		the position of the object.
-	 * @return the modified position.
+	 * @return the new position.
 	 */
-	Pair<Double, Double> modelToViewPosition(Pair<Double, Double> position);
-	
-	/**
-	 * Convert a dimension of {@link View} to a dimension of {@link Model}.
-	 * @param dimension
-	 * 		the dimension of the object.
-	 * @return the modified dimension.
-	 */
-	Pair<Double, Double> viewToModelDimension(Pair<Double, Double> dimension);
-	
-	/**
-	Convert a dimension of {@link Model} to a dimension of {@link View}.
-	 * @param dimension
-	 * 		the dimension of the object.
-	 * @return the modified dimension.
-	 */
-	Pair<Double, Double> modelToViewDimension(Pair<Double, Double> dimension);
+	Pair<Double, Double> modelToView(Pair<Double, Double> position);
 	
 }

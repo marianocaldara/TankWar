@@ -2,6 +2,7 @@ package controller.objects;
 
 import controller.input.KeyboardInput;
 import controller.input.MouseInput;
+import model.utility.Pair;
 
 /**
  * Interface to control {@link Tank}
@@ -18,15 +19,27 @@ public interface ControllerTank {
 	void movePlayerTank(KeyboardInput keyInput, boolean b);
 	
 	/**
-	 * Call the static class {@link IA} that decides the next move of the enemy.
-	 */
-	void moveEnemyTank();
-	
-	/**
 	 * Rotate the player cannon in the position targeted by mouse.
 	 * @param mouseInput
 	 * 		the {@link MouseInput}.
 	 */
 	void movePlayerCannon(MouseInput mouseInput);
+	
+	/**
+	 * Update the position and the target of the two {@link Tank}.
+	 */
+	void updateTank();
+	
+	/**
+	 * Getter of the {@link View} position of the player {@link Tank}.
+	 * @return the new position as a {@link Pair}.
+	 */
+	Pair<Double, Double> getPlayerPosition();
+	
+	/**
+	 * Getter of the {@link View} position of the enemy {@link Tank}.
+	 * @return the new position as a {@link Pair}.
+	 */		
+	Pair<Double, Double> getEnemyPosition();
 
 }
