@@ -13,9 +13,12 @@ import model.object.Tank;
  */
 public class AI {
 
+    private final static Pair<Double, Double> DIMENSION = new Pair<>(600.0, 400.0);
     private static Map<Direction, Boolean> movement = new HashMap<>();
-
+    private final static double CRITICAL_DISTANNCE = (DIMENSION.getFirst() + DIMENSION.getSecond())/3;
+    
     /**
+     * The act method decides how to move the enemy and when to make it shot
      * 
      * @param enemy
      *  the enemy tank, the one to be moved by IA
@@ -25,13 +28,24 @@ public class AI {
      *  the the input for the enemy tank
      */
     public static InputImpl act(Tank enemy, Tank player) {
-
-        if (Calculate.distance(enemy.getPosition(), player.getPosition()) > 200) {
-            goCloser(enemy, player);
+        if (Calculate.distance(enemy.getPosition(), player.getPosition()) > CRITICAL_DISTANNCE) {
+            if (Calculate.probability() < 75) {
+                goCloser(enemy, player);
+            } else {
+                goAway(enemy, player);
+                enemy.shot();
+            }
         } else {
-            goAway(enemy, player);
+            if (Calculate.probability() < 75) {
+                goAway(enemy, player);
+            } else {
+                goCloser(enemy, player);
+                enemy.shot();
+            }
         }
-
+        if (Calculate.probability() < 15) {
+            enemy.shot();
+        }
         return new InputImpl(movement, player.getPosition());
     }
 
