@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane id="gameWorld" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.GameWorldController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Group>
+         <children>
+            <Canvas fx:id="worldCanvas" height="400.0" width="600.0" />
+            <ImageView fx:id="playerTank" accessibleRole="LIST_VIEW" fitHeight="50.0" fitWidth="100.0" layoutX="14.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+               <image>
+                  <Image url="@../../res/images/tankBlack_outline.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="enemyTank" fitHeight="50.0" fitWidth="100.0" layoutX="534.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+               <image>
+                  <Image url="@../../res/images/tankRed_outline.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="alliedCannon" fitWidth="10.0" layoutX="55.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" scaleY="1.5">
+               <image>
+                  <Image url="@../../res/images/barrelBlack_outline.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="enemyCannon" fitWidth="10.0" layoutX="537.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" scaleY="1.5">
+               <image>
+                  <Image url="@../../res/images/barrelRed_outline.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Group>
+   </children>
+</GridPane>

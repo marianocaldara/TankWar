@@ -1,1 +1,206 @@
-/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+#canvas{
+	-fx-background-color: blue;
+}
+
+#close{
+	-fx-text-fill: white ;
+	-fx-font-weight: bold ;
+	-fx-font-scale: 40.0 ;
+}
+
+#close:hover{
+	-fx-effect: dropshadow( one-pass-box , rgba(255,255,255,0.5) , 2, 5.0 , 0 , 0);
+	-fx-text-fill: white ;
+	-fx-font-weight: bold ;
+	-fx-font-scale: 40.0 ;
+}
+
+#login{
+	-fx-background-color: transparent  ;
+	-fx-border-radius: 40.0, 40.0, 40.0, 40.0 ;
+	-fx-background-radius: 40.0, 40.0, 40.0, 40.0 ;
+	-fx-text-fill: white ;
+	-fx-font-weight: bold ;
+}
+
+#login{
+	-fx-border-color: white ;
+}
+
+#login:hover{
+	-fx-effect: dropshadow( one-pass-box , rgba(255,255,255,0.5) , 2, 5.0 , 0 , 0);
+	-fx-background-color: transparent  ;
+	-fx-border-radius: 40.0, 40.0, 40.0, 40.0 ;
+	-fx-background-radius: 40.0, 40.0, 40.0, 40.0 ;
+	-fx-text-fill: white ;
+	-fx-font-weight: bold ;
+}
+
+#usrname{
+	-fx-opacity: 0.9 ;
+	-fx-prompt-text-fill: #ffffff ;
+	-fx-text-fill: #ffffff ;
+	-fx-font-weight: bold ;
+}
+
+#usrname:hover{
+	-fx-opacity: 1 ;
+	-fx-prompt-text-fill: #ffffff ;
+	-fx-text-fill: #ffffff ;
+	-fx-font-weight: bold ;
+}
+
+#pass{
+	-fx-opacity: 0.9 ;
+	-fx-prompt-text-fill: #ffffff ;
+	-fx-text-fill: #ffffff ;
+	-fx-font-weight: bold ;
+}
+
+#pass:hover{
+	-fx-opacity: 1;
+	-fx-prompt-text-fill: #ffffff ;
+	-fx-text-fill: #ffffff ;
+	-fx-font-weight: bold ;
+}
+
+#register_pane{
+	-fx-background-image: url(../../res/images/3d-animation-abstract-4k-background-flying-blue-triangle-particles-on-dark-background-motion-graphics_sjhzpapr__F0000.png) ;
+	-fx-background-repeat: no-repeat ;
+	-fx-background-size: 100% 100% ;
+}
+
+#confirm{
+	-fx-border-radius: 40.0, 40.0, 40.0, 40.0 ;
+	-fx-background-radius: 40.0, 40.0, 40.0, 40.0 ;
+	-fx-text-fill: white ;
+	-fx-font-weight: bold ;
+	-fx-border-color: white ;
+}
+
+#confirm:hover{
+	-fx-effect: dropshadow( one-pass-box , rgba(255,0,0,1) , 5, 10.0 , 0 , 0);
+	-fx-border-radius: 40.0, 40.0, 40.0, 40.0 ;
+	-fx-background-radius: 40.0, 40.0, 40.0, 40.0 ;
+	-fx-text-fill: white ;
+	-fx-font-weight: bold ;
+	-fx-border-color: white ;
+}
+
+#usr_register{
+	-fx-effect: dropshadow( one-pass-box , rgba(255,0,0,1) , 1, 5.0 , 0 , 0);
+	-fx-prompt-text-fill: #ffffff ;
+	-fx-text-fill: #ffffff ;
+	-fx-font-weight: bold ;
+}
+
+#usr_register:hover{
+	-fx-effect: dropshadow( one-pass-box , rgba(255,0,0,1) , 3, 8.0 , 0 , 0);
+	-fx-prompt-text-fill: #ffffff ;
+	-fx-text-fill: #ffffff ;
+	-fx-font-weight: bold ;
+}
+
+#pass_register{
+	-fx-effect: dropshadow( one-pass-box , rgba(255,0,0,1) , 1, 5.0 , 0 , 0);
+	-fx-prompt-text-fill: #ffffff ;
+	-fx-text-fill: #ffffff ;
+	-fx-font-weight: bold ;
+}
+
+#pass_register:hover{
+	-fx-effect: dropshadow( one-pass-box , rgba(255,0,0,1) , 3, 8.0 , 0 , 0);
+	-fx-prompt-text-fill: #ffffff ;
+	-fx-text-fill: #ffffff ;
+	-fx-font-weight: bold ;
+}
+
+#log_fail{
+	-fx-effect: dropshadow( one-pass-box , rgba(255,0,0,1) , 1, 5.0 , 0 , 0);
+	-fx-text-fill: RED ;
+	-fx-font-weight: bold ;
+	-fx-font-scale: 20.0 ;
+	-fx-font-size: 20.0 ;
+}
+
+#back{
+	-fx-border-radius: 40.0, 40.0, 40.0, 40.0 ;
+	-fx-background-radius: 40.0, 40.0, 40.0, 40.0 ;
+}
+
+#tanklabel{
+	-fx-font-size: 50.0  ;
+	-fx-font-weight: bold;
+	-fx-font-style: italic ;
+}
+
+#play{
+	-fx-background-color: transparent ;
+	-fx-font-size: 30.0  ;
+	-fx-font-weight: bold;
+	-fx-text-fill: white ; 
+}
+
+#play:hover{
+	-fx-effect: dropshadow( one-pass-box , rgba(255,255,255,0.5) , 5, 10.0 , 0 , 0);
+	-fx-background-color: transparent ;
+	-fx-font-size: 30.0  ;
+	-fx-font-weight: bold;
+	-fx-text-fill: white ; 
+}
+
+#settings{
+	-fx-background-color: transparent ;
+	-fx-font-size: 30.0  ;
+	-fx-font-weight: bold;
+	-fx-text-fill: white ;
+}
+
+#settings:hover{
+	-fx-effect: dropshadow( one-pass-box , rgba(255,255,255,0.5) , 0, 0.0 , 0 , 1);
+	-fx-background-color: transparent ;
+	-fx-font-size: 30.0  ;
+	-fx-font-weight: bold;
+	-fx-text-fill: white ;
+}
+
+#exit{
+	-fx-background-color: transparent ;
+	-fx-font-size: 30.0  ;
+	-fx-font-weight: bold;
+	-fx-text-fill: white ;
+}
+
+#exit:hover{
+	-fx-effect: dropshadow( one-pass-box , rgba(255,255,255,0.5) , 5, 10.0 , 0 , 0);
+	-fx-background-color: transparent ;
+	-fx-font-size: 30.0  ;
+	-fx-font-weight: bold;
+	-fx-text-fill: white ;
+}
+
+#log_label{
+	-fx-text-fill: white ;
+}
+
+#tanklabel{
+	-fx-effect: dropshadow( one-pass-box , rgba(255,255,255,0.5) , 5, 10.0 , 0 , 0);
+}
+
+#root{
+	-fx-background-image: url(../../res/images/tankLogin.jpg) ;
+	-fx-background-repeat: no-repeat ;
+	-fx-background-size: 100% 100% ;	
+}
+
+#root2{
+	-fx-background-image: url(../../res/images/tankMenu.jpg) ;
+	-fx-background-repeat: no-repeat ;
+	-fx-background-size: 100% 100% ;
+}
+
+#gameWorld{
+	-fx-background-image: url(../../res/images/level-editor-grass-background.png);
+	-fx-background-repeat: no-repeat ;
+	-fx-background-size: 100% 100% ;
+}

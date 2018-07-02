@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="register_pane" prefHeight="485.333333333" prefWidth="685.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.RegistrationController">
+   <children>
+      <JFXTextField fx:id="usr_register" focusColor="WHITE" labelFloat="true" layoutX="155.0" layoutY="115.0" prefHeight="25.0" prefWidth="375.0" promptText="  Username" unFocusColor="WHITE">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </JFXTextField>
+      <JFXPasswordField fx:id="pass_register" focusColor="WHITE" labelFloat="true" layoutX="155.0" layoutY="251.0" prefHeight="25.0" prefWidth="375.0" promptText="  Password" unFocusColor="WHITE">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </JFXPasswordField>
+      <JFXButton fx:id="confirm" buttonType="RAISED" layoutX="276.0" layoutY="346.0" prefHeight="51.0" prefWidth="133.0" ripplerFill="RED" text="Register" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Label fx:id="log_fail" alignment="CENTER" layoutX="242.0" layoutY="48.0" prefHeight="39.0" prefWidth="202.0" textFill="RED" />
+      <JFXButton fx:id="back" buttonType="RAISED" layoutX="14.0" layoutY="19.0" onAction="#setBack" prefHeight="51.0" prefWidth="66.0" ripplerFill="#ffffff00" text=" ">
+         <graphic>
+            <ImageView fitHeight="51.0" fitWidth="56.0">
+               <image>
+                  <Image url="@../../res/images/809860_arrows_512x512.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+   </children>
+</AnchorPane>
