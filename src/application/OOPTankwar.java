@@ -17,24 +17,7 @@ public class OOPTankwar extends Application {
 	
 	@Override
     public void start(Stage primaryStage) {
-		try {
-            ViewUtils.setPrimaryStage(primaryStage);
-            //Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
-            Parent root = FXMLLoader.load(getClass().getResource("/view/GameWorld.fxml")); // temporaneo
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-            Rectangle2D screen = Screen.getPrimary().getVisualBounds();
-            //primaryStage.initStyle(StageStyle.UNDECORATED);
-            primaryStage.centerOnScreen();
-            primaryStage.setHeight(screen.getHeight() / 1.5);
-            primaryStage.setWidth(screen.getWidth() / 2);
-            primaryStage.setMinHeight(screen.getHeight() / 1.5);
-            primaryStage.setMinWidth(screen.getWidth() / 2);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+		
     }
 	
 	/**
