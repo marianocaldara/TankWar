@@ -26,9 +26,9 @@ public class FileControllerImpl implements FileController {
 	 * @param level
 	 * 		the level to load.
 	 */
-	public FileControllerImpl(Levels level, Model world) {	
+	public FileControllerImpl(Model world) {	
 		super();
-		this.level = level;
+		this.level = Levels.LEVEL_1;
 		this.world = world;
 		this.json = new JSONParser();
 	}
