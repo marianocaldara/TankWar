@@ -28,7 +28,7 @@ public class ViewMain {
             //Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
             Parent root = FXMLLoader.load(getClass().getResource("/view/GameWorld.fxml")); // temporaneo
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
             Rectangle2D screen = Screen.getPrimary().getVisualBounds();
             //primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.centerOnScreen();
