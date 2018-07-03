@@ -13,12 +13,12 @@ public class World implements Model {
     private InputImpl inputEnemy = new InputImpl();
     
     @Override
-    public void configPlayerTank(final Pair<Double, Double> position, final int lifes, final double speed) {
+    public void configPlayerTank(final Pair<Double, Double> position, int lifes, final double speed) {
        player = new TankImpl(position, lifes, speed);
     }
 
     @Override
-    public void configEnemyTank(final Pair<Double, Double> position, final int lifes, final double speed) {
+    public void configEnemyTank(final Pair<Double, Double> position, int lifes, final double speed) {
         enemy = new TankImpl(position, lifes, speed);
     }
 
@@ -45,5 +45,5 @@ public class World implements Model {
     @Override
     public InputImpl getInputEnemy() {
         return this.inputEnemy;
-    }    
+    }
 }
