@@ -1,5 +1,6 @@
 package model;
 
+import model.input.InputImpl;
 import model.object.Tank;
 import model.utility.Pair;
 
@@ -35,9 +36,19 @@ public interface Model {
      */
     Tank getEnemy();
     /**
-     * Getter for bounds of World
+     * Getter for bounds of World.
      * @return bounds First = width, Second = height
      * @see Pair
      */
     Pair<Double, Double> getBounds();
+    /**
+     * Getter for Input Player.
+     * @return {@link InputImpl} of player.
+     */
+    InputImpl getInputPlayer();
+    /**
+     * Getter for Input Enemy
+     * @return {@link InputImpl} of enemy.
+     */
+    InputImpl getInputEnemy();
 }

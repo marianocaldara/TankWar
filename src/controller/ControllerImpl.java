@@ -15,7 +15,7 @@ import controller.utility.ConvertitorImpl;
 import model.Model;
 import view.ViewMain;
 
-/*
+
 import controller.collision.Collision;
 import controller.file.FileController;
 import controller.input.ControllerInputImpl;
@@ -23,7 +23,7 @@ import controller.levels.Level;
 import controller.objects.ControllerObjects;
 import controller.utility.Convertitor;
 import model.Model;
-*/
+
 
 /**
  * Concrete implementation of {@link Controller}
@@ -43,7 +43,7 @@ public class ControllerImpl implements Controller {
 		this.world = world;
 		this.view = view;
 		this.level = new LevelImpl();
-//		this.convertitor = new ConvertitorImpl(this.world.getBounds(), this.view.getBounds());
+		this.convertitor = new ConvertitorImpl(this.world.getBounds(), this.view.getBounds());
 		this.collision = new CollisionImpl(this.world, new ArrayList<>());
 //		this.controllerObject = new ControllerObjects(this.world.getPlayer(), this.world.getEnemy(), this.world.getPlayerInput, this.convertitor, this.collision);
 		this.file = new FileControllerImpl(this.world);

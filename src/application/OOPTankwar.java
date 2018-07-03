@@ -1,14 +1,12 @@
 package application;
 	
+import controller.Controller;
+import controller.ControllerImpl;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import view.ViewMain;
-import view.utility.ViewUtils;
+import model.Model;
+import model.World;
 
 /**
  *  The class containing the main method to start the application.
@@ -17,9 +15,11 @@ public class OOPTankwar extends Application {
 	
 	@Override
     public void start(Stage primaryStage) {
-		
+		Model world = new World();
+		ViewMain view = new ViewMain(primaryStage);
+		Controller controller = new ControllerImpl(world, view);
+		view.setController(controller);
     }
-	
 	/**
 	 * Entry point of the application
 	 * @param args
