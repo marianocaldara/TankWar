@@ -15,7 +15,7 @@ import javafx.scene.input.MouseEvent;
  */
 public class GameWorldController {
 	
-	private ControllerInputImpl controller = new ControllerInputImpl(); // temporanea
+	private ControllerInputImpl controller;
     @FXML
     private Canvas worldCanvas;
     @FXML
@@ -43,6 +43,15 @@ public class GameWorldController {
         enemyCannon.fitHeightProperty().bind(canvas.heightProperty().divide(12));
     }*/
 
+    /**
+     * This method allow to instance the controller inside this class
+     * @param controller
+     * 				the controller input.
+     */
+    public void setControllerInput(ControllerInputImpl controller) {
+    	this.controller = controller;
+    }
+    
     /**
      * This method allows the tank movement
      * @param event
