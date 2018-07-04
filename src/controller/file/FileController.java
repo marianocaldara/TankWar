@@ -1,5 +1,7 @@
 package controller.file;
 
+import java.lang.reflect.InvocationTargetException;
+
 import controller.levels.Levels;
 
 /**
@@ -9,6 +11,7 @@ public interface FileController {
 	
 	/**
 	 * Method to read a level state from file.
+	 * @throws InvocationTargetException 
 	 */
 	void loadLevel();
 	

@@ -1,11 +1,13 @@
 package controller;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import controller.collision.Collision;
 import controller.collision.CollisionImpl;
 import controller.file.FileController;
 import controller.file.FileControllerImpl;
+import controller.file.InitialStateFields;
 import controller.input.ControllerInputImpl;
 import controller.levels.Level;
 import controller.levels.LevelImpl;
@@ -48,7 +50,7 @@ public class ControllerImpl implements Controller {
 		this.controllerObject = new ControllerObjects(this.world.getPlayer(), this.world.getEnemy(), this.world.getInputPlayer(), this.convertitor, this.collision);
 		this.file = new FileControllerImpl(this.world);
 		this.controllerInput = new ControllerInputImpl();
-		file.loadLevel();
+		this.file.loadLevel();
 	}
 
 	@Override
