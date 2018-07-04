@@ -4,9 +4,9 @@ import controller.Controller;
 import controller.ControllerImpl;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import view.ViewMain;
 import model.Model;
 import model.World;
-import view.ViewMain;
 
 /**
  *  The class containing the main method to start the application.
@@ -20,6 +20,7 @@ public class OOPTankwar extends Application {
 		Controller controller = new ControllerImpl(world, view);
 		view.setController(controller);
     }
+	
 	/**
 	 * Entry point of the application
 	 * @param args
