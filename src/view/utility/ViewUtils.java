@@ -1,6 +1,7 @@
 package view.utility;
 
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 
 /**
@@ -37,6 +38,15 @@ public class ViewUtils {
      */
     public static Scene getScene() {
         return CURRENT_STAGE.getScene();
+    }
+    
+    /**
+     * This method allows to set the stage to full screen, disabling also all the exit key combinations
+     */
+    public static void setStageFullScreen() {
+    	CURRENT_STAGE.setFullScreen(true);
+    	CURRENT_STAGE.setFullScreenExitHint("");
+    	CURRENT_STAGE.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
     }
 
 }
