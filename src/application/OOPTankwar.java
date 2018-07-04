@@ -20,6 +20,7 @@ public class OOPTankwar extends Application {
 		Controller controller = new ControllerImpl(world, view);
 		view.setController(controller);
     }
+	
 	/**
 	 * Entry point of the application
 	 * @param args
