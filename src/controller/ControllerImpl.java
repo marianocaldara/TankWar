@@ -1,13 +1,11 @@
 package controller;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import controller.collision.Collision;
 import controller.collision.CollisionImpl;
 import controller.file.FileController;
 import controller.file.FileControllerImpl;
-import controller.file.InitialStateFields;
 import controller.input.ControllerInputImpl;
 import controller.levels.Level;
 import controller.levels.LevelImpl;
@@ -16,16 +14,6 @@ import controller.utility.Convertitor;
 import controller.utility.ConvertitorImpl;
 import model.Model;
 import view.ViewMain;
-
-
-import controller.collision.Collision;
-import controller.file.FileController;
-import controller.input.ControllerInputImpl;
-import controller.levels.Level;
-import controller.objects.ControllerObjects;
-import controller.utility.Convertitor;
-import model.Model;
-
 
 /**
  * Concrete implementation of {@link Controller}
