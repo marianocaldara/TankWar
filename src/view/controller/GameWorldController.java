@@ -79,4 +79,15 @@ public class GameWorldController {
     public void tankShot(MouseEvent event) {
         controller.setMouseInput(event);
     }
+    
+    /**
+     * This method allows to update graphically the tanks positions after a movement
+     */
+    public void updateTanksPos() {
+    	playerTank.setLayoutX(ViewUtils.getController().getControllerObject().getPlayerPosition().getFirst());
+    	playerTank.setLayoutX(ViewUtils.getController().getControllerObject().getPlayerPosition().getSecond());
+    	enemyTank.setLayoutX(ViewUtils.getController().getControllerObject().getPlayerPosition().getSecond());
+    	enemyTank.setLayoutY(ViewUtils.getController().getControllerObject().getPlayerPosition().getSecond());
+    	
+    }
 }
