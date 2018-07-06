@@ -81,7 +81,7 @@ public class GameWorldController {
     }
     
     /**
-     * This method allows to update graphically the tanks positions after a movement
+     * This method allows to update graphically the tanks positions after a movement.
      */
     public void updateTanksPos() {
     	playerTank.setLayoutX(ViewUtils.getController().getControllerObject().getPlayerPosition().getFirst());
