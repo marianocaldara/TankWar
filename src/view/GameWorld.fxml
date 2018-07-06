@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -39,6 +45,28 @@
                   <Image url="@../../res/images/barrelRed_outline.png" />
                </image>
             </ImageView>
+            <AnchorPane fx:id="menuPane" layoutX="528.0" prefHeight="0.0" prefWidth="0.0">
+               <children>
+                  <MenuButton fx:id="menuBar" accessibleRole="MENU" alignment="TOP_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" opacity="0.0" prefHeight="51.0" prefWidth="66.0">
+                    <items>
+                      <MenuItem fx:id="menuOptions" mnemonicParsing="false" text="Options">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator>
+                        </MenuItem>
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                      <MenuItem fx:id="menuExit" mnemonicParsing="false" onAction="#setExitOption" text="Exit">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator>
+                        </MenuItem>
+                    </items>
+                  </MenuButton>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </AnchorPane>
          </children>
       </Group>
    </children>

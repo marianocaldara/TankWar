@@ -2,11 +2,13 @@ package view.controller;
 
 
 import controller.input.ControllerInputImpl;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import view.utility.ViewUtils;
 
 /**
@@ -27,12 +29,15 @@ public class GameWorldController {
     private ImageView alliedCannon;
     @FXML
     private ImageView enemyCannon;
+    @FXML
+    private AnchorPane menuPane;
     
     @FXML
     void initialize() {
     	ViewUtils.setStageFullScreen();
     	worldCanvas.setWidth(ViewUtils.getScene().getWidth());
     	worldCanvas.setHeight(ViewUtils.getScene().getHeight());
+    	menuPane.setLayoutX(worldCanvas.getBoundsInLocal().getMaxX()/(1.05));
     	alliedCannon.layoutXProperty().bind(playerTank.layoutXProperty().add(43));
     	alliedCannon.layoutYProperty().bind(playerTank.layoutYProperty().add(13));
     	playerTank.setLayoutX(worldCanvas.getBoundsInLocal().getMinX());
@@ -78,6 +83,15 @@ public class GameWorldController {
      */
     public void tankShot(MouseEvent event) {
         controller.setMouseInput(event);
+    }
+    
+    /**
+     * This method allows to exit the game
+     * @param event
+     * 			the action event.
+     */
+    public void setExitOption(ActionEvent event) {
+    	System.exit(0);
     }
     
     /**
