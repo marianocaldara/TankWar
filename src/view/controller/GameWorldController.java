@@ -33,13 +33,13 @@ public class GameWorldController {
     	ViewUtils.setStageFullScreen();
     	worldCanvas.setWidth(ViewUtils.getScene().getWidth());
     	worldCanvas.setHeight(ViewUtils.getScene().getHeight());
-    	alliedCannon.layoutXProperty().bind(playerTank.layoutXProperty());
+    	alliedCannon.layoutXProperty().bind(playerTank.layoutXProperty().add(43));
     	alliedCannon.layoutYProperty().bind(playerTank.layoutYProperty().add(13));
     	playerTank.setLayoutX(worldCanvas.getBoundsInLocal().getMinX());
     	playerTank.setLayoutY(worldCanvas.getBoundsInLocal().getMaxY()/2);
     	enemyCannon.layoutXProperty().bind(enemyTank.layoutXProperty());
     	enemyCannon.layoutYProperty().bind(enemyTank.layoutYProperty().add(13));
-    	enemyTank.setLayoutX(worldCanvas.getBoundsInLocal().getMaxX()-(enemyTank.getBoundsInLocal().getWidth()*1.3));
+    	enemyTank.setLayoutX(worldCanvas.getBoundsInLocal().getMaxX()-(enemyTank.getBoundsInLocal().getWidth()));
     	enemyTank.setLayoutY(worldCanvas.getBoundsInLocal().getMaxY()/2);
     }
 

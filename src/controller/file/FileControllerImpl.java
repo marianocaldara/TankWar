@@ -44,11 +44,11 @@ public class FileControllerImpl implements FileController {
 			 JSONObject enemyFields = (JSONObject) jsonObject.get("enemyTank");
 			 this.world.configPlayerTank(new Pair<Double, Double>((Double) playerFields.get(InitialStateFields.POSX.getName()), 
 					 (Double) playerFields.get(InitialStateFields.POSY.getName())), 
-					 (Integer) playerFields.get(InitialStateFields.LIFES.getName()), 
+					 ((Long) playerFields.get(InitialStateFields.LIFES.getName())).intValue(), 
 					 (Double) playerFields.get(InitialStateFields.SPEED.getName()));
 			 this.world.configEnemyTank(new Pair<Double, Double>((Double) enemyFields.get(InitialStateFields.POSX.getName()),
 					 (Double) enemyFields.get(InitialStateFields.POSY.getName())), 
-					 (Integer) enemyFields.get(InitialStateFields.LIFES.getName()),
+					 ((Long) enemyFields.get(InitialStateFields.LIFES.getName())).intValue(),
 					 (Double) enemyFields.get(InitialStateFields.SPEED.getName()));
 			 
 		}
