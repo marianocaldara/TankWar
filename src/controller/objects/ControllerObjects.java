@@ -104,6 +104,15 @@ public class ControllerObjects implements ControllerProjectile, ControllerTank {
 		return this.convertitor.modelToView(this.enemyTank.getPosition());
 	}
 	
+	@Override
+	public int getPlayerLifes() {
+		return this.playerTank.getLifes();
+	}
+
+	@Override
+	public int getEnemyLifes() {
+		return this.enemyTank.getLifes();
+	}	
 	
 	/**
 	 * Getter of the list of dead projectiles.

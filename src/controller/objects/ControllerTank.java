@@ -41,5 +41,17 @@ public interface ControllerTank {
 	 * @return the new position as a {@link Pair}.
 	 */		
 	Pair<Double, Double> getEnemyPosition();
+	
+	/**
+	 * Getter of the lifes of the player {@link Tank}.
+	 * @return the current lifes of the tank.
+	 */
+	int getPlayerLifes();
+	
+	/**
+	 * Getter of the lifes of the enemy {@link Tank}.
+	 * @return the current lifes of the tank.
+	 */
+	int getEnemyLifes();
 
 }
