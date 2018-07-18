@@ -17,9 +17,14 @@ import model.utility.Pair;
 public interface Tank {
         /**
          * Getter for status of life of Tank.
-         * @return boolean true if it is alive, false if it losts all lifes
+         * @return boolean true if it is alive, false if it losts all lifes.
          */
 	boolean isAlive();
+	/**
+	 * Getter for number of life of Tank.
+	 * @return int of lifes.
+	 */
+	int getLifes();
 	/**
 	 * Setter for position of Tank
 	 * @param position

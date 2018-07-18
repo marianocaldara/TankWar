@@ -2,7 +2,7 @@ package controller.objects;
 
 import java.util.List;
 
-import controller.input.MouseInput;
+import javafx.scene.input.MouseEvent;
 import model.object.Projectile;
 import model.utility.Pair;
 
@@ -16,7 +16,7 @@ public interface ControllerProjectile {
 	 * @param e
 	 * 		the {@link MouseInput}.
 	 */
-	void playerShot(MouseInput e);
+	void playerShot(MouseEvent e);
 	
 	/**
 	 * Transform the position the list of {@link Projectile} from the {@link Model} to the {@link View}.

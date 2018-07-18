@@ -43,6 +43,11 @@ public class TankImpl implements Tank {
     public boolean isAlive() {
         return this.lifes!=0;
     }
+    
+    @Override
+    public int getLifes() {
+        return this.lifes;
+    }
 
     @Override
     public void setPosition(final Pair<Double, Double> position) {

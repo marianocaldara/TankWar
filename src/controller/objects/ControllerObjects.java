@@ -8,9 +8,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import controller.collision.Collision;
-import controller.input.KeyboardInput;
-import controller.input.MouseInput;
 import controller.utility.Convertitor;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import model.input.InputImpl;
 import model.object.Projectile;
 import model.object.Tank;
@@ -57,8 +57,8 @@ public class ControllerObjects implements ControllerProjectile, ControllerTank {
 	}
 
 	@Override
-	public void movePlayerTank(KeyboardInput keyInput, boolean b) {
-		switch(keyInput.getKeyInput().getCode()) {
+	public void movePlayerTank(KeyEvent keyInput, boolean b) {
+		switch(keyInput.getCode()) {
 		case UP: this.movements.put(Direction.UP, b); break;
 		case DOWN: this.movements.put(Direction.DOWN, b); break;
 		case LEFT: this.movements.put(Direction.LEFT, b); break;
@@ -70,13 +70,13 @@ public class ControllerObjects implements ControllerProjectile, ControllerTank {
 	}
 	
 	@Override
-	public void movePlayerCannon(MouseInput mouseInput) {
-		this.playerInput.setTarget(convertitor.viewToModel(new Pair<>(mouseInput.getMouseInput().getSceneX(), mouseInput.getMouseInput().getSceneY())));
+	public void movePlayerCannon(MouseEvent mouseInput) {
+		this.playerInput.setTarget(convertitor.viewToModel(new Pair<>(mouseInput.getSceneX(), mouseInput.getSceneY())));
 	}
 
 	@Override
-	public void playerShot(MouseInput mouseInput) {
-		switch(mouseInput.getMouseInput().getButton()) {
+	public void playerShot(MouseEvent mouseInput) {
+		switch(mouseInput.getButton()) {
 		case PRIMARY: this.projectiles.add(this.playerTank.shot()); break;
 		default: ;
 		}
@@ -104,6 +104,15 @@ public class ControllerObjects implements ControllerProjectile, ControllerTank {
 		return this.convertitor.modelToView(this.enemyTank.getPosition());
 	}
 	
+	@Override
+	public int getPlayerLifes() {
+		return this.playerTank.getLifes();
+	}
+
+	@Override
+	public int getEnemyLifes() {
+		return this.enemyTank.getLifes();
+	}	
 	
 	/**
 	 * Getter of the list of dead projectiles.

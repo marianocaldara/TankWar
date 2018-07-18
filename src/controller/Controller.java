@@ -1,6 +1,5 @@
 package controller;
 
-import controller.input.ControllerInputImpl;
 import controller.levels.Level;
 import controller.objects.ControllerObjects;
 
@@ -20,11 +19,5 @@ public interface Controller {
 	 * @return the levels.
 	 */
 	Level getLevel();
-	
-	/**
-	 * Getter of the controller input.
-	 * @return the controller input.
-	 */
-	ControllerInputImpl getControllerInput();
 
 }
