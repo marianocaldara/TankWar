@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.utility.Pair;
 import view.controller.GameWorldController;
 import view.utility.ViewUtils;
@@ -30,7 +31,7 @@ public class ViewMain {
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
             Rectangle2D screen = Screen.getPrimary().getVisualBounds();
-            //primaryStage.initStyle(StageStyle.UNDECORATED);
+            primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.centerOnScreen();
             primaryStage.setHeight(screen.getHeight() / 1.5);
             primaryStage.setWidth(screen.getWidth() / 2);
@@ -50,7 +51,7 @@ public class ViewMain {
 	 */
 	public void setController(Controller controller) {
 		this.controller = controller;
-		this.gwc.setControllerInput(this.controller.getControllerInput());
+		this.gwc.setController(this.controller);
 	}
 	
 	/**

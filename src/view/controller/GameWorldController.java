@@ -1,6 +1,7 @@
 package view.controller;
 
 
+import controller.Controller;
 import controller.input.ControllerInputImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +19,7 @@ import view.utility.ViewUtils;
  */
 public class GameWorldController {
 	
-	private ControllerInputImpl controller;
+	private Controller controller;
     @FXML
     private Canvas worldCanvas;
     @FXML
@@ -34,7 +35,7 @@ public class GameWorldController {
     
     @FXML
     void initialize() {
-    	ViewUtils.setStageFullScreen();
+    	//ViewUtils.setStageFullScreen();
     	worldCanvas.setWidth(ViewUtils.getScene().getWidth());
     	worldCanvas.setHeight(ViewUtils.getScene().getHeight());
     	menuPane.setLayoutX(worldCanvas.getBoundsInLocal().getMaxX()/(1.05));
@@ -53,7 +54,7 @@ public class GameWorldController {
      * @param controller
      * 				the controller input.
      */
-    public void setControllerInput(ControllerInputImpl controller) {
+    public void setController(Controller controller) {
     	this.controller = controller;
     }
     
@@ -63,7 +64,8 @@ public class GameWorldController {
      * 			the key event.
      */
     public void moveTank(KeyEvent event) {
-        controller.setKeyInput(event);
+    	ViewUtils.getScene().setOnKeyPressed(e -> this.controller.getControllerObject().movePlayerTank(event, true));
+    	ViewUtils.getScene().setOnKeyReleased(e -> this.controller.getControllerObject().movePlayerTank(event, false));
     }
 
     /**
@@ -72,7 +74,7 @@ public class GameWorldController {
      * 			the mouse event.
      */
     public void moveCannon(MouseEvent event) {
-    	controller.setMouseInput(event);
+    	ViewUtils.getScene().setOnMouseMoved(e -> this.controller.getControllerObject().movePlayerCannon(event));
     }
     
     
@@ -82,7 +84,7 @@ public class GameWorldController {
      * 			the mouse event.
      */
     public void tankShot(MouseEvent event) {
-        controller.setMouseInput(event);
+        ViewUtils.getScene().setOnMouseClicked(e -> this.controller.getControllerObject().playerShot(event));
     }
     
     /**
@@ -98,10 +100,6 @@ public class GameWorldController {
      * This method allows to update graphically the tanks positions after a movement.
      */
     public void updateTanksPos() {
-    	playerTank.setLayoutX(ViewUtils.getController().getControllerObject().getPlayerPosition().getFirst());
-    	playerTank.setLayoutX(ViewUtils.getController().getControllerObject().getPlayerPosition().getSecond());
-    	enemyTank.setLayoutX(ViewUtils.getController().getControllerObject().getPlayerPosition().getSecond());
-    	enemyTank.setLayoutY(ViewUtils.getController().getControllerObject().getPlayerPosition().getSecond());
     	
     }
 }

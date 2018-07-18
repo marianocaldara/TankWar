@@ -1,10 +1,9 @@
 package view.utility;
 
-import controller.ControllerImpl;
+
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
-
 /**
  * 
  * Implementation of utility methods for the view.
@@ -13,7 +12,6 @@ import javafx.stage.Stage;
 public class ViewUtils {
 
     private static Stage CURRENT_STAGE;
-    private static ControllerImpl controller;
 
     /**
      * This method allows to know the initial stage of the application
@@ -49,15 +47,6 @@ public class ViewUtils {
     	CURRENT_STAGE.setFullScreen(true);
     	CURRENT_STAGE.setFullScreenExitHint("");
     	CURRENT_STAGE.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
-    }
-    
-    /**
-     * This method allows to get the controller class inside view methods
-     * @return
-     * 			the controller implementation class.
-     */
-    public static ControllerImpl getController() {
-    	return controller;
     }
 
 }
