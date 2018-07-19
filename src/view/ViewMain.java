@@ -7,7 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import model.utility.Pair;
 import view.controller.GameWorldController;
 import view.utility.ViewUtils;
@@ -27,11 +26,10 @@ public class ViewMain {
         try {
             ViewUtils.setPrimaryStage(primaryStage);
             Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
-            //Parent root = FXMLLoader.load(getClass().getResource("/view/GameWorld.fxml")); // temporaneo
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
             Rectangle2D screen = Screen.getPrimary().getVisualBounds();
-            primaryStage.initStyle(StageStyle.UNDECORATED);
+            //primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.centerOnScreen();
             primaryStage.setHeight(screen.getHeight() / 1.5);
             primaryStage.setWidth(screen.getWidth() / 2);
