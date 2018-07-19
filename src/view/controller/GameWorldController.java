@@ -45,8 +45,8 @@ public class GameWorldController {
     
     public GameWorldController() {
 		projectiles = new ArrayList<>();
-		bullet = new ImageView("../../res/images/bullet.jpg");
-		life = new ImageView("../../res/images/life.jpg");
+		this.bullet = new ImageView("/images/bullet.png");
+		this.life = new ImageView("/images/life.png");
 		bullet.fitWidthProperty();
 		bullet.fitHeightProperty();
 		life.fitWidthProperty();

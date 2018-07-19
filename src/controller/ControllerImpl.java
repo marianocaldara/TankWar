@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
-
 import controller.collision.Collision;
 import controller.collision.CollisionImpl;
 import controller.file.FileController;
@@ -31,8 +29,8 @@ public class ControllerImpl implements Controller {
 		this.world = world;
 		this.view = view;
 		this.level = new LevelImpl();
-		this.convertitor = new ConvertitorImpl(this.world.getBounds(), this.view.getBounds());
-		this.collision = new CollisionImpl(this.world, new ArrayList<>());
+		this.convertitor = new ConvertitorImpl(this.world, this.view);
+		this.collision = new CollisionImpl(this.world);
 		this.controllerObject = new ControllerObjects(this.world.getPlayer(), this.world.getEnemy(), this.world.getInputPlayer(), this.convertitor, this.collision);
 		this.file = new FileControllerImpl(this.world);
 		this.file.loadLevel();

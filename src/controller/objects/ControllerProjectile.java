@@ -23,5 +23,10 @@ public interface ControllerProjectile {
 	 * @return a list of position as {@link Pair}.
 	 */
 	 List<Pair<Double, Double>> getProjectiles();
+	 
+	 /**
+	  * Update the state of each {@link Projectile}.
+	  */
+	 void updateProjectiles();
 
 }

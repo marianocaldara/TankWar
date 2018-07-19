@@ -1,40 +1,37 @@
 package controller.utility;
 
+import model.Model;
 import model.utility.Pair;
+import view.ViewMain;
 
 /**
  * Concrete implementation of {@link Convertitor}.
  */
 public class ConvertitorImpl implements Convertitor{
-	private final Pair<Double, Double> modelDimension;
-	private Pair<Double, Double> viewDimension;
+	private final Model world;
+	private final ViewMain view;
 	
 	/**
 	 * Constructor.
-	 * @param modelDimension
-	 * 		the dimension of the model like a {@link Pair} of width and height.
-	 * @param viewDimension
-	 * 		the dimension of the view like a {@link Pair} of width and height.
+	 * @param world
+	 * 			the game {@link World}.
+	 * @param view
+	 * 			the game {@link MainView}.
 	 */
-	public ConvertitorImpl(Pair<Double, Double> modelDimension, Pair<Double, Double> viewDimension) {
-		this.modelDimension = modelDimension;
-		this.viewDimension = viewDimension;
+	public ConvertitorImpl(Model world, ViewMain view) {
+		this.world = world;
+		this.view = view;
 	}
 	
 
 	@Override
-	public void setViewDimension(Pair<Double, Double> viewDimension) {
-		this.viewDimension = viewDimension;		
-	}
-		
-	@Override
 	public Pair<Double, Double> viewToModel(Pair<Double, Double> position){
-		return this.convertitor(position, this.modelDimension, this.viewDimension);
+		return this.convertitor(position, this.world.getBounds(), this.view.getBounds());
 	}
 	
 	@Override
 	public Pair<Double, Double> modelToView(Pair<Double, Double> position){
-		return this.convertitor(position, this.viewDimension, this.modelDimension);
+		return this.convertitor(position, this.view.getBounds(), this.world.getBounds());
 	}
 	
 	/**

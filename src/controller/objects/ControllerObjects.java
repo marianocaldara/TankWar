@@ -1,6 +1,7 @@
 package controller.objects;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -54,6 +55,9 @@ public class ControllerObjects implements ControllerProjectile, ControllerTank {
 		this.projectiles = new ArrayList<>();
 		this.convertitor = convertitor;
 		this.collision = collision;
+		Arrays.asList(Direction.values()).forEach(d -> this.movements.put(d, false));
+		this.playerInput.setMovement(this.movements);
+		this.playerInput.setTarget(new Pair<Double, Double>(0.0, 0.0));
 	}
 
 	@Override
@@ -65,7 +69,6 @@ public class ControllerObjects implements ControllerProjectile, ControllerTank {
 		case RIGHT: this.movements.put(Direction.RIGHT, b); break;
 		default: ;
 		}
-		this.collision.tankWithTank(this.movements);
 		this.playerInput.setMovement(this.movements);
 	}
 	
@@ -84,7 +87,6 @@ public class ControllerObjects implements ControllerProjectile, ControllerTank {
 
 	@Override
 	public List<Pair<Double, Double>> getProjectiles() {
-		this.deleteProjectiles(this.getDeadProjectiles());
 		return Collections.unmodifiableList(this.projectiles.stream().map(p -> this.convertitor.modelToView(p.getBounds())).collect(Collectors.toList()));
 	}	
 	
@@ -92,6 +94,18 @@ public class ControllerObjects implements ControllerProjectile, ControllerTank {
 	public void updateTank() {
 		this.playerTank.update(playerInput);
 		this.enemyTank.update(AI.act(this.enemyTank, this.playerTank));
+		this.collision.tankWithTank(this.movements);
+		this.collision.tankWithBorders();
+	}
+	
+	@Override
+	public void updateProjectiles() {
+		this.projectiles.forEach(p -> p.update());
+		this.collision.projectileWithBorders(this.projectiles);
+		this.collision.tankWithProjectile(projectiles);
+		this.collision.projectileWithProjectile(projectiles);
+		this.deleteProjectiles(this.getDeadProjectiles());
+		
 	}
 	
 	@Override
