@@ -17,20 +17,16 @@ public class CollisionImpl implements Collision {
 	
 	private static final int DAMAGE = 1;
 	private Model world;
-	private List<Projectile> projectiles;
 	
 	/**
 	 * Constructor.
 	 * @param world
 	 * 		the {@link Model}.
-	 * @param projectiles
-	 * 		a list of {@link Projectile}
 	 */
 	
-	public CollisionImpl(Model world, List<Projectile> projectiles) {
+	public CollisionImpl(Model world) {
 		super();
 		this.world = world;
-		this.projectiles = projectiles;
 	}
 
 	@Override
@@ -39,60 +35,48 @@ public class CollisionImpl implements Collision {
 			this.checkCollisionTankWithTank(this.world.getPlayer(), this.world.getEnemy());
 		}
 		catch (IllegalStateException e) {
-			/* altro modo
-			if(this.world.getPlayer().getPosition().getFirst() + this.world.getPlayer().getBounds().getWidth() >=
-					this.world.getEnemy().getPosition().getFirst() && movement.get(Direction.RIGHT)){
-						movement.remove(Direction.RIGHT);
-						movement.put(Direction.LEFT, true);
-				}
-				else if(this.world.getPlayer().getPosition().getFirst() <= this.world.getEnemy().getPosition().getFirst() + 
-						this.world.getEnemy().getBounds().getWidth() && movement.get(Direction.LEFT)) {
-							movement.remove(Direction.LEFT);
-							movement.put(Direction.RIGHT, true);
-				}
-				if(this.world.getPlayer().getPosition().getSecond() + this.world.getPlayer().getBounds().getHeight() >=
-					this.world.getEnemy().getPosition().getSecond() && movement.get(Direction.DOWN)) {
-						movement.remove(Direction.DOWN);
-						movement.put(Direction.UP, true);
-				}
-				else if(this.world.getPlayer().getPosition().getSecond() <= this.world.getEnemy().getPosition().getSecond() +
-						this.world.getEnemy().getBounds().getHeight() && movement.get(Direction.UP)) {
-							movement.remove(Direction.UP);
-							movement.put(Direction.DOWN, true);
-				}*/
-			
-			if(this.world.getPlayer().getPosition().getFirst() + this.world.getPlayer().getDimension().getFirst() >=
-				this.world.getEnemy().getPosition().getFirst() && movement.get(Direction.RIGHT)){
-					this.world.getPlayer().setPosition(new Pair<>(this.world.getEnemy().getPosition().getFirst() -
-					this.world.getPlayer().getDimension().getFirst(), this.world.getPlayer().getPosition().getSecond()));
-					movement.remove(Direction.RIGHT);
+			if(movement.get(Direction.RIGHT) && movement.get(Direction.UP) && this.world.getPlayer().getPosition().getFirst() + 
+					this.world.getPlayer().getDimension().getFirst() >= this.world.getEnemy().getPosition().getFirst() + 5) {
+				this.world.getPlayer().setPosition(new Pair<>(this.world.getPlayer().getPosition().getFirst(),
+					this.world.getEnemy().getPosition().getSecond() + this.world.getPlayer().getDimension().getSecond()));
 			}
-			else if(this.world.getPlayer().getPosition().getFirst() < this.world.getEnemy().getPosition().getFirst() + 
-					this.world.getEnemy().getDimension().getFirst() && movement.get(Direction.LEFT)) {
-						this.world.getPlayer().setPosition(new Pair<>(this.world.getEnemy().getPosition().getFirst() + 
-						this.world.getEnemy().getDimension().getFirst(), this.world.getPlayer().getPosition().getSecond()));
-						movement.remove(Direction.LEFT);
-			}
-			if(this.world.getPlayer().getPosition().getSecond() + this.world.getPlayer().getDimension().getSecond() >=
-				this.world.getEnemy().getPosition().getSecond() && movement.get(Direction.DOWN)) {
-					this.world.getPlayer().setPosition(new Pair<>(this.world.getPlayer().getPosition().getFirst(), 
-					this.world.getEnemy().getPosition().getSecond() - this.world.getPlayer().getDimension().getSecond()));
-					movement.remove(Direction.DOWN);
-			}
-			else if(this.world.getPlayer().getPosition().getSecond() < this.world.getEnemy().getPosition().getSecond() +
-					this.world.getEnemy().getDimension().getSecond() && movement.get(Direction.UP)) {
-						this.world.getPlayer().setPosition(new Pair<>(this.world.getPlayer().getPosition().getFirst(),
+			else if(movement.get(Direction.RIGHT) && movement.get(Direction.DOWN) && this.world.getPlayer().getPosition().getFirst() + 
+					this.world.getPlayer().getDimension().getFirst() >= this.world.getEnemy().getPosition().getFirst() + 5) {
+				this.world.getPlayer().setPosition(new Pair<>(this.world.getPlayer().getPosition().getFirst(),
+						this.world.getEnemy().getPosition().getSecond() - this.world.getPlayer().getDimension().getSecond()));
+				}
+			else if(movement.get(Direction.LEFT) && movement.get(Direction.UP) && this.world.getPlayer().getPosition().getFirst()
+					<= this.world.getEnemy().getPosition().getFirst() + this.world.getEnemy().getDimension().getFirst() - 5) {
+				this.world.getPlayer().setPosition(new Pair<>(this.world.getPlayer().getPosition().getFirst(),
 						this.world.getEnemy().getPosition().getSecond() + this.world.getPlayer().getDimension().getSecond()));
-						movement.remove(Direction.UP);
 			}
-			
-			
+			else if(movement.get(Direction.LEFT) && movement.get(Direction.DOWN) && this.world.getPlayer().getPosition().getFirst()
+					<= this.world.getEnemy().getPosition().getFirst() + this.world.getEnemy().getDimension().getFirst() - 5) {
+				this.world.getPlayer().setPosition(new Pair<>(this.world.getPlayer().getPosition().getFirst(),
+						this.world.getEnemy().getPosition().getSecond() - this.world.getPlayer().getDimension().getSecond()));
+			}
+			else if(movement.get(Direction.RIGHT)) {
+				this.world.getPlayer().setPosition(new Pair<>(this.world.getEnemy().getPosition().getFirst() - this.world.getPlayer().getDimension().getFirst(),
+						this.world.getPlayer().getPosition().getSecond()));
+			}
+			else if(movement.get(Direction.LEFT)) {
+				this.world.getPlayer().setPosition(new Pair<>(this.world.getEnemy().getPosition().getFirst() + this.world.getPlayer().getDimension().getFirst(),
+						this.world.getPlayer().getPosition().getSecond()));
+			}
+			else if(movement.get(Direction.DOWN)) {
+				this.world.getPlayer().setPosition(new Pair<>(this.world.getPlayer().getPosition().getFirst(),
+						this.world.getEnemy().getPosition().getSecond() - this.world.getPlayer().getDimension().getSecond()));
+			}
+			else if(movement.get(Direction.UP)) {
+				this.world.getPlayer().setPosition(new Pair<>(this.world.getPlayer().getPosition().getFirst(),
+						this.world.getEnemy().getPosition().getSecond() + this.world.getPlayer().getDimension().getSecond()));
+			}
 		}
 
 	}
 
 	@Override
-	public void tankWithProjectile() {
+	public void tankWithProjectile(List<Projectile> projectiles) {
 		this.updateTankLifeAndProjectiles(this.world.getPlayer(), 
 				projectiles.stream().filter(p -> this.intersects(p.getPosition(), p.getBounds(), this.world.getPlayer().getPosition(), 
 						this.world.getPlayer().getDimension())).collect(Collectors.toList()));
@@ -108,8 +92,19 @@ public class CollisionImpl implements Collision {
 	}
 
 	@Override
-	public void projectileWithBorders() {
-		this.projectiles.forEach(p -> this.projectileBounce(p));
+	public void projectileWithBorders(List<Projectile> projectiles) {
+		projectiles.forEach(p -> this.projectileBounce(p));
+	}
+	
+	@Override
+	public void projectileWithProjectile(List<Projectile> projectiles) {	
+		for(Projectile p : projectiles) {
+			for(Projectile x : projectiles) {
+				if(this.intersects(p.getPosition(), p.getBounds(), x.getPosition(), x.getBounds()) && x != p) {
+					p.setDead();
+				}
+			}
+		}
 	}
 	
 	/**

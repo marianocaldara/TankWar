@@ -8,13 +8,6 @@ import model.utility.Pair;
  *
  */
 public interface Convertitor {
-	
-	/**
-	 * Setter of the {@link View} dimension.
-	 * @param viewDimension
-	 * 		the dimension as a {@link Pair}.
-	 */
-	void setViewDimension(Pair<Double, Double> viewDimension);
 
 	/**
 	 * Convert position or dimension of {@link View} to a position or dimension of {@link Model}.

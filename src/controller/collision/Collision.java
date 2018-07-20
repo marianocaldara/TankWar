@@ -1,5 +1,6 @@
 package controller.collision;
 
+import java.util.List;
 import java.util.Map;
 
 import model.object.Projectile;
@@ -18,8 +19,10 @@ public interface Collision {
 	 
 	 /**
 	  * Manage the collision between {@link Tank} and {@link Projectile}.
+	  * @param projectiles
+	  * 		the list of {@link Projectile}.
 	  */
-	 void tankWithProjectile();
+	 void tankWithProjectile(List<Projectile> projectiles);
 	 
 	 /**
 	  * Manage the collision between {@link Tank} and the {@link World} borders.
@@ -28,7 +31,16 @@ public interface Collision {
 	 
 	 /**
 	  * Manage the collision between the {@link Projectile} and the {@link World} borders.
-	  */
-	 void projectileWithBorders();
+	  * @param projectiles
+	  * 		the list of {@link Projectile}.
+	  */		
+	 void projectileWithBorders(List<Projectile> projectiles);
+	 
+	 /**
+	  * Manage the collision between two {@link Projectile}.
+	  * @param projectiles
+	  * 		the list of {@link Projectile}.
+	  */		
+	 void projectileWithProjectile(List<Projectile> projectiles);
 
 }

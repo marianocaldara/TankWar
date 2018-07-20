@@ -13,13 +13,13 @@ public class World implements Model {
     private InputImpl inputEnemy = new InputImpl();
     
     @Override
-    public void configPlayerTank(final Pair<Double, Double> position, int lifes, final double speed) {
-       player = new TankImpl(position, lifes, speed);
+    public void configPlayerTank(final Pair<Double, Double> position, int lifes, final double speed, final boolean friendly) {
+       player = new TankImpl(position, lifes, speed, friendly);
     }
 
     @Override
-    public void configEnemyTank(final Pair<Double, Double> position, int lifes, final double speed) {
-        enemy = new TankImpl(position, lifes, speed);
+    public void configEnemyTank(final Pair<Double, Double> position, int lifes, final double speed, final boolean friendly) {
+        enemy = new TankImpl(position, lifes, speed, friendly);
     }
 
     @Override

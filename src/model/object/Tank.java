@@ -65,4 +65,15 @@ public interface Tank {
 	 * @see controller.collision
 	 */
 	Pair<Double, Double> getDimension();
+	/**
+	 * Get angle of cannon of {@link Tank}
+	 * @return angle in double
+	 */
+	double getAngle();
+        /**
+         * Getter for boolean Friendly of {@link Tank}
+         * @return boolean, true for user, false for enemy.
+         */
+	boolean isFriendly();
+	
 }
