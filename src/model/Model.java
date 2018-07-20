@@ -11,20 +11,18 @@ public interface Model {
      * @param position of Tank
      * @param lifes nr of lifes
      * @param speed speed of movement
-     * @param width of Tank
-     * @param height of Tank
+     * @param friendly boolean for user or enemy
      */
-    void configPlayerTank(Pair<Double, Double> position, int lifes, double speed);
+    void configPlayerTank(Pair<Double, Double> position, int lifes, double speed, boolean friendly);
     /**
      * Create a {@link Tank} controlled by computer.
      * 
      * @param position of Tank
      * @param lifes nr of lifes
      * @param speed speed of movement
-     * @param width of Tank
-     * @param height of Tank
+     * @param friendly boolean for user or enemy
      */
-    void configEnemyTank(Pair<Double, Double> position, int lifes, double speed);
+    void configEnemyTank(Pair<Double, Double> position, int lifes, double speed, boolean friendly);
     /**
      * Getter for player.
      * @return player's Tank

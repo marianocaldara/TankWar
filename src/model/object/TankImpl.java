@@ -13,6 +13,7 @@ import model.utility.Pair;
  */
 public class TankImpl implements Tank {
     private int lifes;
+    private boolean friendly;
     private Pair<Double, Double> position;
     private final static Pair<Double, Double> DIMENSION = new Pair<>(37.5, 25.0);
     private double speed = 3;
@@ -28,15 +29,14 @@ public class TankImpl implements Tank {
      *     nr of lifes of Tank
      * @param speed
      *     speed of movement
-     * @param width
-     *     width of Tank
-     * @param height
-     *     height of Tank
+     * @param friendly
+     *     true for player, false for enemy.
      */
-    public TankImpl(final Pair<Double, Double> position, final int lifes, final double speed) {
+    public TankImpl(final Pair<Double, Double> position, final int lifes, final double speed, final boolean friendly) {
         this.position = position;
         this.lifes = lifes;
         this.speed = speed;
+        this.friendly = friendly;
     }
 
     @Override
@@ -81,6 +81,15 @@ public class TankImpl implements Tank {
         return DIMENSION;
     }
 
+    @Override
+    public double getAngle() {
+        return cannon.getAngle();
+    }
+    @Override
+    public boolean isFriendly() {
+        return friendly;
+    }
+    
     @Override
     public void setSpeed(final double speed) {
         this.speed = speed;
@@ -127,32 +136,86 @@ public class TankImpl implements Tank {
      */
     private void updateCannon(final Pair<Double, Double> target) {
         final Pair<Double, Double> cannon_pos = new Pair<Double, Double>(this.position.getFirst()-2.0, this.position.getSecond()-2.0);
-        this.cannon.update(cannon_pos, Calculate.angle(cannon_pos, target));
+        this.cannon.update(cannon_pos, target);
     }
     /**
      * Cannon is the object that allow shot by Tank.
      */
     private class Cannon {
-        private Pair<Double, Double> cannonposition;
+        private Pair<Double, Double> cannonPosition;
+        private Pair<Double, Double> cannonDimension;
         private double angle;
+        /**
+         * Getter for position of cannon
+         * @return {@link Pair} with doubles for x and y.
+         */
+        public Pair<Double, Double> getPosition(){
+            return cannonDimension;
+        }
+        /**
+         * Getter for dimension of Cannon
+         * @see Pair
+         * @return a pair with widht and height.
+         */
+        public Pair<Double, Double> getCannonDimension() {
+            return cannonDimension;
+        }
+
+        /**
+         * Getter for angle
+         * @return angle in double.
+         */
+        public double getAngle() {
+            return this.angle;
+        }
+        
+        public void setPosition(final Pair<Double, Double> position) {
+            if(isFriendly()) {
+             this.cannonPosition = new Pair<Double, Double>(position.getFirst() + DIMENSION.getFirst()/2 + cannonDimension.getFirst()/2, position.getSecond() + DIMENSION.getSecond()/2);     
+            }
+            else {
+             this.cannonPosition = new Pair<Double, Double>(position.getFirst() - cannonDimension.getFirst()/2, position.getSecond() + DIMENSION.getSecond()/2);  
+            }
+           }
         /**
          * Update the position, it follows the tank position.
          * @param position
          *      the position of cannon, it depends by {@link TankImpl#position}.
          * @param angle
-         *      the angle in degrees of cannon, the horizon is 0.
+         *      the target where cannon have to aim.
          */
-        public void update(final Pair<Double, Double> position, final double angle) {
-            this.cannonposition = position;
-            this.angle = angle;
-        }
+        public void update(final Pair<Double, Double> position, final Pair<Double, Double> target) {
+            if(isFriendly()) {
+             this.cannonPosition = new Pair<Double, Double>(position.getFirst() + DIMENSION.getFirst()/2 + cannonDimension.getFirst()/2, position.getSecond() + DIMENSION.getSecond()/2);     
+            }
+            else {
+             this.cannonPosition = new Pair<Double, Double>(position.getFirst() - cannonDimension.getFirst()/2, position.getSecond() + DIMENSION.getSecond()/2);  
+            }
+               this.angle = Calculate.angle(cannonPosition, target);
+               if(isFriendly()) {
+                 if(this.angle >= 90 && this.angle < 180) {
+                     this.angle = 90;
+                    }
+                    else if(this.angle <= 270 && this.angle > 180) {
+                     this.angle = 270;
+                    }
+               }
+               else {
+                if(this.angle <= 90 && this.angle < 180) {
+                     this.angle = 90;
+                    }
+                    else if(this.angle >= 270 && this.angle > 180) {
+                     this.angle = 270;
+                    }
+                }
+               }
         /**
          * Shot according angle and return the projectile.
          * This method is always called by tank in {@link TankImpl#shot()}.
          * @return the projectile jet shooted
          */
         public Projectile shot() {
-            return new Projectile(cannonposition, this.angle, 2);
+            return new Projectile(cannonPosition, this.angle, 2);
         }
     }
 
