@@ -1,7 +1,7 @@
 package controller.objects;
 
-import controller.input.KeyboardInput;
-import controller.input.MouseInput;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import model.utility.Pair;
 
 /**
@@ -16,14 +16,14 @@ public interface ControllerTank {
 	 * @param b
 	 * 		a boolean to specify if the key is pressed or released.
 	 */
-	void movePlayerTank(KeyboardInput keyInput, boolean b);
+	void movePlayerTank(KeyEvent keyInput, boolean b);
 	
 	/**
 	 * Rotate the player cannon in the position targeted by mouse.
 	 * @param mouseInput
 	 * 		the {@link MouseInput}.
 	 */
-	void movePlayerCannon(MouseInput mouseInput);
+	void movePlayerCannon(MouseEvent mouseInput);
 	
 	/**
 	 * Update the position and the target of the two {@link Tank}.

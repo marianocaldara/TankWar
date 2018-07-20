@@ -6,7 +6,6 @@ import controller.collision.Collision;
 import controller.collision.CollisionImpl;
 import controller.file.FileController;
 import controller.file.FileControllerImpl;
-import controller.input.ControllerInputImpl;
 import controller.levels.Level;
 import controller.levels.LevelImpl;
 import controller.objects.ControllerObjects;
@@ -23,7 +22,6 @@ public class ControllerImpl implements Controller {
 	private ControllerObjects controllerObject;
 	private Convertitor convertitor;
 	private Level level;
-	private ControllerInputImpl controllerInput;
 	private FileController file;
 	private Collision collision;
 	private Model world;
@@ -37,7 +35,6 @@ public class ControllerImpl implements Controller {
 		this.collision = new CollisionImpl(this.world, new ArrayList<>());
 		this.controllerObject = new ControllerObjects(this.world.getPlayer(), this.world.getEnemy(), this.world.getInputPlayer(), this.convertitor, this.collision);
 		this.file = new FileControllerImpl(this.world);
-		this.controllerInput = new ControllerInputImpl();
 		this.file.loadLevel();
 	}
 
@@ -49,11 +46,6 @@ public class ControllerImpl implements Controller {
 	@Override
 	public Level getLevel() {
 		return this.level;
-	}
-
-	@Override
-	public ControllerInputImpl getControllerInput() {
-		return this.controllerInput;
 	}
 	
 
