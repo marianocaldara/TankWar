@@ -94,7 +94,8 @@ public class GameWorldController {
      * 			the mouse event.
      */
     public void moveCannon(MouseEvent event) {
-    	ViewUtils.getScene().setOnMouseMoved(e -> this.controller.getControllerObject().movePlayerCannon(event));
+    	//ViewUtils.getScene().setOnMouseMoved(e -> this.controller.getControllerObject().movePlayerCannon(event));
+    	//this.alliedCannon.getTransforms().add(new Rotate());
     }
     
     
