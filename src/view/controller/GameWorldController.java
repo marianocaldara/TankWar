@@ -7,12 +7,13 @@ import java.util.List;
 import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import view.utility.ViewUtils;
 
 /**
@@ -28,8 +29,9 @@ public class GameWorldController {
 	private List<ImageView> enemyLife;
 	private ImageView bullet;
 	private ImageView life;
+	private Image l;
 	@FXML
-	private GridPane gameWorld;
+	private Group gameWorld;
     @FXML
     private Canvas worldCanvas;
     @FXML
@@ -43,30 +45,29 @@ public class GameWorldController {
     @FXML
     private AnchorPane menuPane;
     
-    public GameWorldController() {
-		projectiles = new ArrayList<>();
-		this.bullet = new ImageView("/images/bullet.png");
-		this.life = new ImageView("/images/life.png");
-		bullet.fitWidthProperty();
-		bullet.fitHeightProperty();
-		life.fitWidthProperty();
-		life.fitHeightProperty();
-	}
-    
     @FXML
     void initialize() {
     	//ViewUtils.setStageFullScreen();
+    	projectiles = new ArrayList<>();
+		playerLife = new ArrayList<>();
+		enemyLife = new ArrayList<>();
+		life = new ImageView("/images/life.png");
+		this.bullet = new ImageView("/images/bullet.png");
     	worldCanvas.setWidth(ViewUtils.getScene().getWidth());
     	worldCanvas.setHeight(ViewUtils.getScene().getHeight());
     	menuPane.setLayoutX(worldCanvas.getBoundsInLocal().getMaxX()/(1.11));
-    	alliedCannon.layoutXProperty().bind(playerTank.layoutXProperty().add(43));
-    	alliedCannon.layoutYProperty().bind(playerTank.layoutYProperty().add(13));
+    	//alliedCannon.layoutXProperty().bind(playerTank.layoutXProperty().add(43));
+    	//alliedCannon.layoutYProperty().bind(playerTank.layoutYProperty().add(13));
     	playerTank.setLayoutX(worldCanvas.getBoundsInLocal().getMinX());
     	playerTank.setLayoutY(worldCanvas.getBoundsInLocal().getMaxY()/2);
-    	enemyCannon.layoutXProperty().bind(enemyTank.layoutXProperty());
-    	enemyCannon.layoutYProperty().bind(enemyTank.layoutYProperty().add(13));
+    	//enemyCannon.layoutXProperty().bind(enemyTank.layoutXProperty());
+    	//enemyCannon.layoutYProperty().bind(enemyTank.layoutYProperty().add(13));
     	enemyTank.setLayoutX(worldCanvas.getBoundsInLocal().getMaxX()-(enemyTank.getBoundsInLocal().getWidth()));
     	enemyTank.setLayoutY(worldCanvas.getBoundsInLocal().getMaxY()/2);
+    	alliedCannon.setLayoutX(this.playerTank.getLayoutX() + this.playerTank.getFitWidth()/2);
+    	alliedCannon.setLayoutY(this.playerTank.getLayoutY() + this.playerTank.getFitHeight()/4);
+    	enemyCannon.setLayoutX(this.enemyTank.getLayoutX());
+    	enemyCannon.setLayoutY(this.enemyTank.getLayoutY() + this.enemyTank.getFitHeight()/4);
     }
 
     /**
@@ -95,7 +96,6 @@ public class GameWorldController {
      */
     public void moveCannon(MouseEvent event) {
     	//ViewUtils.getScene().setOnMouseMoved(e -> this.controller.getControllerObject().movePlayerCannon(event));
-    	//this.alliedCannon.getTransforms().add(new Rotate());
     }
     
     
@@ -146,18 +146,7 @@ public class GameWorldController {
     	this.controller.getControllerObject().getProjectiles().forEach(p -> {
     	this.projectiles.add(bullet);});
     	this.projectiles.forEach(p -> this.gameWorld.getChildren().add(p));
-    	this.playerLife.forEach(p -> this.gameWorld.getChildren().removeAll(this.playerLife));
-    	this.playerLife.removeAll(this.playerLife);
-    	for(int i = 0; i < this.controller.getControllerObject().getPlayerLifes(); i++) {
-    		this.playerLife.add(life);
-    	}
-    	this.enemyLife.forEach(p -> this.gameWorld.getChildren().removeAll(this.enemyLife));
-    	this.enemyLife.removeAll(this.enemyLife);
-    	for(int i = 0; i < this.controller.getControllerObject().getEnemyLifes(); i++) {
-    		this.playerLife.add(life);
-    	}
-    	this.playerLife.forEach(l -> this.gameWorld.getChildren().add(l));
-    	this.enemyLife.forEach(l -> this.gameWorld.getChildren().add(l));
+    	drawLives();
     	if(this.controller.getControllerObject().getEnemyLifes() == 0) {
     		this.gameWorld.getChildren().remove(this.enemyTank);
     		this.gameWorld.getChildren().remove(this.enemyCannon);
@@ -166,5 +155,27 @@ public class GameWorldController {
     		this.gameWorld.getChildren().remove(this.playerTank);
     		this.gameWorld.getChildren().remove(this.alliedCannon);
     	}
+    }
+    
+    private void drawLives() {
+    	this.playerLife.forEach(p -> this.gameWorld.getChildren().removeAll(this.playerLife));
+    	this.playerLife.removeAll(this.playerLife);
+    	for(int i = 0; i < this.controller.getControllerObject().getPlayerLifes(); i++) {
+    		l = new Image("/images/life.png", 30, 30, true, true);
+    		life = new ImageView(l);
+    		life.setLayoutX(i*30);
+    		this.playerLife.add(life);
+    	}
+    	this.enemyLife.forEach(p -> this.gameWorld.getChildren().removeAll(this.enemyLife));
+    	this.enemyLife.removeAll(this.enemyLife);
+    	for(int i = 0; i < this.controller.getControllerObject().getEnemyLifes(); i++) {
+    		l = new Image("/images/life.png", 30, 30, true, true);
+    		life = new ImageView(l);
+    		life.setLayoutY(worldCanvas.getBoundsInLocal().getMaxY() - life.getBoundsInLocal().getHeight());
+    		life.setLayoutX((worldCanvas.getBoundsInLocal().getMaxX() - life.getBoundsInLocal().getWidth()) - (i*30));
+    		this.enemyLife.add(life);
+    	}
+    	this.gameWorld.getChildren().addAll(this.enemyLife);
+    	this.gameWorld.getChildren().addAll(this.playerLife);
     }
 }
