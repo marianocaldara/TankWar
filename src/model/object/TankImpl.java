@@ -152,7 +152,7 @@ public class TankImpl implements Tank {
      */
     private class Cannon {
         private Pair<Double, Double> cannonPosition;
-        private Pair<Double, Double> cannonDimension;
+        private Pair<Double, Double> cannonDimension = new Pair<Double, Double>(15.0, 15.0);
         private double angle;
         /**
          * Getter for position of cannon
