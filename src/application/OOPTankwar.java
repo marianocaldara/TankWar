@@ -19,8 +19,7 @@ public class OOPTankwar extends Application {
 		ViewMain view = new ViewMain(primaryStage);
 		Controller controller = new ControllerImpl(world, view);
 		view.setController(controller);
-		/*GameLoop loop = new GameLoop();
-		loop.start();*/
+		
     }
 	
 	/**

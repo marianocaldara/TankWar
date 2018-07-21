@@ -1,6 +1,7 @@
 package controller.objects;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -51,6 +52,7 @@ public class ControllerObjects implements ControllerProjectile, ControllerTank {
 		this.enemyTank = enemyTank;
 		this.playerInput = playerInput;
 		this.movements = new HashMap<>();
+		Arrays.asList(Direction.values()).forEach(d -> this.movements.put(d, false));
 		this.projectiles = new ArrayList<>();
 		this.convertitor = convertitor;
 		this.collision = collision;
