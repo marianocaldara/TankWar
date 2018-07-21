@@ -18,11 +18,10 @@ import view.utility.ViewUtils;
  */
 public class ViewMain {
 
-	private Controller controller;
-	private GameWorldController gwc;
+	public Controller controller;
+	public GameWorldController gwc;
 	
 	public ViewMain(Stage primaryStage) {
-		this.gwc = new GameWorldController();
         try {
             ViewUtils.setPrimaryStage(primaryStage);
             Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
@@ -49,7 +48,7 @@ public class ViewMain {
 	 */
 	public void setController(Controller controller) {
 		this.controller = controller;
-		this.gwc.setController(this.controller);
+		this.gwc = new GameWorldController();
 	}
 	
 	/**

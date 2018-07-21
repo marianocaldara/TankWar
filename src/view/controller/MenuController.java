@@ -34,6 +34,24 @@ public class MenuController {
      * @throws IOException
      */
     public void playAction(ActionEvent event) throws IOException {
+    	Alert alert = new Alert(AlertType.NONE);
+        alert.setTitle("Lives");
+        alert.setHeaderText("Choose your lives :");
+        // alert.setContentText("Choose your option.");
+
+        ButtonType one = new ButtonType("1");
+        ButtonType two = new ButtonType("2");
+        ButtonType three = new ButtonType("3");
+
+        alert.getButtonTypes().setAll(one, two, three);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == one) {
+            
+        } else if (result.get() == two) {
+            
+        } else if (result.get() == three) {
+        	
+        }
         ViewScenes.GAME_WORLD.setGameStage(event);
     }
 

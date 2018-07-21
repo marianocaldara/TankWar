@@ -53,7 +53,6 @@ public class FileControllerImpl implements FileController {
 					 ((Long) enemyFields.get(InitialStateFields.LIFES.getName())).intValue(),
 					 (Double) enemyFields.get(InitialStateFields.SPEED.getName()),
 					 ENEMY);
-			 
 		}
 		catch(IOException | org.json.simple.parser.ParseException e) {
 			e.printStackTrace();

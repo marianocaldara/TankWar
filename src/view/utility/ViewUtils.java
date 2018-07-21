@@ -48,5 +48,5 @@ public class ViewUtils {
     	CURRENT_STAGE.setFullScreenExitHint("");
     	CURRENT_STAGE.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
     }
-
+    
 }
