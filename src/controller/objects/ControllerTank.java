@@ -55,6 +55,18 @@ public interface ControllerTank {
 	int getEnemyLifes();
 	
 	/**
+	 * Getter of the player {@link Cannon} angle.
+	 * @return the angle target by the player {@link Cannon}.
+	 */
+	double getPlayerAngle();
+	
+	/**
+	 * Getter of the enemy {@link Cannon} angle.
+	 * @return the angle target by the enemy {@link Cannon}.
+	 */
+	double getEnemyAngle();
+	
+	/**
 	 * Getter of the tank dimension.
 	 * @return a {@link Pair} of the {@link Tank} dimension.
 	 */
@@ -77,5 +89,6 @@ public interface ControllerTank {
 	 * @return a {@link Pair} of the {@link Cannon} position.
 	 */
 	Pair<Double, Double> getEnemyCannonPosition();
+	
 
 }

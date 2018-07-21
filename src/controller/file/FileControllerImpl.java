@@ -16,7 +16,7 @@ import model.utility.Pair;
 public class FileControllerImpl implements FileController {
 	
 	private static final boolean FRIENDLY = true;
-	private static final boolean ENEMY = true;
+	private static final boolean ENEMY = false;
 	private static final String PATH = "res/levels/";
 	private static final String EXTENSION = ".json";
 	private Levels level;
@@ -28,9 +28,8 @@ public class FileControllerImpl implements FileController {
 	 * @param level
 	 * 		the level to load.
 	 */
-	public FileControllerImpl(Model world, Levels level) {	
+	public FileControllerImpl(Model world) {	
 		super();
-		this.level = level;
 		this.world = world;
 		this.json = new JSONParser();
 	}

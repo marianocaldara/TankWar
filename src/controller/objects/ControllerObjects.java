@@ -124,10 +124,12 @@ public class ControllerObjects implements ControllerProjectile, ControllerTank {
 		return this.enemyTank.getLifes();
 	}	
 	
+	@Override
 	public double getPlayerAngle() {
 		return this.playerTank.getAngle();
 	}
 	
+	@Override
 	public double getEnemyAngle() {
 		return this.enemyTank.getAngle();
 	}
