@@ -16,6 +16,9 @@ import model.utility.Pair;
 public class CollisionImpl implements Collision {
 	
 	private static final int DAMAGE = 1;
+	private static final int LIMIT_COLLISION = 5;
+	private static final int ORIGIN = 0;
+	private static final double MIN_COORDINATE = 0.0;
 	private Model world;
 	
 	/**
@@ -36,22 +39,22 @@ public class CollisionImpl implements Collision {
 		}
 		catch (IllegalStateException e) {
 			if(movement.get(Direction.RIGHT) && movement.get(Direction.UP) && this.world.getPlayer().getPosition().getFirst() + 
-					this.world.getPlayer().getDimension().getFirst() >= this.world.getEnemy().getPosition().getFirst() + 5) {
+					this.world.getPlayer().getDimension().getFirst() >= this.world.getEnemy().getPosition().getFirst() + LIMIT_COLLISION) {
 				this.world.getPlayer().setPosition(new Pair<>(this.world.getPlayer().getPosition().getFirst(),
 					this.world.getEnemy().getPosition().getSecond() + this.world.getPlayer().getDimension().getSecond()));
 			}
 			else if(movement.get(Direction.RIGHT) && movement.get(Direction.DOWN) && this.world.getPlayer().getPosition().getFirst() + 
-					this.world.getPlayer().getDimension().getFirst() >= this.world.getEnemy().getPosition().getFirst() + 5) {
+					this.world.getPlayer().getDimension().getFirst() >= this.world.getEnemy().getPosition().getFirst() + LIMIT_COLLISION) {
 				this.world.getPlayer().setPosition(new Pair<>(this.world.getPlayer().getPosition().getFirst(),
 						this.world.getEnemy().getPosition().getSecond() - this.world.getPlayer().getDimension().getSecond()));
 				}
 			else if(movement.get(Direction.LEFT) && movement.get(Direction.UP) && this.world.getPlayer().getPosition().getFirst()
-					<= this.world.getEnemy().getPosition().getFirst() + this.world.getEnemy().getDimension().getFirst() - 5) {
+					<= this.world.getEnemy().getPosition().getFirst() + this.world.getEnemy().getDimension().getFirst() - LIMIT_COLLISION) {
 				this.world.getPlayer().setPosition(new Pair<>(this.world.getPlayer().getPosition().getFirst(),
 						this.world.getEnemy().getPosition().getSecond() + this.world.getPlayer().getDimension().getSecond()));
 			}
 			else if(movement.get(Direction.LEFT) && movement.get(Direction.DOWN) && this.world.getPlayer().getPosition().getFirst()
-					<= this.world.getEnemy().getPosition().getFirst() + this.world.getEnemy().getDimension().getFirst() - 5) {
+					<= this.world.getEnemy().getPosition().getFirst() + this.world.getEnemy().getDimension().getFirst() - LIMIT_COLLISION) {
 				this.world.getPlayer().setPosition(new Pair<>(this.world.getPlayer().getPosition().getFirst(),
 						this.world.getEnemy().getPosition().getSecond() - this.world.getPlayer().getDimension().getSecond()));
 			}
@@ -142,13 +145,13 @@ public class CollisionImpl implements Collision {
 	private void keepTankBetweenBorders(Tank tank) {
 		if (tank.getPosition().getFirst() + tank.getDimension().getFirst() >= this.world.getBounds().getFirst()) {       // Exceeding right
             tank.getPosition().setFirst(this.world.getBounds().getFirst() - tank.getDimension().getFirst());
-        } else if (tank.getPosition().getFirst() < 0) {                // Exceeding left
-        	tank.getPosition().setFirst(0.0);
+        } else if (tank.getPosition().getFirst() < ORIGIN) {                // Exceeding left
+        	tank.getPosition().setFirst(MIN_COORDINATE);
         }
         if (tank.getPosition().getSecond() + tank.getDimension().getSecond() >= this.world.getBounds().getSecond()) {      // Exceeding down
         	tank.getPosition().setSecond(this.world.getBounds().getSecond() - tank.getDimension().getSecond());
-        } else if (tank.getPosition().getSecond() < 0) {                // Exceeding up
-        	tank.getPosition().setSecond(0.0);
+        } else if (tank.getPosition().getSecond() < ORIGIN) {                // Exceeding up
+        	tank.getPosition().setSecond(MIN_COORDINATE);
         }
 	}
 	
@@ -162,13 +165,13 @@ public class CollisionImpl implements Collision {
 			if(projectile.getPosition().getFirst() + projectile.getBounds().getFirst() >= this.world.getBounds().getFirst()) {
 				projectile.bounce(Direction.RIGHT);
 			}
-			else if(projectile.getPosition().getFirst() < 0) {
+			else if(projectile.getPosition().getFirst() < ORIGIN) {
 				projectile.bounce(Direction.LEFT);
 			}
 			if(projectile.getPosition().getSecond() + projectile.getBounds().getSecond() >= this.world.getBounds().getSecond()) {
 				projectile.bounce(Direction.DOWN);
 			}
-			else if(projectile.getPosition().getSecond() < 0) {
+			else if(projectile.getPosition().getSecond() < ORIGIN) {
 				projectile.bounce(Direction.UP);
 			}
 		} catch(IllegalStateException e) {

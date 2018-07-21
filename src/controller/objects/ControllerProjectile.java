@@ -28,5 +28,11 @@ public interface ControllerProjectile {
 	  * Update the state of each {@link Projectile}.
 	  */
 	 void updateProjectiles();
+	 
+	 /**
+	  * Getter of the projectile dimension.
+	  * @return a {@link Pair} of {@link Projectile} dimension.
+	  */
+	 Pair<Double, Double> getProjectileDimension();
 
 }

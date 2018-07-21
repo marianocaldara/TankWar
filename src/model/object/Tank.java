@@ -76,4 +76,17 @@ public interface Tank {
          */
 	boolean isFriendly();
 	
+	/**
+	 * Getter of the {@link Cannon} dimension.
+	 * @return a {@link Pair} of the cannon dimension.
+	 */
+	Pair<Double, Double> getCannonDimension();
+	
+	/**
+	 * Getter of the {@link Cannon} position.
+	 * @return a {@link Pair} of the cannon position.
+	 */
+	Pair<Double, Double> getCannonPosition();
+	
+	
 }

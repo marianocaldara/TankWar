@@ -32,7 +32,7 @@ public class ControllerImpl implements Controller {
 		this.convertitor = new ConvertitorImpl(this.world, this.view);
 		this.collision = new CollisionImpl(this.world);
 		this.controllerObject = new ControllerObjects(this.world.getPlayer(), this.world.getEnemy(), this.world.getInputPlayer(), this.convertitor, this.collision);
-		this.file = new FileControllerImpl(this.world);
+		this.file = new FileControllerImpl(this.world, this.level.getCurrentLevel());
 		this.file.loadLevel();
 	}
 

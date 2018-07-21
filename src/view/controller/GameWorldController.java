@@ -7,6 +7,7 @@ import java.util.List;
 import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Point3D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -59,10 +60,13 @@ public class GameWorldController {
     	worldCanvas.setWidth(ViewUtils.getScene().getWidth());
     	worldCanvas.setHeight(ViewUtils.getScene().getHeight());
     	menuPane.setLayoutX(worldCanvas.getBoundsInLocal().getMaxX()/(1.11));
-    	alliedCannon.layoutXProperty().bind(playerTank.layoutXProperty().add(43));
-    	alliedCannon.layoutYProperty().bind(playerTank.layoutYProperty().add(13));
     	playerTank.setLayoutX(worldCanvas.getBoundsInLocal().getMinX());
     	playerTank.setLayoutY(worldCanvas.getBoundsInLocal().getMaxY()/2);
+    	alliedCannon.setLayoutX(playerTank.getLayoutX() + playerTank.getFitWidth()/2);
+    	alliedCannon.setLayoutY(playerTank.getLayoutY() + playerTank.getFitHeight()/4);
+    	alliedCannon.setRotate(90);
+    	
+    	
     	enemyCannon.layoutXProperty().bind(enemyTank.layoutXProperty());
     	enemyCannon.layoutYProperty().bind(enemyTank.layoutYProperty().add(13));
     	enemyTank.setLayoutX(worldCanvas.getBoundsInLocal().getMaxX()-(enemyTank.getBoundsInLocal().getWidth()));
