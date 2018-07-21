@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import view.scenes.SceneChanger;
+import view.utility.GameStage;
 import view.utility.ViewUtils;
 
 /**
@@ -33,5 +34,10 @@ public class LoginStage implements SceneChanger {
         stage.setScene(scene);
         stage.show();
     }
+
+	@Override
+	public GameStage getCurrentStage() {
+		return GameStage.LOGIN;
+	}
 
 }

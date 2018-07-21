@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import view.scenes.SceneChanger;
+import view.utility.GameStage;
 import view.utility.ViewUtils;
 
 /**
@@ -18,7 +19,7 @@ import view.utility.ViewUtils;
  *
  */
 public class MenuStage implements SceneChanger {
-
+	
     @Override
     public void setStage(ActionEvent event) throws IOException {
         final Parent root = FXMLLoader.load(getClass().getResource("/view/Menu.fxml"));
@@ -32,6 +33,10 @@ public class MenuStage implements SceneChanger {
         stage.hide();
         stage.setScene(scene);
         stage.show();
+    }
+    
+    public GameStage getCurrentStage() {
+    	return GameStage.MENU;
     }
 
 }
