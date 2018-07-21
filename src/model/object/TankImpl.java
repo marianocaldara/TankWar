@@ -37,6 +37,7 @@ public class TankImpl implements Tank {
         this.lifes = lifes;
         this.speed = speed;
         this.friendly = friendly;
+        this.cannon.setPosition(position);
     }
 
     @Override
@@ -94,6 +95,14 @@ public class TankImpl implements Tank {
     public void setSpeed(final double speed) {
         this.speed = speed;
     }
+    
+    public Pair<Double, Double> getCannonPosition(){
+        return this.cannon.getCannonPosition();
+    }
+    
+    public Pair<Double, Double> getCannonDimension() {
+        return this.cannon.getCannonDimension();
+    }
     /**
      * Take movement by {@link InputImpl} and set direction by changing speedX and speedY
      * @param movement
@@ -149,7 +158,7 @@ public class TankImpl implements Tank {
          * Getter for position of cannon
          * @return {@link Pair} with doubles for x and y.
          */
-        public Pair<Double, Double> getPosition(){
+        public Pair<Double, Double> getCannonPosition(){
             return cannonDimension;
         }
         /**
@@ -192,23 +201,8 @@ public class TankImpl implements Tank {
              this.cannonPosition = new Pair<Double, Double>(position.getFirst() - cannonDimension.getFirst()/2, position.getSecond() + DIMENSION.getSecond()/2);  
             }
                this.angle = Calculate.angle(cannonPosition, target);
-               if(isFriendly()) {
-                 if(this.angle >= 90 && this.angle < 180) {
-                     this.angle = 90;
-                    }
-                    else if(this.angle <= 270 && this.angle > 180) {
-                     this.angle = 270;
-                    }
-               }
-               else {
-                if(this.angle <= 90 && this.angle < 180) {
-                     this.angle = 90;
-                    }
-                    else if(this.angle >= 270 && this.angle > 180) {
-                     this.angle = 270;
-                    }
-                }
-               }
+               
+        }
         /**
          * Shot according angle and return the projectile.
          * This method is always called by tank in {@link TankImpl#shot()}.

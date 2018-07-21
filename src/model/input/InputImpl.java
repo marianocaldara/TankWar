@@ -18,7 +18,10 @@ public class InputImpl implements DirectionInput, CannonInput {
 	private Pair<Double, Double> target;
 	
 	public InputImpl() {
-        }
+		this.movement = new HashMap<>();
+		Arrays.asList(Direction.values()).forEach(d -> this.movement.put(d, false));
+		this.target = new Pair<>(0.0, 0.0);
+    }
 	
 	public InputImpl(Map<Direction, Boolean> movement, Pair<Double, Double> target) {
 	    this.movement = movement;

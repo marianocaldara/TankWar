@@ -1,7 +1,6 @@
 package controller.objects;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -55,9 +54,6 @@ public class ControllerObjects implements ControllerProjectile, ControllerTank {
 		this.projectiles = new ArrayList<>();
 		this.convertitor = convertitor;
 		this.collision = collision;
-		Arrays.asList(Direction.values()).forEach(d -> this.movements.put(d, false));
-		this.playerInput.setMovement(this.movements);
-		this.playerInput.setTarget(new Pair<Double, Double>(0.0, 0.0));
 	}
 
 	@Override
@@ -127,6 +123,39 @@ public class ControllerObjects implements ControllerProjectile, ControllerTank {
 	public int getEnemyLifes() {
 		return this.enemyTank.getLifes();
 	}	
+	
+	public double getPlayerAngle() {
+		return this.playerTank.getAngle();
+	}
+	
+	public double getEnemyAngle() {
+		return this.enemyTank.getAngle();
+	}
+	
+	@Override
+	public Pair<Double, Double> getTankDimension(){
+		return this.convertitor.modelToView(this.playerTank.getDimension());
+	}
+	
+	@Override
+	public Pair<Double, Double> getCannonDimension(){
+		return this.convertitor.modelToView(this.playerTank.getCannonDimension());
+	}
+	
+	@Override
+	public Pair<Double, Double> getProjectileDimension(){
+		return this.convertitor.modelToView(this.projectiles.get(0).getBounds());
+	}
+	
+	@Override
+	public Pair<Double, Double> getPlayerCannonPosition(){
+		return this.convertitor.modelToView(this.playerTank.getCannonPosition());
+	}
+	
+	@Override
+	public Pair<Double, Double> getEnemyCannonPosition(){
+		return this.convertitor.modelToView(this.enemyTank.getCannonPosition());
+	}
 	
 	/**
 	 * Getter of the list of dead projectiles.

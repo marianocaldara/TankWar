@@ -15,6 +15,8 @@ import model.utility.Pair;
  */
 public class FileControllerImpl implements FileController {
 	
+	private static final boolean FRIENDLY = true;
+	private static final boolean ENEMY = true;
 	private static final String PATH = "res/levels/";
 	private static final String EXTENSION = ".json";
 	private Levels level;
@@ -26,9 +28,9 @@ public class FileControllerImpl implements FileController {
 	 * @param level
 	 * 		the level to load.
 	 */
-	public FileControllerImpl(Model world) {	
+	public FileControllerImpl(Model world, Levels level) {	
 		super();
-		this.level = Levels.LEVEL_1;
+		this.level = level;
 		this.world = world;
 		this.json = new JSONParser();
 	}
@@ -45,12 +47,13 @@ public class FileControllerImpl implements FileController {
 			 this.world.configPlayerTank(new Pair<Double, Double>((Double) playerFields.get(InitialStateFields.POSX.getName()), 
 					 (Double) playerFields.get(InitialStateFields.POSY.getName())), 
 					 ((Long) playerFields.get(InitialStateFields.LIFES.getName())).intValue(), 
-					 (Double) playerFields.get(InitialStateFields.SPEED.getName()), true);
+					 (Double) playerFields.get(InitialStateFields.SPEED.getName()),
+					 FRIENDLY);
 			 this.world.configEnemyTank(new Pair<Double, Double>((Double) enemyFields.get(InitialStateFields.POSX.getName()),
 					 (Double) enemyFields.get(InitialStateFields.POSY.getName())), 
 					 ((Long) enemyFields.get(InitialStateFields.LIFES.getName())).intValue(),
-					 (Double) enemyFields.get(InitialStateFields.SPEED.getName()), false);
-			 
+					 (Double) enemyFields.get(InitialStateFields.SPEED.getName()),
+					 ENEMY);
 		}
 		catch(IOException | org.json.simple.parser.ParseException e) {
 			e.printStackTrace();

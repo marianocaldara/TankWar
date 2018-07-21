@@ -53,5 +53,29 @@ public interface ControllerTank {
 	 * @return the current lifes of the tank.
 	 */
 	int getEnemyLifes();
+	
+	/**
+	 * Getter of the tank dimension.
+	 * @return a {@link Pair} of the {@link Tank} dimension.
+	 */
+	Pair<Double, Double> getTankDimension();
+	
+	/**
+	 * Getter of the cannon dimension.
+	 * @return a {@link Pair} of the {@link Cannon} dimension.
+	 */
+	Pair<Double, Double> getCannonDimension();
+	
+	/**
+	 * Getter of the player cannon position.
+	 * @return a {@link Pair} of the {@link Cannon} position.
+	 */
+	Pair<Double, Double> getPlayerCannonPosition();
+	
+	/**
+	 * Getter of the enemy cannon position.
+	 * @return a {@link Pair} of the {@link Cannon} position.
+	 */
+	Pair<Double, Double> getEnemyCannonPosition();
 
 }
