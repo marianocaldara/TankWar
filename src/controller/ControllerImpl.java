@@ -1,51 +1,80 @@
 package controller;
 
-import controller.collision.Collision;
-import controller.collision.CollisionImpl;
-import controller.file.FileController;
-import controller.file.FileControllerImpl;
 import controller.levels.Level;
 import controller.levels.LevelImpl;
+import controller.loader.FileController;
+import controller.loader.FileControllerImpl;
+import controller.objects.AI;
 import controller.objects.ControllerObjects;
+import controller.utility.Collision;
 import controller.utility.Convertitor;
-import controller.utility.ConvertitorImpl;
 import model.Model;
-import view.ViewMain;
+import view.View;
 
 /**
- * Concrete implementation of {@link Controller}
+ * Concrete implementation of {@link Controller} interface.
  */
-
 public class ControllerImpl implements Controller {
-	private ControllerObjects controllerObject;
-	private Convertitor convertitor;
+	private static final double MIN_DISTANCE = 70;
+	private static final double DEFAULT_TIME_TO_SHOT = 1000;
+	private ControllerObjects controllerObjects;
 	private Level level;
 	private FileController file;
-	private Collision collision;
 	private Model world;
-	private ViewMain view;
+	private View view;
+	private GameLoopImpl gameLoop;
+	private double timeToShot;
 	
-	public ControllerImpl(Model world, ViewMain view) {
+	/**
+	 * Constructor
+	 * @param world
+	 * 			the {@link Model} of the game.
+	 * @param view
+	 * 			the {@link View} of the game.
+	 */
+	public ControllerImpl(Model world, View view){
 		this.world = world;
 		this.view = view;
-		this.level = new LevelImpl();
-		this.convertitor = new ConvertitorImpl(this.world, this.view);
-		this.collision = new CollisionImpl(this.world);
-		this.controllerObject = new ControllerObjects(this.world.getPlayer(), this.world.getEnemy(), this.world.getInputPlayer(), this.convertitor, this.collision);
+		Convertitor.initialize(this.world, this.view);
+		Collision.initialize(this.world);
 		this.file = new FileControllerImpl(this.world);
-		this.file.setLevel(this.level.getCurrentLevel());
-		this.file.loadLevel();
+		this.level = new LevelImpl(this.file, this);
+		this.timeToShot = DEFAULT_TIME_TO_SHOT;
+		
 	}
-
+	
 	@Override
-	public ControllerObjects getControllerObject() {
-		return this.controllerObject;
+	public ControllerObjects getControllerObjects() {
+		return this.controllerObjects;
 	}
 
 	@Override
 	public Level getLevel() {
 		return this.level;
 	}
+
+	@Override
+	public void startGameLoop() {
+		new Thread(this.gameLoop = new GameLoopImpl(this, this.view)).start();
+		
+	}
+
+	@Override
+	public GameLoop getGameLoop() {
+		return this.gameLoop;
+	}
+
+	@Override
+	public void initializeObjects() {
+		this.controllerObjects = new ControllerObjects(this.world.getPlayer(), this.world.getEnemy(), this.world.getPlayerInput(), MIN_DISTANCE, 
+				this.timeToShot);
+		AI.initialize(this.world.getBounds(), MIN_DISTANCE, this.world.getEnemyInput());
+		
+	}
 	
+	@Override
+	public void setTimeToShot(double time) {
+		this.timeToShot = time;
+	}
 
 }

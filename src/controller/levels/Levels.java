@@ -5,7 +5,9 @@ package controller.levels;
  */
 public enum Levels {
 	
-	LEVEL_1("level1");
+	LEVEL_1("Level1"),
+	LEVEL_2("Level2"),
+	LEVEL_3("Level3");
 	
 	private String levelName;
 	

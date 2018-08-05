@@ -1,20 +1,23 @@
 package controller;
 
+/**
+ * Game loop interface.
+ */
 public interface GameLoop {
 	
-	 /**
-     * Temporarily stops the loop until resume() is called.
-     */
-    void pauseLoop();
+	/**
+	 * Method that allows to pause the loop.
+	 */
+	void pauseLoop();
 
-    /**
-     * Makes the loop restart if it was previously paused.
-     */
-    void resumeLoop();
-
-    /**
-     * Stops the loop and the running thread.
-     */
-    void stopLoop();
-
+	/**
+	 * Method that allows to resume the loop.
+	 */
+	void resumeLoop();
+	
+	/**
+	 * Method that allows to stop the loop.
+	 */
+	void stopLoop();
+	
 }

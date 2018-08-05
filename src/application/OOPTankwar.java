@@ -1,33 +1,36 @@
 package application;
 	
+import java.io.IOException;
+
 import controller.Controller;
 import controller.ControllerImpl;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import view.ViewMain;
 import model.Model;
 import model.World;
+import view.View;
+import view.ViewImpl;
 
 /**
- *  The class containing the main method to start the application.
+ * The class containing the main method.
  */
-public class OOPTankwar extends Application {
-	
+public class OOPtankwar extends Application {
+
 	@Override
-    public void start(Stage primaryStage) {
+	public void start(Stage primaryStage) throws IOException {
 		Model world = new World();
-		ViewMain view = new ViewMain(primaryStage);
+		View view = new ViewImpl(primaryStage);
 		Controller controller = new ControllerImpl(world, view);
-		view.setController(controller);
-		
-    }
-	
+		view.launchView(controller);
+	}
+
 	/**
-	 * Entry point of the application
+	 * The main entry point of the application.
+	 * 
 	 * @param args
-	 * 		additional argument.
+	 *            CLI arguments.
 	 */
-	public static void main(final String[] args) {
+	public static void main(String[] args) {
 		launch(args);
 	}
 }

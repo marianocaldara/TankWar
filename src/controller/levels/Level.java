@@ -1,5 +1,8 @@
 package controller.levels;
 
+import controller.GameLoop;
+import controller.objects.ControllerObjects;
+
 /**
  * Interface for the levels' control.
  */
@@ -18,12 +21,12 @@ public interface Level {
 	boolean isLevelEnded();
 	
 	/**
-	 * Set the current level started.
+	 * Set the current level started, load the current level file,initialize the {@link ControllerObjects} and start the {@link GameLoop}.
 	 */
 	void setLevelStarted();
 		
 	/**
-	 * Set to current level ended.
+	 * Set to current level ended and stop the {@link GameLoop}.
 	 */
 	void setLevelEnded();
 	
@@ -37,19 +40,13 @@ public interface Level {
 	 * Setter for the current level.
 	 * @param currentLevel
 	 * 		the current level.
-	 */
-	/*
-	void setCurrentLevel(Levels currentLevel);*/
-	
-	/**
-	 * Update the current level.
-	 */
-	void updateLevel();
+	 */	
+	void setCurrentLevel(Levels currentLevel);
 	
 	/**
 	 * Control if the game is ended
 	 * @return true if the game is ended, false otherwise.
 	 */
 	boolean isGameEnded();
-
+	
 }

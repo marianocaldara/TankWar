@@ -10,23 +10,16 @@ import model.utility.Pair;
 public interface ControllerTank {
 	
 	/**
-	 * Set a map that rappresents the player {@link Tank} movements taken in input by keyboard {@link KeyboardInput}.
-	 * @param keyInput
-	 * 		the {@link KeyboardInput}
+	 * Modify the player {@link Input} according to the keyboard input.
+	 * @param event
+	 * 		the {@link KeyEvent}.
 	 * @param b
-	 * 		a boolean to specify if the key is pressed or released.
+	 * 		a {@link Boolean}. It's true if the key is pressed, false otherwise.
 	 */
-	void movePlayerTank(KeyEvent keyInput, boolean b);
+	void movePlayerTank(KeyEvent event, boolean b);
 	
 	/**
-	 * Rotate the player cannon in the position targeted by mouse.
-	 * @param mouseInput
-	 * 		the {@link MouseInput}.
-	 */
-	void movePlayerCannon(MouseEvent mouseInput);
-	
-	/**
-	 * Update the position and the target of the two {@link Tank}.
+	 * Update the two {@link Tank} and check the collisions.
 	 */
 	void updateTank();
 	
@@ -55,40 +48,59 @@ public interface ControllerTank {
 	int getEnemyLifes();
 	
 	/**
+	 * Getter of the {@link View} dimension of the {@link Tank}.
+	 * @return a {@link Pair} of dimension of the tank.
+	 */
+	Pair<Double, Double> getTankDimension();
+	
+	/**
+	 * Check if the player {@link Tank} is alive or not.
+	 * @return true if it's alive, false otherwise.
+	 */
+	boolean isPlayerAlive();
+	
+	/**
+	 * Check if the enemy {@link Tank} is alive or not.
+	 * @return true if it's alive, false otherwise.
+	 */
+	boolean isEnemyAlive();
+	
+	/**
+	 * Getter of the {@link View} dimension of the {@link Cannon}.
+	 * @return a {@link Pair} of dimension of the cannon.
+	 */
+	Pair<Double, Double> getCannonDimension();
+	
+	/**
+	 * Getter of the {@link View} position of the player {@link Cannon}.
+	 * @return a {@link Pair} of position of the player cannon.
+	 */
+	Pair<Double, Double> getPlayerCannonPosition();
+	
+	/**
+	 * Getter of the {@link View} position of the enemy {@link Cannon}.
+	 * @return a {@link Pair} of position of the enemy cannon.
+	 */
+	Pair<Double, Double> getEnemyCannonPosition();
+	
+	/**
+	 * Rotate the player cannon in the position targeted by mouse.
+	 * @param event
+	 * 		the {@link MouseEvent}
+	 */
+	void movePlayerCannon(MouseEvent event);
+	
+	/**
 	 * Getter of the player {@link Cannon} angle.
-	 * @return the angle target by the player {@link Cannon}.
+	 * @return the angle.
 	 */
 	double getPlayerAngle();
 	
 	/**
 	 * Getter of the enemy {@link Cannon} angle.
-	 * @return the angle target by the enemy {@link Cannon}.
+	 * @return the angle.
 	 */
 	double getEnemyAngle();
-	
-	/**
-	 * Getter of the tank dimension.
-	 * @return a {@link Pair} of the {@link Tank} dimension.
-	 */
-	Pair<Double, Double> getTankDimension();
-	
-	/**
-	 * Getter of the cannon dimension.
-	 * @return a {@link Pair} of the {@link Cannon} dimension.
-	 */
-	Pair<Double, Double> getCannonDimension();
-	
-	/**
-	 * Getter of the player cannon position.
-	 * @return a {@link Pair} of the {@link Cannon} position.
-	 */
-	Pair<Double, Double> getPlayerCannonPosition();
-	
-	/**
-	 * Getter of the enemy cannon position.
-	 * @return a {@link Pair} of the {@link Cannon} position.
-	 */
-	Pair<Double, Double> getEnemyCannonPosition();
 	
 
 }

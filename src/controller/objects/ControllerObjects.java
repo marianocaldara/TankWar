@@ -1,121 +1,124 @@
 package controller.objects;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
-import controller.collision.Collision;
+import controller.utility.Collision;
 import controller.utility.Convertitor;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import model.input.InputImpl;
+import model.input.Input;
+import model.object.AbstractTank;
 import model.object.Projectile;
-import model.object.Tank;
+import model.utility.Calculate;
 import model.utility.Direction;
 import model.utility.Pair;
-import model.utility.AI;
 
 /**
- * Implementation of the interfaces {@link ControllerProjectile} and {@link ControllerTank}.
+ *  Concrete implementation of the interfaces {@link ControllerTank} and {@link ControllerProjectile}.
+ *  This class control all the main objects of the game and connect the {@link View} to the {@link Model}.
  */
-public class ControllerObjects implements ControllerProjectile, ControllerTank {
+public class ControllerObjects implements ControllerTank, ControllerProjectile {
 	
-	private Tank playerTank;
-	private Tank enemyTank;
-	private InputImpl playerInput;
-	private Map<Direction, Boolean> movements;
+	private static final double MIN_DISTANCE_TO_SHOT = 350;
+	private static double MIN_DISTANCE;
+	private final AbstractTank playerTank;
+	private final AbstractTank enemyTank;
+	private final Input playerInput;
 	private List<Projectile> projectiles;
-	private Convertitor convertitor;
-	private final Collision collision;
+	private double timeToShot;
+	private long initialTime;
+	private long finalTime;
 	
 	/**
 	 * Constructor.
 	 * @param playerTank
-	 * 		the player tank.
-	 * 		@see Tank.
+	 * 		the player {@link Tank}.
 	 * @param enemyTank
-	 * 		the enemy Tank.
-	 * 		@see Tank.
+	 * 		the enemy {@link Tank}.
 	 * @param playerInput
-	 * 		the input for the player.
-	 * 		@see InputImpl.
-	 * @param convertitor
-	 * 		a convertitor for position and dimension.
-	 * 		@see Convertitor.
+	 * 		the player {@link Input}.
+	 * @param minDistance
+	 * 		the minimum distance between a {@link Projectile} and the enemy {@link Tank}. If the distance is lower the tank targets the projectile.
+	 * @param timeToShot
+	 * 		the the time in ms between two enemy shots.
 	 */
-	public ControllerObjects(Tank playerTank, Tank enemyTank, InputImpl playerInput, Convertitor convertitor, Collision collision) {
+	public ControllerObjects(final AbstractTank playerTank, final AbstractTank enemyTank, final Input playerInput, double minDistance, 
+			double timeToShot) {
 		this.playerTank = playerTank;
 		this.enemyTank = enemyTank;
 		this.playerInput = playerInput;
-		this.movements = new HashMap<>();
-		Arrays.asList(Direction.values()).forEach(d -> this.movements.put(d, false));
+		MIN_DISTANCE = minDistance;
+		this.timeToShot = timeToShot;
 		this.projectiles = new ArrayList<>();
-		this.convertitor = convertitor;
-		this.collision = collision;
 	}
 
 	@Override
-	public void movePlayerTank(KeyEvent keyInput, boolean b) {
-		switch(keyInput.getCode()) {
-		case UP: this.movements.put(Direction.UP, b); break;
-		case DOWN: this.movements.put(Direction.DOWN, b); break;
-		case LEFT: this.movements.put(Direction.LEFT, b); break;
-		case RIGHT: this.movements.put(Direction.RIGHT, b); break;
+	public void playerShot(MouseEvent event) {
+		switch(event.getButton()) {
+		case PRIMARY: this.projectiles.add(this.playerTank.shot()); break; //da sistemare
 		default: ;
 		}
-		this.playerInput.setMovement(this.movements);
-	}
-	
-	@Override
-	public void movePlayerCannon(MouseEvent mouseInput) {
-		this.playerInput.setTarget(convertitor.viewToModel(new Pair<>(mouseInput.getSceneX(), mouseInput.getSceneY())));
-	}
 
-	@Override
-	public void playerShot(MouseEvent mouseInput) {
-		switch(mouseInput.getButton()) {
-		case PRIMARY: this.projectiles.add(this.playerTank.shot()); break;
-		default: ;
-		}
 	}
 
 	@Override
 	public List<Pair<Double, Double>> getProjectiles() {
-		return Collections.unmodifiableList(this.projectiles.stream().map(p -> this.convertitor.modelToView(p.getBounds())).collect(Collectors.toList()));
-	}	
-	
-	@Override
-	public void updateTank() {
-		this.playerTank.update(playerInput);
-		this.enemyTank.update(AI.act(this.enemyTank, this.playerTank));
-		this.collision.tankWithTank(this.movements);
-		this.collision.tankWithBorders();
+		return Collections.unmodifiableList(this.projectiles.stream().map(p -> Convertitor.modelToView(p.getPosition())).collect(Collectors.toList()));
 	}
-	
+
 	@Override
 	public void updateProjectiles() {
 		this.projectiles.forEach(p -> p.update());
-		this.collision.projectileWithBorders(this.projectiles);
-		this.collision.tankWithProjectile(projectiles);
-		this.collision.projectileWithProjectile(projectiles);
+		Collision.projectileWithBorders(this.projectiles);
+		Collision.tankWithProjectile(projectiles);
+		Collision.projectileWithProjectile(projectiles);
 		this.deleteProjectiles(this.getDeadProjectiles());
+	}
+
+	@Override
+	public Pair<Double, Double> getProjectileDimension() {
+		return Convertitor.modelToView(this.projectiles.get(0).getBounds());
+	}
+
+	@Override
+	public void movePlayerTank(KeyEvent event, boolean b) {
+		switch(event.getCode()) {
+		case UP: this.playerInput.getMovement().put(Direction.UP, b); break;
+		case DOWN: this.playerInput.getMovement().put(Direction.DOWN, b); break;
+		case LEFT: this.playerInput.getMovement().put(Direction.LEFT, b); break;
+		case RIGHT: this.playerInput.getMovement().put(Direction.RIGHT, b); break;
+		default: ;
+		}
+
+	}
+
+	@Override
+	public void updateTank() {
+		this.playerTank.update(this.playerInput);
+		this.enemyTank.update(AI.act(this.enemyTank, this.playerTank, this.getNearestProjectiles()));
+		if(this.finalTime - this.initialTime > this.timeToShot && Calculate.distance(this.playerTank.getPosition(), this.enemyTank.getPosition()) < MIN_DISTANCE_TO_SHOT) {			
+			this.initialTime = System.currentTimeMillis();
+			this.projectiles.add(AI.shotEnemy(this.enemyTank)); // da sistemare
+		}
+		this.finalTime = System.currentTimeMillis();
+		Collision.tankWithBorders();
+		Collision.tankWithTank(this.playerInput.getMovement());
 		
 	}
-	
+
 	@Override
 	public Pair<Double, Double> getPlayerPosition() {
-		return this.convertitor.modelToView(this.playerTank.getPosition());
+		return Convertitor.modelToView(this.playerTank.getPosition());
 	}
 
 	@Override
 	public Pair<Double, Double> getEnemyPosition() {
-		return this.convertitor.modelToView(this.enemyTank.getPosition());
+		return Convertitor.modelToView(this.enemyTank.getPosition());
 	}
-	
+
 	@Override
 	public int getPlayerLifes() {
 		return this.playerTank.getLifes();
@@ -124,41 +127,52 @@ public class ControllerObjects implements ControllerProjectile, ControllerTank {
 	@Override
 	public int getEnemyLifes() {
 		return this.enemyTank.getLifes();
-	}	
-	
+	}
+
+	@Override
+	public Pair<Double, Double> getTankDimension() {
+		return Convertitor.modelToView(this.playerTank.getDimension());
+	}
+
+	@Override
+	public boolean isPlayerAlive() {
+		return this.playerTank.isAlive();
+	}
+
+	@Override
+	public boolean isEnemyAlive() {
+		return this.enemyTank.isAlive();
+	}
+
+	@Override
+	public Pair<Double, Double> getCannonDimension() {
+		return Convertitor.modelToView(this.playerTank.getCannonDimension());
+	}
+
+	@Override
+	public Pair<Double, Double> getPlayerCannonPosition() {
+		return Convertitor.modelToView(this.playerTank.getCannonPosition());
+	}
+
+	@Override
+	public Pair<Double, Double> getEnemyCannonPosition() {
+		return Convertitor.modelToView(this.enemyTank.getCannonPosition());
+	}
+
+	@Override
+	public void movePlayerCannon(MouseEvent event) {
+		this.playerInput.setTarget(Convertitor.viewToModel(new Pair<Double, Double>(event.getSceneX(), event.getSceneY())));
+
+	}
+
 	@Override
 	public double getPlayerAngle() {
 		return this.playerTank.getAngle();
 	}
-	
+
 	@Override
 	public double getEnemyAngle() {
 		return this.enemyTank.getAngle();
-	}
-	
-	@Override
-	public Pair<Double, Double> getTankDimension(){
-		return this.convertitor.modelToView(this.playerTank.getDimension());
-	}
-	
-	@Override
-	public Pair<Double, Double> getCannonDimension(){
-		return this.convertitor.modelToView(this.playerTank.getCannonDimension());
-	}
-	
-	@Override
-	public Pair<Double, Double> getProjectileDimension(){
-		return this.convertitor.modelToView(this.projectiles.get(0).getBounds());
-	}
-	
-	@Override
-	public Pair<Double, Double> getPlayerCannonPosition(){
-		return this.convertitor.modelToView(this.playerTank.getCannonPosition());
-	}
-	
-	@Override
-	public Pair<Double, Double> getEnemyCannonPosition(){
-		return this.convertitor.modelToView(this.enemyTank.getCannonPosition());
 	}
 	
 	/**
@@ -176,6 +190,18 @@ public class ControllerObjects implements ControllerProjectile, ControllerTank {
 	 */
 	private void deleteProjectiles(List<Projectile> deadProjectiles) {
 		this.projectiles.removeAll(deadProjectiles);
+	}
+	
+	/**
+	 * Getter of all the {@link Projectile} nearest to the enemy {@link Tank}.
+	 * @return the {@link List} of the nearest projectiles.
+	 */
+	private List<Projectile> getNearestProjectiles() {
+		return this.projectiles.stream().filter(p -> (int)Calculate.distance(p.getPosition(), 
+				new Pair<>(this.enemyTank.getPosition().getFirst() + this.enemyTank.getDimension().getFirst()/2, 
+						this.enemyTank.getPosition().getSecond() + this.enemyTank.getDimension().getSecond()/2)) < MIN_DISTANCE).
+				collect(Collectors.toList());
+				
 	}
 
 }

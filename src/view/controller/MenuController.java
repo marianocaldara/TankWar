@@ -5,20 +5,25 @@ import java.util.Optional;
 
 import com.jfoenix.controls.JFXButton;
 
+import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import view.scene.ViewScenes;
+import view.utility.ViewUtils;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar.ButtonData;
-import view.scenes.ViewScenes;
 
 /**
  * 
  * Implementation of the view controller for the menu stage.
  *
  */
-public class MenuController {
+public class MenuController extends ViewController{
+	
+	private Difficult difficult;
+	private Controller controller;
 
     @FXML
     private JFXButton play;
@@ -26,6 +31,12 @@ public class MenuController {
     private JFXButton settings;
     @FXML
     private JFXButton exit;
+    
+    @Override
+	public void init(Controller controller) {
+		this.controller = controller;
+		
+	}
 
     /**
      * This method allow to switch to the game world stage
@@ -34,25 +45,11 @@ public class MenuController {
      * @throws IOException
      */
     public void playAction(ActionEvent event) throws IOException {
-    	Alert alert = new Alert(AlertType.NONE);
-        alert.setTitle("Lives");
-        alert.setHeaderText("Choose your lives :");
-        // alert.setContentText("Choose your option.");
-
-        ButtonType one = new ButtonType("1");
-        ButtonType two = new ButtonType("2");
-        ButtonType three = new ButtonType("3");
-
-        alert.getButtonTypes().setAll(one, two, three);
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == one) {
-            
-        } else if (result.get() == two) {
-            
-        } else if (result.get() == three) {
-        	
-        }
-        ViewScenes.GAME_WORLD.setGameStage(event);
+    	/*
+    	 * Quando sarà pronto non dovrà richiamare il gioco ma il loading.
+    	 */
+    	//ViewScenes.LOADING.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(), this.controller, GameState.LOADING);
+        ViewScenes.GAME_WORLD.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(), this.controller);
     }
 
     /**
@@ -61,6 +58,30 @@ public class MenuController {
      * 			the action event.
      */
     public void settingsAction(ActionEvent event) {
+    	 Alert alert = new Alert(AlertType.INFORMATION);
+         alert.setTitle("Confirmation Requested");
+         alert.setHeaderText("Choose the difficult");
+         // alert.setContentText("Choose your option.");
+         
+         ButtonType easy = new ButtonType("Easy");        
+         ButtonType medium = new ButtonType("Medium");
+         ButtonType hard = new ButtonType("Hard");
+       
+
+         /*
+          * Ho fatto che escono 3 bottoni e settano la difficoltà.
+          */
+         alert.getButtonTypes().setAll(easy, medium, hard);
+         Optional<ButtonType> result = alert.showAndWait();
+         if (result.get() == easy) {
+             this.difficult = Difficult.EASY;
+         } else if (result.get() == medium) {
+        	 this.difficult = Difficult.MEDIUM;
+         }
+         else if (result.get() == hard) {
+        	 this.difficult = Difficult.HARD;
+         }
+         this.controller.setTimeToShot(this.difficult.getTimeShot());
 
     }
 
@@ -90,5 +111,11 @@ public class MenuController {
         }
 
     }
+    
+    public Difficult getDifficult() {
+    	return this.difficult;
+    }
+
+	
 
 }

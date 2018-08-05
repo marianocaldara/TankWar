@@ -3,7 +3,6 @@ package controller.objects;
 import java.util.List;
 
 import javafx.scene.input.MouseEvent;
-import model.object.Projectile;
 import model.utility.Pair;
 
 /**
@@ -13,10 +12,10 @@ public interface ControllerProjectile {
 	
 	/**
 	 * Add to a map a new {@link Projectile} when the mouse is clicked.
-	 * @param e
+	 * @param event
 	 * 		the {@link MouseInput}.
 	 */
-	void playerShot(MouseEvent e);
+	void playerShot(MouseEvent event);
 	
 	/**
 	 * Transform the position the list of {@link Projectile} from the {@link Model} to the {@link View}.
@@ -25,13 +24,13 @@ public interface ControllerProjectile {
 	 List<Pair<Double, Double>> getProjectiles();
 	 
 	 /**
-	  * Update the state of each {@link Projectile}.
+	  * Update all the {@link Projectile} and check the collision.
 	  */
 	 void updateProjectiles();
 	 
 	 /**
-	  * Getter of the projectile dimension.
-	  * @return a {@link Pair} of {@link Projectile} dimension.
+	  * Getter of the {@link Projectile} dimension.
+	  * @return a {@link Pair} of the projectile dimension.
 	  */
 	 Pair<Double, Double> getProjectileDimension();
 
