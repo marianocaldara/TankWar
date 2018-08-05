@@ -1,4 +1,5 @@
 package model.utility;
+
 /**
  * Simple Pair to memorize two object.
  *
@@ -83,4 +84,3 @@ public class Pair<X, Y> {
         return true;
     }
 }
-

@@ -7,12 +7,12 @@ import model.utility.Pair;
 /**
  * Concrete model implementation of Input for a Tank
  * <p>
- * This class bind {@link DirectionInput} and {@link CannonInput}. Both describes the input for Tank.
+ * This class bind {@link TankInput} and {@link CannonInput}. Both describes the input for Tank.
  * 
  * @see TankImpl
  * @see Pair
  */
-public class InputImpl implements DirectionInput, CannonInput {
+public class InputImpl implements Input {
 	
 	private Map<Direction, Boolean> movement;
 	private Pair<Double, Double> target;
@@ -21,7 +21,7 @@ public class InputImpl implements DirectionInput, CannonInput {
 		this.movement = new HashMap<>();
 		Arrays.asList(Direction.values()).forEach(d -> this.movement.put(d, false));
 		this.target = new Pair<>(0.0, 0.0);
-    }
+        }
 	
 	public InputImpl(Map<Direction, Boolean> movement, Pair<Double, Double> target) {
 	    this.movement = movement;

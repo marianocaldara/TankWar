@@ -21,4 +21,8 @@ public enum Direction {
         private Direction(final int sign) {
             this.sign = sign;
         }
+        
+        public int getSign() {
+        	return this.sign;
+        }
 }

@@ -12,7 +12,7 @@ import model.utility.Direction;
  * @see InputImpl
  * @see TankImpl
  */
-public interface DirectionInput {
+public interface TankInput {
         /**
          * Setter for next movement.
          * @param movement.

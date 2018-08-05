@@ -1,9 +1,13 @@
 package model;
 
-import model.input.InputImpl;
-import model.object.Tank;
+import model.input.Input;
+import model.input.TankInput;
+import model.object.AbstractTank;
 import model.utility.Pair;
-
+/**
+ * Model interface contain all elements that game needs.
+ * <p>Create player, and enemy, and give possibility to return them.
+ */
 public interface Model {
     /**
      * Create a {@link Tank} controlled by player.
@@ -11,28 +15,26 @@ public interface Model {
      * @param position of Tank
      * @param lifes nr of lifes
      * @param speed speed of movement
-     * @param friendly boolean for user or enemy
      */
-    void configPlayerTank(Pair<Double, Double> position, int lifes, double speed, boolean friendly);
+    void configPlayerTank(Pair<Double, Double> position, int lifes, double speed, double projectileSpeed);
     /**
      * Create a {@link Tank} controlled by computer.
      * 
      * @param position of Tank
      * @param lifes nr of lifes
      * @param speed speed of movement
-     * @param friendly boolean for user or enemy
      */
-    void configEnemyTank(Pair<Double, Double> position, int lifes, double speed, boolean friendly);
+    void configEnemyTank(Pair<Double, Double> position, int lifes, double speed, double projectileSpeed);
     /**
      * Getter for player.
      * @return player's Tank
      */
-    Tank getPlayer();
+    AbstractTank getPlayer();
     /**
      * Getter for enemy
      * @return enemie's Tank
      */
-    Tank getEnemy();
+    AbstractTank getEnemy();
     /**
      * Getter for bounds of World.
      * @return bounds First = width, Second = height
@@ -40,13 +42,14 @@ public interface Model {
      */
     Pair<Double, Double> getBounds();
     /**
-     * Getter for Input Player.
-     * @return {@link InputImpl} of player.
+     * Getter for tank input Player.
+     * @return {@link TankInput} of player.
      */
-    InputImpl getInputPlayer();
+    Input getPlayerInput();
     /**
-     * Getter for Input Enemy
-     * @return {@link InputImpl} of enemy.
+     * Getter for tank input Enemy.
+     * @return {@link TankInput} of enemy.
      */
-    InputImpl getInputEnemy();
+    Input getEnemyInput();
+ 
 }

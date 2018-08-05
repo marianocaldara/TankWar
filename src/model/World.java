@@ -1,35 +1,47 @@
 package model;
 
+import model.input.Input;
 import model.input.InputImpl;
-import model.object.Tank;
-import model.object.TankImpl;
+import model.object.AbstractTank;
+import model.object.EnemyTankImpl;
+import model.object.PlayerTankImpl;
 import model.utility.Pair;
-
+/**
+ * Implementation of Model interface.
+ */
 public class World implements Model {
     private final static Pair<Double, Double> DIMENSION = new Pair<>(600.0, 400.0);
-    private Tank player;
-    private Tank enemy;
-    private InputImpl inputPlayer = new InputImpl();
-    private InputImpl inputEnemy = new InputImpl();
+    private AbstractTank player;
+    private AbstractTank enemy;
+    private Input playerInput;
+    private Input enemyInput;
+    /**
+     * Constructor.
+     * <p>Set player input and enemy input.
+     */
+    public World() {
+	this.playerInput = new InputImpl();
+	this.enemyInput = new InputImpl();
+    }
     
     @Override
-    public void configPlayerTank(final Pair<Double, Double> position, int lifes, final double speed, final boolean friendly) {
-       player = new TankImpl(position, lifes, speed, friendly);
+    public void configPlayerTank(final Pair<Double, Double> position, int lifes, final double speed, final double projectileSpeed) {
+       this.player = new PlayerTankImpl(position, lifes, speed, projectileSpeed);
     }
 
     @Override
-    public void configEnemyTank(final Pair<Double, Double> position, int lifes, final double speed, final boolean friendly) {
-        enemy = new TankImpl(position, lifes, speed, friendly);
+    public void configEnemyTank(final Pair<Double, Double> position, int lifes, final double speed, final double projectileSpeed) {
+        this.enemy = new EnemyTankImpl(position, lifes, speed, projectileSpeed);
     }
 
     @Override
-    public Tank getPlayer() {
-        return player;
+    public AbstractTank getPlayer() {
+        return this.player;
     }
 
     @Override
-    public Tank getEnemy() {
-        return enemy;
+    public AbstractTank getEnemy() {
+        return this.enemy;
     }
 
     @Override
@@ -38,12 +50,13 @@ public class World implements Model {
     }
 
     @Override
-    public InputImpl getInputPlayer() {
-        return this.inputPlayer;
+    public Input getPlayerInput() {
+	return this.playerInput;
     }
 
     @Override
-    public InputImpl getInputEnemy() {
-        return this.inputEnemy;
+    public Input getEnemyInput() {
+        return this.enemyInput;
     }
+   
 }
