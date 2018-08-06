@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+
+<Group xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.EndGameController">
+   <children>
+      <Pane fx:id="endGamePane" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Text fx:id="textEndGame" fill="WHITE" layoutX="176.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="YOU WIN!">
+               <font>
+                  <Font size="55.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </children>
+</Group>

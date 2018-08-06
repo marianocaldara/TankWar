@@ -3,8 +3,13 @@ package view.scene;
 import java.io.IOException;
 
 import controller.Controller;
+import view.stage.EndingGameStage;
+import view.stage.EndingLevelStage;
 import view.stage.GameWorldStage;
+import view.stage.LoadingStage;
+import view.stage.LoseStage;
 import view.stage.MenuStage;
+import view.stage.SettingStage;
 
 /**
  * 
@@ -30,35 +35,35 @@ public enum ViewScenes {
     },
     
     SETTING{
-    	//private SceneChanger setting = new SettingStage();
+    	private SceneChanger setting = new SettingStage();
 		@Override
 		public void setGameStage(double width, double height, Controller controller)
 				throws IOException {
-			// TODO Auto-generated method stub
+			setting.setStage(width, height, controller);
 			
 		}
 
 		@Override
 		public SceneChanger getGameStage() throws IOException {
-			// TODO Auto-generated method stub
-			return null;
+			return setting;
 		}
     	
     },
     
     LOADING{
+    	
+    	private SceneChanger loader = new LoadingStage();
 
 		@Override
 		public void setGameStage(double width, double height, Controller controller)
 				throws IOException {
-			// TODO Auto-generated method stub
+			loader.setStage(width, height, controller);
 			
 		}
 
 		@Override
 		public SceneChanger getGameStage() throws IOException {
-			// TODO Auto-generated method stub
-			return null;
+			return loader;
 		}
     	
     },
@@ -79,51 +84,53 @@ public enum ViewScenes {
     
     LOSE {
 
+    	private SceneChanger gameOver = new LoseStage();
 		@Override
 		public void setGameStage(double width, double height, Controller controller)
 				throws IOException {
-			// TODO Auto-generated method stub
+			gameOver.setStage(width, height, controller);
 			
 		}
 
 		@Override
 		public SceneChanger getGameStage() throws IOException {
-			// TODO Auto-generated method stub
-			return null;
+			return gameOver;
 		}
     	
     },
     
     END_LEVEL{
 
+    	private SceneChanger endLevel = new EndingLevelStage();
+    	
 		@Override
 		public void setGameStage(double width, double height, Controller controller)
 				throws IOException {
-			// TODO Auto-generated method stub
+			endLevel.setStage(width, height, controller);
 			
 		}
 
 		@Override
 		public SceneChanger getGameStage() throws IOException {
-			// TODO Auto-generated method stub
-			return null;
+			return endLevel;
 		}
     	
     },
     
     END_GAME{
 
+    	private SceneChanger endGame = new EndingGameStage();	
+    	
 		@Override
 		public void setGameStage(double width, double height, Controller controller)
 				throws IOException {
-			// TODO Auto-generated method stub
+			endGame.setStage(width, height, controller);
 			
 		}
 
 		@Override
 		public SceneChanger getGameStage() throws IOException {
-			// TODO Auto-generated method stub
-			return null;
+			return endGame;
 		}
     	
     };

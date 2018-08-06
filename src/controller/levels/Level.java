@@ -21,6 +21,12 @@ public interface Level {
 	boolean isLevelEnded();
 	
 	/**
+	 * Control if the player lose.
+	 * @return true if the player lose the game, false otherwise.
+	 */
+	boolean isGameOver();
+	
+	/**
 	 * Set the current level started, load the current level file,initialize the {@link ControllerObjects} and start the {@link GameLoop}.
 	 */
 	void setLevelStarted();
@@ -48,5 +54,10 @@ public interface Level {
 	 * @return true if the game is ended, false otherwise.
 	 */
 	boolean isGameEnded();
+	
+	/**
+	 * Set the game ended, stop the game loop and re initialize the levels.
+	 */
+	void setGameOver();
 	
 }

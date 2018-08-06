@@ -5,7 +5,7 @@ package view.controller;
  */
 public enum Difficult {
 	
-	EASY{
+	EASY("Easy"){
 
 		@Override
 		public double getTimeShot() {
@@ -14,7 +14,7 @@ public enum Difficult {
 		
 	},
 	
-	MEDIUM{
+	MEDIUM("Medium"){
 
 		@Override
 		public double getTimeShot() {
@@ -23,7 +23,7 @@ public enum Difficult {
 		
 	},
 	
-	HARD{
+	HARD("Hard"){
 
 		@Override
 		public double getTimeShot() {
@@ -31,6 +31,26 @@ public enum Difficult {
 		}
 		
 	};
+	
+	private String difficultName;
+	
+	/**
+	 * Private constructor.
+	 * @param levelName
+	 * 		the name of the level.
+	 */
+	
+	private Difficult(String difficultName) {
+		this.difficultName = difficultName;
+	}
+	
+	/**
+	 * Getter of the levels' name.
+	 * @return the level's name.
+	 */
+	public String getName() {
+		return this.difficultName;
+	}
 	
 	abstract public double getTimeShot();
 

@@ -15,7 +15,7 @@ public class ProjectileImpl implements Projectile{
 	private boolean alive = true;
 	private int nrbounced = 0;
 	private final static int MAX_BOUNCE = 1;
-	private final static Pair<Double, Double> DIMENSION = new Pair<>(10.0, 10.0);
+	private final static Pair<Double, Double> DIMENSION = new Pair<>(5.0, 5.0);
 	
 	/**
 	 * Constructor.

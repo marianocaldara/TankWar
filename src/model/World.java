@@ -20,18 +20,19 @@ public class World implements Model {
      * <p>Set player input and enemy input.
      */
     public World() {
-	this.playerInput = new InputImpl();
-	this.enemyInput = new InputImpl();
+    	super();
     }
     
     @Override
     public void configPlayerTank(final Pair<Double, Double> position, int lifes, final double speed, final double projectileSpeed) {
        this.player = new PlayerTankImpl(position, lifes, speed, projectileSpeed);
+       this.playerInput = new InputImpl();
     }
 
     @Override
     public void configEnemyTank(final Pair<Double, Double> position, int lifes, final double speed, final double projectileSpeed) {
         this.enemy = new EnemyTankImpl(position, lifes, speed, projectileSpeed);
+        this.enemyInput = new InputImpl();
     }
 
     @Override

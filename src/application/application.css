@@ -199,6 +199,36 @@
 	-fx-background-size: 100% 100% ;
 }
 
+#loaderPane{
+	-fx-background-image: url(../../res/images/tankLogin.jpg) ;
+	-fx-background-repeat: no-repeat ;
+	-fx-background-size: 100% 100% ;
+}
+
+#gameSettings{
+	-fx-background-image: url(../../res/images/tankSetting.jpg) ;
+	-fx-background-repeat: no-repeat ;
+	-fx-background-size: 100% 100% ;
+}
+
+#endLevelPane{
+	-fx-background-image: url(../../res/images/endLevel.jpg) ;
+	-fx-background-repeat: no-repeat ;
+	-fx-background-size: 100% 100% ;
+}
+
+#endGamePane{
+	-fx-background-image: url(../../res/images/youwin.jpg) ;
+	-fx-background-repeat: no-repeat ;
+	-fx-background-size: 100% 100% ;
+}
+
+#gameOverPane{
+	-fx-background-image: url(../../res/images/gameOver.png) ;
+	-fx-background-repeat: no-repeat ;
+	-fx-background-size: 100% 100% ;
+}
+
 /* #gameWorld{
 	-fx-background-image: url(../../resources/images/level-editor-grass-background.png);
 	-fx-background-repeat: no-repeat ;

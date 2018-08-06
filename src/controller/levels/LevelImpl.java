@@ -13,6 +13,7 @@ public class LevelImpl implements Level {
 	private boolean levelStarted;
 	private boolean levelEnded;
 	private boolean gameEnded;
+	private boolean gameOver;
 	private Iterator<Levels> levels;
 	private Levels currentLevel;
 	private FileController fileController;
@@ -29,6 +30,7 @@ public class LevelImpl implements Level {
 		this.levelStarted = false;
 		this.levelEnded = false;
 		this.gameEnded = false;
+		this.gameOver = false;
 		this.levels = Arrays.asList(Levels.values()).iterator();
 		this.currentLevel = this.levels.next();
 		this.fileController = fileController;
@@ -38,6 +40,11 @@ public class LevelImpl implements Level {
 	@Override
 	public boolean isLevelStarted() {
 		return this.levelStarted;
+	}
+	
+	@Override
+	public boolean isGameOver() {
+		return this.gameOver;
 	}
 
 	@Override
@@ -54,6 +61,8 @@ public class LevelImpl implements Level {
 	public void setLevelStarted() {
 		this.levelStarted = true;
 		this.levelEnded = false;
+		this.gameEnded = false;
+		this.gameOver = false;
 		this.fileController.loadLevel(this.currentLevel);
 		this.controller.initializeObjects();
 		this.controller.startGameLoop();
@@ -78,7 +87,13 @@ public class LevelImpl implements Level {
 		this.currentLevel = currentLevel;
 		while(this.levels.hasNext() && !this.levels.next().equals(this.currentLevel));
 	}
-
+	
+	@Override
+	public void setGameOver() {
+		this.gameOver = true;
+		this.setGameEnded();
+	}	
+	
 	/**
 	 * Method that manage the updating of the levels.
 	 */
@@ -88,9 +103,18 @@ public class LevelImpl implements Level {
 		}
 		else {
 			this.gameEnded = true;
-			this.levels = Arrays.asList(Levels.values()).iterator();
-			this.currentLevel = this.levels.next();	
+			this.setGameEnded();
 		}
-	}	
+	}
+	
+	private void setGameEnded() {
+		this.levelStarted = false;
+		this.controller.getGameLoop().stopLoop();
+		this.levels = Arrays.asList(Levels.values()).iterator();
+		this.currentLevel = this.levels.next();	
+	}
+
+	
+
 
 }

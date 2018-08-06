@@ -76,23 +76,16 @@ public class GameWorldController extends ViewController{
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		} /*else if (this.controller.getControllerObjects().isPlayerAlive()) {
-			// ViewScenes.END_LEVEL.setGameStage(ViewUtils.getScene().getWidth(),
-			// ViewUtils.getScene().getHeight(), this.controller, GameState.ENDING_LEVEL);
-		} else if (!this.controller.getControllerObjects().isPlayerAlive()) {
-			// ViewScenes.LOSE.setGameStage(ViewUtils.getScene().getWidth(),
-			// ViewUtils.getScene().getHeight(), this.controller, GameState.LOSING);
-		}*/
-		
-		/*
-		 * Questo else if va tolto una volta completato e decommentare il codice sopra.
-		 */
-		else if (this.controller.getLevel().isLevelEnded()) {
-			try {
-				ViewScenes.GAME_WORLD.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(),
-						this.controller);
+		} else if (this.controller.getLevel().isLevelEnded()) {
+			 try {
+				ViewScenes.END_LEVEL.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(), this.controller);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (this.controller.getLevel().isGameOver()) {
+			 try {
+				ViewScenes.LOSE.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(), this.controller);
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}

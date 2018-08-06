@@ -117,7 +117,10 @@ public class GameLoopImpl extends Thread implements GameLoop{
     }
     
     private void updateLevelState() {
-		if(!this.controller.getControllerObjects().isPlayerAlive() || !this.controller.getControllerObjects().isEnemyAlive()) {
+		if(!this.controller.getControllerObjects().isPlayerAlive()) {
+			this.controller.getLevel().setGameOver();
+		}
+		else if(!this.controller.getControllerObjects().isEnemyAlive()) {
 			this.controller.getLevel().setLevelEnded();
 		}
 	}

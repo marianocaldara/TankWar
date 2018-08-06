@@ -14,7 +14,7 @@ import view.ViewImpl;
 /**
  * The class containing the main method.
  */
-public class OOPtankwar extends Application {
+public class OOPTankwar extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
