@@ -5,6 +5,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import controller.collision.FactoryCollision;
+import controller.exceptions.ProjectileOutOfBordersException;
+import controller.exceptions.ProjectileWithProjectileException;
+import controller.exceptions.TankOutOfBordersException;
+import controller.exceptions.TankWithProjectileException;
+import controller.exceptions.TankWithTankException;
 import controller.utility.Collision;
 import controller.utility.Convertitor;
 import javafx.scene.input.KeyEvent;
@@ -31,6 +37,7 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
 	private double timeToShot;
 	private long initialTime;
 	private long finalTime;
+	private FactoryCollision factoryCollision;
 	
 	/**
 	 * Constructor.
@@ -45,7 +52,7 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
 	 * @param timeToShot
 	 * 		the the time in ms between two enemy shots.
 	 */
-	public ControllerObjects(final AbstractTank playerTank, final AbstractTank enemyTank, final Input playerInput, double minDistance, 
+	public ControllerObjects(final FactoryCollision factoryCollision, final AbstractTank playerTank, final AbstractTank enemyTank, final Input playerInput, double minDistance, 
 			double timeToShot) {
 		this.playerTank = playerTank;
 		this.enemyTank = enemyTank;
@@ -53,6 +60,7 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
 		MIN_DISTANCE = minDistance;
 		this.timeToShot = timeToShot;
 		this.projectiles = new ArrayList<>();
+		this.factoryCollision = factoryCollision;
 	}
 
 	@Override
@@ -72,9 +80,7 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
 	@Override
 	public void updateProjectiles() {
 		this.projectiles.forEach(p -> p.update());
-		Collision.projectileWithBorders(this.projectiles);
-		Collision.tankWithProjectile(projectiles);
-		Collision.projectileWithProjectile(projectiles);
+		this.checkProjectileCollision();
 		this.deleteProjectiles(this.getDeadProjectiles());
 	}
 
@@ -104,9 +110,7 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
 			this.projectiles.add(AI.shotEnemy(this.enemyTank)); // da sistemare
 		}
 		this.finalTime = System.currentTimeMillis();
-		Collision.tankWithBorders();
-		Collision.tankWithTank(this.playerInput.getMovement());
-		
+		this.checkTankCollision();
 	}
 
 	@Override
@@ -202,6 +206,45 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
 						this.enemyTank.getPosition().getSecond() + this.enemyTank.getDimension().getSecond()/2)) < MIN_DISTANCE).
 				collect(Collectors.toList());
 				
+	}
+	
+	private void checkTankCollision() {
+		try {
+			Collision.tankWithBorders(this.playerTank);
+		} catch (TankOutOfBordersException e) {
+			this.factoryCollision.tankWithBordersCollision(this.playerTank).manageCollision();
+		}
+		try {
+			Collision.tankWithBorders(this.enemyTank);
+		} catch (TankOutOfBordersException e) {
+			this.factoryCollision.tankWithBordersCollision(this.enemyTank).manageCollision();
+		}
+		try {
+			Collision.tankWithTank(this.playerTank, this.enemyTank);
+		} catch (TankWithTankException e) {
+			this.factoryCollision.tankWithTankCollision(this.playerTank, this.enemyTank, this.playerInput.getMovement()).manageCollision();
+		}
+		
+	}
+	
+	private void checkProjectileCollision() {
+		this.projectiles.forEach(p -> {
+			try {
+				Collision.projectileWithBorders(p);
+			} catch (ProjectileOutOfBordersException e) {
+				this.factoryCollision.projectileWithBordersCollision(p).manageCollision();
+			}
+		});
+		try {
+			Collision.tankWithProjectile(projectiles);
+		} catch (TankWithProjectileException e) {
+			this.factoryCollision.tankWithProjectileCollision(this.playerTank, this.enemyTank, this.projectiles).manageCollision();
+		}
+		try {
+			Collision.projectileWithProjectile(projectiles);
+		} catch (ProjectileWithProjectileException e) {
+			this.factoryCollision.projectileWithProjectileCollision(this.projectiles).manageCollision();
+		}
 	}
 
 }

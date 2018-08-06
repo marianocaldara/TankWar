@@ -27,7 +27,7 @@
          <center>
             <Label fx:id="tanklabel" text="T A N K  W A R" textAlignment="CENTER" BorderPane.alignment="CENTER">
                <font>
-                  <Font name="System Bold" size="22.0" />
+                  <Font name="System Bold" size="30.0" />
                </font>
             </Label>
          </center>

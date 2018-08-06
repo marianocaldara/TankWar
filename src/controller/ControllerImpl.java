@@ -1,5 +1,7 @@
 package controller;
 
+import controller.collision.FactoryCollision;
+import controller.collision.FactoryCollisionImpl;
 import controller.levels.Level;
 import controller.levels.LevelImpl;
 import controller.loader.FileController;
@@ -24,6 +26,7 @@ public class ControllerImpl implements Controller {
 	private View view;
 	private GameLoopImpl gameLoop;
 	private double timeToShot;
+	private FactoryCollision factoryCollision;
 	
 	/**
 	 * Constructor
@@ -40,6 +43,7 @@ public class ControllerImpl implements Controller {
 		this.file = new FileControllerImpl(this.world);
 		this.level = new LevelImpl(this.file, this);
 		this.timeToShot = DEFAULT_TIME_TO_SHOT;
+		this.factoryCollision = new FactoryCollisionImpl(this.world.getBounds());
 		
 	}
 	
@@ -66,7 +70,7 @@ public class ControllerImpl implements Controller {
 
 	@Override
 	public void initializeObjects() {
-		this.controllerObjects = new ControllerObjects(this.world.getPlayer(), this.world.getEnemy(), this.world.getPlayerInput(), MIN_DISTANCE, 
+		this.controllerObjects = new ControllerObjects(this.factoryCollision, this.world.getPlayer(), this.world.getEnemy(), this.world.getPlayerInput(), MIN_DISTANCE, 
 				this.timeToShot);
 		AI.initialize(this.world.getBounds(), MIN_DISTANCE, this.world.getEnemyInput());
 		
