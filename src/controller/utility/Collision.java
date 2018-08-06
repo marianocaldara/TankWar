@@ -2,11 +2,11 @@ package controller.utility;
 
 import java.util.List;
 
-import controller.exceptions.ProjectileOutOfBordersException;
-import controller.exceptions.ProjectileWithProjectileException;
-import controller.exceptions.TankOutOfBordersException;
-import controller.exceptions.TankWithProjectileException;
-import controller.exceptions.TankWithTankException;
+import exceptions.ProjectileOutOfBordersException;
+import exceptions.ProjectileWithProjectileException;
+import exceptions.TankOutOfBordersException;
+import exceptions.TankWithProjectileException;
+import exceptions.TankWithTankException;
 import model.Model;
 import model.object.AbstractTank;
 import model.object.Projectile;

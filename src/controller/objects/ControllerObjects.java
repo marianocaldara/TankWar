@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import controller.collision.FactoryCollision;
-import controller.exceptions.ProjectileOutOfBordersException;
-import controller.exceptions.ProjectileWithProjectileException;
-import controller.exceptions.TankOutOfBordersException;
-import controller.exceptions.TankWithProjectileException;
-import controller.exceptions.TankWithTankException;
 import controller.utility.Collision;
 import controller.utility.Convertitor;
+import exceptions.ProjectileOutOfBordersException;
+import exceptions.ProjectileWithProjectileException;
+import exceptions.TankOutOfBordersException;
+import exceptions.TankWithProjectileException;
+import exceptions.TankWithTankException;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import model.input.Input;
