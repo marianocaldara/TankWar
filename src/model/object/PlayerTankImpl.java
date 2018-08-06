@@ -85,7 +85,7 @@ public class PlayerTankImpl extends AbstractTank {
 
     private class Cannon{
         private static final double MARGINAL_DISTANCE = 10;
-        private Pair<Double, Double> cannonDimension = new Pair<Double, Double>(25.0, 5.0);
+        private Pair<Double, Double> cannonDimension = new Pair<Double, Double>(20.0, 5.0);
         private Pair<Double, Double> cannonPosition;
         private double angle;
 

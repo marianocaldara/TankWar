@@ -97,31 +97,15 @@ public class GameWorldController extends ViewController{
 	}
     
     //repainta la view.
-    private void repaint() {
-    	
-    		this.drawBackGround();
-    		this.playerTank.setLayoutX(this.controller.getControllerObjects().getPlayerPosition().getFirst());
-    		this.playerTank.setLayoutY(this.controller.getControllerObjects().getPlayerPosition().getSecond());
-    		this.enemyTank.setLayoutX(this.controller.getControllerObjects().getEnemyPosition().getFirst());
-    		this.enemyTank.setLayoutY(this.controller.getControllerObjects().getEnemyPosition().getSecond());
-    		this.playerTank.setFitWidth(this.controller.getControllerObjects().getTankDimension().getFirst());
-    		this.playerTank.setFitHeight(this.controller.getControllerObjects().getTankDimension().getSecond());
-    		this.enemyTank.setFitWidth(this.controller.getControllerObjects().getTankDimension().getFirst());
-    		this.enemyTank.setFitHeight(this.controller.getControllerObjects().getTankDimension().getSecond());
-    		this.playerCannon.setLayoutX(this.controller.getControllerObjects().getPlayerCannonPosition().getFirst());
-    		this.playerCannon.setLayoutY(this.controller.getControllerObjects().getPlayerCannonPosition().getSecond());
-    		this.enemyCannon.setLayoutX(this.controller.getControllerObjects().getEnemyCannonPosition().getFirst());
-    		this.enemyCannon.setLayoutY(this.controller.getControllerObjects().getEnemyCannonPosition().getSecond());
-    		this.playerCannon.setFitWidth(this.controller.getControllerObjects().getCannonDimension().getFirst());
-    		this.playerCannon.setFitHeight(this.controller.getControllerObjects().getCannonDimension().getSecond());
-    		this.enemyCannon.setFitWidth(this.controller.getControllerObjects().getCannonDimension().getFirst());
-    		this.enemyCannon.setFitHeight(this.controller.getControllerObjects().getCannonDimension().getSecond());
-    		this.playerCannon.setRotate(this.controller.getControllerObjects().getPlayerAngle());
-    		this.enemyCannon.setRotate(this.controller.getControllerObjects().getEnemyAngle());
-    		this.drawProjectiles();
-    		this.drawLives();    		
-    	
-    }
+	private void repaint() {
+
+		this.drawBackGround();
+		this.drawTank();
+		this.drawCannon();
+		this.drawProjectiles();
+		this.drawLives();
+
+	}
     
     //disegna le vite
     private void drawLives() {
@@ -172,6 +156,33 @@ public class GameWorldController extends ViewController{
     		this.projectiles.add(projectileImage);
     	});
     	this.worldGroup.getChildren().addAll(this.projectiles);
+    }
+    
+    private void drawTank() {
+    	this.playerTank.setLayoutX(this.controller.getControllerObjects().getPlayerPosition().getFirst());
+		this.playerTank.setLayoutY(this.controller.getControllerObjects().getPlayerPosition().getSecond());
+		this.enemyTank.setLayoutX(this.controller.getControllerObjects().getEnemyPosition().getFirst());
+		this.enemyTank.setLayoutY(this.controller.getControllerObjects().getEnemyPosition().getSecond());
+		this.playerTank.setFitWidth(this.controller.getControllerObjects().getTankDimension().getFirst());
+		this.playerTank.setFitHeight(this.controller.getControllerObjects().getTankDimension().getSecond());
+		this.enemyTank.setFitWidth(this.controller.getControllerObjects().getTankDimension().getFirst());
+		this.enemyTank.setFitHeight(this.controller.getControllerObjects().getTankDimension().getSecond());
+    }
+    
+    private void drawCannon() {
+    	this.playerCannon.setLayoutX(this.controller.getControllerObjects().getPlayerCannonPosition().getFirst());
+		this.playerCannon.setLayoutY(this.controller.getControllerObjects().getPlayerCannonPosition().getSecond());
+		this.enemyCannon.setLayoutX(this.controller.getControllerObjects().getEnemyCannonPosition().getFirst());
+		this.enemyCannon.setLayoutY(this.controller.getControllerObjects().getEnemyCannonPosition().getSecond());
+		this.playerCannon.setFitWidth(this.controller.getControllerObjects().getCannonDimension().getFirst());
+		this.playerCannon.setFitHeight(this.controller.getControllerObjects().getCannonDimension().getSecond());
+		this.enemyCannon.setFitWidth(this.controller.getControllerObjects().getCannonDimension().getFirst());
+		this.enemyCannon.setFitHeight(this.controller.getControllerObjects().getCannonDimension().getSecond());
+		this.playerCannon.setRotate(this.controller.getControllerObjects().getPlayerAngle());
+		this.enemyCannon.setRotate(this.controller.getControllerObjects().getEnemyAngle());
+		if(this.enemyCannon.getLayoutX() < 0) {
+			this.enemyCannon.setLayoutX(0);
+		}
     }
 
 }

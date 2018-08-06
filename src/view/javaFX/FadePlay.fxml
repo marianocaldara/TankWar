@@ -2,37 +2,28 @@
 
 <?import java.lang.*?>
 <?import javafx.scene.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.Group?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.control.Label?>
 
-
-<Group fx:id="loaderGroup" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.LoadController">
+<GridPane fx:id="loaderGrid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="view.controller.LoadController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
    <children>
-      <GridPane fx:id="loaderGrid" prefHeight="400.0" prefWidth="600.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Pane fx:id="loaderPane" prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <Text fx:id="loaderText" fill="WHITE" layoutX="264.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PLAY!">
-                     <font>
-                        <Font size="39.0" />
-                     </font>
-                  </Text>
-               </children>
-            </Pane>
-         </children>
-      </GridPane>
+      <BorderPane>
+         <center>
+             <Label fx:id="playLabel" text=" " textFill="WHITE" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="System Bold Italic" size="50.0" />
+               </font>
+            </Label>
+         </center>
+      </BorderPane>
    </children>
-</Group>
+</GridPane>

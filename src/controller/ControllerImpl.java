@@ -16,7 +16,7 @@ import view.View;
  */
 public class ControllerImpl implements Controller {
 	private static final double MIN_DISTANCE = 70;
-	private static final double DEFAULT_TIME_TO_SHOT = 1000;
+	private static final double DEFAULT_TIME_TO_SHOT = 3000;
 	private ControllerObjects controllerObjects;
 	private Level level;
 	private FileController file;

@@ -5,8 +5,8 @@ import java.io.IOException;
 import controller.Controller;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 import view.scene.ViewScenes;
 import view.utility.ViewUtils;
@@ -16,14 +16,14 @@ public class EndLevelController extends ViewController{
 	private FadeTransition endLevel;
 	
 	@FXML
-	private Text textEndlLevel;
+	private Label endLevelLabel;
 
 	@FXML
-	private Pane endLevelPane;
+	private GridPane endLevelGrid;
 
 	@Override
 	public void init(Controller controller) {
-		this.endLevel = new FadeTransition(Duration.seconds(3), this.endLevelPane);
+		this.endLevel = new FadeTransition(Duration.seconds(3), this.endLevelGrid);
 		this.endLevel.setFromValue(1.0);
 		this.endLevel.setToValue(0.5);
 		this.endLevel.setOnFinished(e -> {

@@ -9,7 +9,7 @@ public enum Difficult {
 
 		@Override
 		public double getTimeShot() {
-			return 1000;
+			return 3000;
 		}
 		
 	},
@@ -18,7 +18,7 @@ public enum Difficult {
 
 		@Override
 		public double getTimeShot() {
-			return 500;
+			return 1000;
 		}
 		
 	},
@@ -27,7 +27,7 @@ public enum Difficult {
 
 		@Override
 		public double getTimeShot() {
-			return 300;
+			return 500;
 		}
 		
 	};

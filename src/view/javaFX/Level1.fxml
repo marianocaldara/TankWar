@@ -29,11 +29,11 @@
                <image>
                   <Image url="@../../../res/images/tankGreen.png" />
                </image></ImageView>
-            <ImageView fx:id="playerCannon" fitHeight="5" fitWidth="25" layoutX="26.5" layoutY="185" pickOnBounds="true">
+            <ImageView fx:id="playerCannon" fitHeight="5" fitWidth="20" layoutX="26.5" layoutY="185" pickOnBounds="true">
                <image>
                   <Image url="@../../../res/images/barrelBlack.png" />
                </image></ImageView>
-            <ImageView fx:id="enemyCannon" fitHeight="5" fitWidth="25" layoutX="523.5" layoutY="185" pickOnBounds="true">
+            <ImageView fx:id="enemyCannon" fitHeight="5" fitWidth="20" layoutX="523.5" layoutY="185" pickOnBounds="true">
                <image>
                   <Image url="@../../../res/images/barrelGreen.png" />
                </image></ImageView>

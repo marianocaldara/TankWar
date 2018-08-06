@@ -16,24 +16,24 @@
    <children>
       <Group fx:id="worldGroup">
          <children>
-            <Canvas fx:id="worldCanvas" height="800.0" width="1200.0"/>
-            <ImageView fx:id="backGround" fitHeight="800.0" fitWidth="1200.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="false">
+            <Canvas fx:id="worldCanvas" height="400.0" width="600.0"/>
+            <ImageView fx:id="backGround" fitHeight="400.0" fitWidth="600.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="false">
                <image>
                   <Image url="@../../../res/images/level3_background.jpg" />
                </image></ImageView>
-            <ImageView fx:id="playerTank" fitHeight="50.0" fitWidth="50.0" layoutX="25.0" layoutY="375.0" pickOnBounds="true" preserveRatio="false">
+            <ImageView fx:id="playerTank" fitHeight="25.0" fitWidth="25.0" layoutX="14.0" layoutY="175.0" pickOnBounds="true" preserveRatio="false">
                <image>
                   <Image url="@../../../res/images/tankBlack.png" />
                </image></ImageView>
-            <ImageView fx:id="enemyTank" fitHeight="50.0" fitWidth="50.0" layoutX="1125.0" layoutY="375.0" pickOnBounds="true" preserveRatio="false">
+            <ImageView fx:id="enemyTank" fitHeight="25.0" fitWidth="25.0" layoutX="536.0" layoutY="175.0" pickOnBounds="true" preserveRatio="false">
                <image>
                   <Image url="@../../../res/images/tankRed.png" />
                </image></ImageView>
-            <ImageView fx:id="playerCannon" fitHeight="10" fitWidth="50" layoutX="50.0" layoutY="395" pickOnBounds="true">
+            <ImageView fx:id="playerCannon" fitHeight="5" fitWidth="20" layoutX="26.5" layoutY="185" pickOnBounds="true">
                <image>
                   <Image url="@../../../res/images/barrelBlack.png" />
                </image></ImageView>
-            <ImageView fx:id="enemyCannon" fitHeight="10" fitWidth="50" layoutX="1100.0" layoutY="395" pickOnBounds="true">
+            <ImageView fx:id="enemyCannon" fitHeight="5" fitWidth="20" layoutX="523.5" layoutY="185" pickOnBounds="true">
                <image>
                   <Image url="@../../../res/images/barrelRed.png" />
                </image></ImageView>

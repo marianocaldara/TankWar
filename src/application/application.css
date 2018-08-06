@@ -199,31 +199,31 @@
 	-fx-background-size: 100% 100% ;
 }
 
-#loaderPane{
+#loaderGrid{
 	-fx-background-image: url(../../res/images/tankLogin.jpg) ;
 	-fx-background-repeat: no-repeat ;
 	-fx-background-size: 100% 100% ;
 }
 
-#gameSettings{
+#settingsGrid{
 	-fx-background-image: url(../../res/images/tankSetting.jpg) ;
 	-fx-background-repeat: no-repeat ;
 	-fx-background-size: 100% 100% ;
 }
 
-#endLevelPane{
+#endLevelGrid{
 	-fx-background-image: url(../../res/images/endLevel.jpg) ;
 	-fx-background-repeat: no-repeat ;
 	-fx-background-size: 100% 100% ;
 }
 
-#endGamePane{
+#endGameGrid{
 	-fx-background-image: url(../../res/images/youwin.jpg) ;
 	-fx-background-repeat: no-repeat ;
 	-fx-background-size: 100% 100% ;
 }
 
-#gameOverPane{
+#gameOverGrid{
 	-fx-background-image: url(../../res/images/gameOver.png) ;
 	-fx-background-repeat: no-repeat ;
 	-fx-background-size: 100% 100% ;

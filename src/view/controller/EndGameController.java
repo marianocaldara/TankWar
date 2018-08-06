@@ -5,8 +5,8 @@ import java.io.IOException;
 import controller.Controller;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 import view.scene.ViewScenes;
 import view.utility.ViewUtils;
@@ -16,14 +16,14 @@ public class EndGameController extends ViewController{
 	private FadeTransition endGame;
 
 	@FXML
-	private Pane endGamePane;
+	private GridPane endGameGrid;
 
 	@FXML
-	private Text textEndGame;
+	private Label endGameLabel;
 
 	@Override
 	public void init(Controller controller) {
-		this.endGame = new FadeTransition(Duration.seconds(3), this.endGamePane);
+		this.endGame = new FadeTransition(Duration.seconds(3), this.endGameGrid);
 		this.endGame.setFromValue(1.0);
 		this.endGame.setToValue(0.5);
 		this.endGame.setOnFinished(e -> {

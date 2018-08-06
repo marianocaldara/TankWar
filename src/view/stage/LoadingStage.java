@@ -6,7 +6,6 @@ import controller.Controller;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import view.controller.LoadController;
 import view.controller.ViewController;

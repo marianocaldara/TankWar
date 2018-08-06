@@ -5,8 +5,8 @@ import java.io.IOException;
 import controller.Controller;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 import view.scene.ViewScenes;
 import view.utility.ViewUtils;
@@ -16,14 +16,14 @@ public class GameOverController extends ViewController{
 	private FadeTransition gameOver;
 
     @FXML
-    private Pane gameOverPane;
+    private GridPane gameOverGrid;
 
     @FXML
-    private Text textGameOver;
+    private Label gameOverLabel;
 
 	@Override
 	public void init(Controller controller) {
-		this.gameOver = new FadeTransition(Duration.seconds(3), this.gameOverPane);
+		this.gameOver = new FadeTransition(Duration.seconds(3), this.gameOverGrid);
 		this.gameOver.setFromValue(1.0);
 		this.gameOver.setToValue(0.5);
 		this.gameOver.setOnFinished(e -> {
