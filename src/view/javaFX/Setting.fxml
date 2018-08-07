@@ -32,7 +32,7 @@
       </BorderPane>
       <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
          <center>
-            <JFXComboBox fx:id="difficultBox" editable="true" onAction="#difficultAction" BorderPane.alignment="CENTER" />
+            <JFXComboBox fx:id="difficultBox" onAction="#difficultAction" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
       <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -46,7 +46,7 @@
       </BorderPane>
       <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <center>
-            <JFXComboBox fx:id="levelsBox" editable="true" onAction="#levelAction" BorderPane.alignment="CENTER" />
+            <JFXComboBox fx:id="levelsBox" onAction="#levelAction" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
       <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
