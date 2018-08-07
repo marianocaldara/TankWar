@@ -12,7 +12,7 @@ import model.utility.Pair;
 public class PlayerTankImpl extends AbstractTank {
 
     private Cannon cannon = new Cannon();
-    private double projectileSpeed;
+    protected double projectileSpeed;
     /**
      * Constructor.
      * @param position initial position in {@linkplain Pair} of tank
@@ -83,11 +83,11 @@ public class PlayerTankImpl extends AbstractTank {
         this.cannon.update(this.position, target);
     }
 
-    private class Cannon{
-        private static final double MARGINAL_DISTANCE = 10;
-        private Pair<Double, Double> cannonDimension = new Pair<Double, Double>(22.5, 5.0);
-        private Pair<Double, Double> cannonPosition;
-        private double angle;
+    protected class Cannon{
+        protected static final double MARGINAL_DISTANCE = 10;
+        protected Pair<Double, Double> cannonDimension = new Pair<Double, Double>(22.5, 5.0);
+        protected Pair<Double, Double> cannonPosition;
+        protected double angle;
 
         /**
          * Update the position, it follows the tank position.
@@ -105,7 +105,7 @@ public class PlayerTankImpl extends AbstractTank {
         /**
          * Shot according angle and return the projectile.
          * This method is always called by tank in {@link TankImpl#shot()}.
-         * @return the projectile jet shooted
+         * @return the projectile just shooted
          */
         public Projectile shot() {
             if (this.angle >= 90 && this.angle < 150) {
