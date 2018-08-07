@@ -6,6 +6,7 @@ import controller.Controller;
 import view.stage.EndingGameStage;
 import view.stage.EndingLevelStage;
 import view.stage.GameWorldStage;
+import view.stage.InstructionStage;
 import view.stage.LoadingStage;
 import view.stage.LoseStage;
 import view.stage.MenuStage;
@@ -46,6 +47,22 @@ public enum ViewScenes {
 		@Override
 		public SceneChanger getGameStage() throws IOException {
 			return setting;
+		}
+    	
+    },
+    
+    ISTRUCTION{
+    	private SceneChanger istruction = new InstructionStage();
+		@Override
+		public void setGameStage(double width, double height, Controller controller)
+				throws IOException {
+			istruction.setStage(width, height, controller);
+			
+		}
+
+		@Override
+		public SceneChanger getGameStage() throws IOException {
+			return istruction;
 		}
     	
     },

@@ -66,7 +66,7 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
 	@Override
 	public void playerShot(MouseEvent event) {
 		switch(event.getButton()) {
-		case PRIMARY: this.projectiles.add(this.playerTank.shot()); break; //da sistemare
+		case PRIMARY: this.projectiles.add(this.playerTank.shot()); break;
 		default: ;
 		}
 
@@ -96,6 +96,10 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
 		case DOWN: this.playerInput.getMovement().put(Direction.DOWN, b); break;
 		case LEFT: this.playerInput.getMovement().put(Direction.LEFT, b); break;
 		case RIGHT: this.playerInput.getMovement().put(Direction.RIGHT, b); break;
+		case W: this.playerInput.getMovement().put(Direction.UP, b); break;
+		case S: this.playerInput.getMovement().put(Direction.DOWN, b); break;
+		case A: this.playerInput.getMovement().put(Direction.LEFT, b); break;
+		case D: this.playerInput.getMovement().put(Direction.RIGHT, b); break;
 		default: ;
 		}
 

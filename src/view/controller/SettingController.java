@@ -6,6 +6,7 @@ import controller.levels.Levels;
 import java.io.IOException;
 import java.util.Arrays;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 
 import javafx.event.ActionEvent;
@@ -30,6 +31,9 @@ public class SettingController extends ViewController {
 
 	@FXML
 	private GridPane settingsGrid;
+	
+	 @FXML
+	 private JFXButton instructionButton;
 
 	/**
 	 * Setter of the game difficult according to the selected item of the difficultBox.
@@ -72,6 +76,15 @@ public class SettingController extends ViewController {
 	void exitAction(MouseEvent event) {
 		try {
 			ViewScenes.MENU.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(), controller);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	void instructionAction(ActionEvent event) {
+		try {
+			ViewScenes.ISTRUCTION.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(), controller);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
