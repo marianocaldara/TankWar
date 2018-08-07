@@ -3,15 +3,24 @@ package controller.collision;
 import java.util.List;
 import java.util.Map;
 
+import model.Model;
 import model.object.AbstractTank;
 import model.object.Projectile;
 import model.utility.Pair;
 import model.utility.Direction;
 
+/**
+ * Concrete implementation of {@link FactoryCollision} interface.
+ */
 public class FactoryCollisionImpl implements FactoryCollision {
 	
 	private final Pair<Double, Double> worldBounds;
 	
+	/**
+	 * Instance a new {@link FactoryCollisionImpl}.
+	 * @param worldBounds
+	 * 			the {@link Model} bounds.
+	 */
 	public FactoryCollisionImpl(final Pair<Double, Double> worldBounds) {
 		this.worldBounds = worldBounds;
 	}

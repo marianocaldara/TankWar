@@ -6,6 +6,9 @@ import model.object.AbstractTank;
 import model.utility.Direction;
 import model.utility.Pair;
 
+/**
+ *	Concrete implementation of {@link Collision} interface.
+ */
 public class TankWithTank implements Collision {
 	
 	private static final double MARGINAL_DISTANCE = 5;
@@ -13,6 +16,15 @@ public class TankWithTank implements Collision {
 	private AbstractTank enemyTank;
 	private Map<Direction, Boolean> movement;
 	
+	/**
+	 * Constructor.
+	 * @param playerTank
+	 * 			the player {@link Tank}.
+	 * @param enemyTank
+	 * 			the enemy {@link Tank}.
+	 * @param movement
+	 * 			the player movements.
+	 */
 	public TankWithTank(AbstractTank playerTank, AbstractTank enemyTank, Map<Direction, Boolean> movement) {
 		this.playerTank = playerTank;
 		this.enemyTank = enemyTank;

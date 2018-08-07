@@ -12,6 +12,9 @@ import view.controller.ViewController;
 import view.scene.SceneChanger;
 import view.utility.ViewUtils;
 
+/**
+ * Concrete implementation of the {@link SceneChanger} interface. It manages the ending game stage.
+ */
 public class EndingGameStage implements SceneChanger{
 	
 	private EndGameController endGame = new EndGameController();

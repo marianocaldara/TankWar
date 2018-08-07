@@ -5,7 +5,7 @@ import javafx.stage.Stage;
 
 /**
  * 
- * Implementation of utility methods for the view.
+ * Implementation of utility methods for the {@link View}.
  *
  */
 public class ViewUtils {

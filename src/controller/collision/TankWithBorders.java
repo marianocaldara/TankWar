@@ -3,11 +3,21 @@ package controller.collision;
 import model.object.AbstractTank;
 import model.utility.Pair;
 
+/**
+ *	Concrete implementation of {@link Collision} interface.
+ */
 public class TankWithBorders implements Collision {
 	
 	private AbstractTank tank;
 	private final Pair<Double, Double> worldBounds;
 	
+	/**
+	 * Constructor.
+	 * @param tank
+	 * 			the colliding {@link Tank}.
+	 * @param worldBounds
+	 * 			the {@link Model} bounds.
+	 */
 	public TankWithBorders(AbstractTank tank, final Pair<Double, Double> worldBounds) {
 		this.tank = tank;
 		this.worldBounds = worldBounds;

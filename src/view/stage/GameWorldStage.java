@@ -14,9 +14,7 @@ import view.scene.SceneChanger;
 import view.utility.ViewUtils;
 
 /**
- * 
- * Implementation of the stage for the game world scene.
- *
+ * Concrete implementation of the {@link SceneChanger} interface. It manages the game world stage.
  */
 public class GameWorldStage implements SceneChanger{
 	

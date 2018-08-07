@@ -4,11 +4,21 @@ import model.object.Projectile;
 import model.utility.Direction;
 import model.utility.Pair;
 
+/**
+ *	Concrete implementation of {@link Collision} interface.
+ */
 public class ProjectileWithBorders implements Collision {
 	
 	private Projectile projectile;
 	private final Pair<Double, Double> worldBounds;
 	
+	/**
+	 * Constructor.
+	 * @param projectile
+	 * 			the colliding {@link Projectile}.
+	 * @param worldBounds
+	 * 			the {@link Model} bounds.
+	 */
 	public ProjectileWithBorders(Projectile projectile, final Pair<Double, Double> worldBounds) {
 		this.projectile = projectile;
 		this.worldBounds = worldBounds;

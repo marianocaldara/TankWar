@@ -12,6 +12,9 @@ import view.controller.ViewController;
 import view.scene.SceneChanger;
 import view.utility.ViewUtils;
 
+/**
+ * Concrete implementation of the {@link SceneChanger} interface. It manages the game over stage.
+ */
 public class LoseStage implements SceneChanger{
 	
 	private GameOverController gameOverController;

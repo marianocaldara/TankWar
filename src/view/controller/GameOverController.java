@@ -11,6 +11,9 @@ import javafx.util.Duration;
 import view.scene.ViewScenes;
 import view.utility.ViewUtils;
 
+/**
+ * Controller class for the game over.
+ */
 public class GameOverController extends ViewController{
 	
 	private FadeTransition gameOver;

@@ -15,7 +15,9 @@ import javafx.scene.layout.GridPane;
 import view.scene.ViewScenes;
 import view.utility.ViewUtils;
 
-
+/**
+ * Controller class for the settings of the game.
+ */
 public class SettingController extends ViewController {
 
 	private Controller controller;
@@ -29,6 +31,11 @@ public class SettingController extends ViewController {
 	@FXML
 	private GridPane settingsGrid;
 
+	/**
+	 * Setter of the game difficult according to the selected item of the difficultBox.
+	 * @param event
+	 * 			the event of the difficultBox.
+	 */
 	@FXML
 	void difficultAction(ActionEvent event) {
 		if (this.difficultBox.getValue().equals(Difficult.EASY.getName())) {
@@ -40,6 +47,11 @@ public class SettingController extends ViewController {
 		}
 	}
 
+	/**
+	 * Setter of the game level according to the selected item of the levelBox.
+	 * @param event
+	 * 			the event of the levelBox.
+	 */
 	@FXML
 	void levelAction(ActionEvent event) {
 		if (this.levelsBox.getValue().equals(Levels.LEVEL_1.getName())) {
@@ -51,6 +63,11 @@ public class SettingController extends ViewController {
 		}
 	}
 
+	/**
+	 * Allows to return to the menu.
+	 * @param event
+	 * 			the {@link MouseEvent} of the exit image.
+	 */
 	@FXML
 	void exitAction(MouseEvent event) {
 		try {

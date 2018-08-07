@@ -12,6 +12,9 @@ import view.controller.ViewController;
 import view.scene.SceneChanger;
 import view.utility.ViewUtils;
 
+/**
+ * Concrete implementation of the {@link SceneChanger} interface. It manages the settings stage.
+ */
 public class SettingStage implements SceneChanger {
 	
 	private SettingController setting;

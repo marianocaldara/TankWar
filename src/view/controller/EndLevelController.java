@@ -11,6 +11,9 @@ import javafx.util.Duration;
 import view.scene.ViewScenes;
 import view.utility.ViewUtils;
 
+/**
+ * Controller class for the ending level.
+ */
 public class EndLevelController extends ViewController{
 	
 	private FadeTransition endLevel;

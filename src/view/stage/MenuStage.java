@@ -13,9 +13,7 @@ import view.scene.SceneChanger;
 import view.utility.ViewUtils;
 
 /**
- * 
- * Implementation of the stage for the menu scene.
- *
+ * Concrete implementation of the {@link SceneChanger} interface. It manages the menu stage.
  */
 public class MenuStage implements SceneChanger{
 	

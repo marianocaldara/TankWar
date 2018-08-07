@@ -2,12 +2,16 @@ package view.controller;
 
 import controller.Controller;
 
-/*
- * Classe astratta per i controller di view. E' una scelta obbligata altrimenti è impossibile farli tornare come tipi
- * di ritorno nei metodi.
+/**
+ * Abstract class for the controllers of the stages.
  */
 public abstract class ViewController {
 	
+	/**
+	 * Initialize the different controller of the view.
+	 * @param controller
+	 * 			the game {@link Controller}.
+	 */
 	public abstract void init(Controller controller);
 
 }

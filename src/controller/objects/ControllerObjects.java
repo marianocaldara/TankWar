@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import controller.collision.FactoryCollision;
-import controller.utility.Collision;
+import controller.utility.CheckCollision;
 import controller.utility.Convertitor;
 import exceptions.ProjectileOutOfBordersException;
 import exceptions.ProjectileWithProjectileException;
@@ -210,17 +210,17 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
 	
 	private void checkTankCollision() {
 		try {
-			Collision.tankWithBorders(this.playerTank);
+			CheckCollision.tankWithBorders(this.playerTank);
 		} catch (TankOutOfBordersException e) {
 			this.factoryCollision.tankWithBordersCollision(this.playerTank).manageCollision();
 		}
 		try {
-			Collision.tankWithBorders(this.enemyTank);
+			CheckCollision.tankWithBorders(this.enemyTank);
 		} catch (TankOutOfBordersException e) {
 			this.factoryCollision.tankWithBordersCollision(this.enemyTank).manageCollision();
 		}
 		try {
-			Collision.tankWithTank(this.playerTank, this.enemyTank);
+			CheckCollision.tankWithTank(this.playerTank, this.enemyTank);
 		} catch (TankWithTankException e) {
 			this.factoryCollision.tankWithTankCollision(this.playerTank, this.enemyTank, this.playerInput.getMovement()).manageCollision();
 		}
@@ -230,18 +230,18 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
 	private void checkProjectileCollision() {
 		this.projectiles.forEach(p -> {
 			try {
-				Collision.projectileWithBorders(p);
+				CheckCollision.projectileWithBorders(p);
 			} catch (ProjectileOutOfBordersException e) {
 				this.factoryCollision.projectileWithBordersCollision(p).manageCollision();
 			}
 		});
 		try {
-			Collision.tankWithProjectile(projectiles);
+			CheckCollision.tankWithProjectile(projectiles);
 		} catch (TankWithProjectileException e) {
 			this.factoryCollision.tankWithProjectileCollision(this.playerTank, this.enemyTank, this.projectiles).manageCollision();
 		}
 		try {
-			Collision.projectileWithProjectile(projectiles);
+			CheckCollision.projectileWithProjectile(projectiles);
 		} catch (ProjectileWithProjectileException e) {
 			this.factoryCollision.projectileWithProjectileCollision(this.projectiles).manageCollision();
 		}

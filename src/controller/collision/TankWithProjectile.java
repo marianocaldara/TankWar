@@ -3,10 +3,13 @@ package controller.collision;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import controller.utility.CheckIntersection;
 import model.object.AbstractTank;
 import model.object.Projectile;
-import model.utility.Pair;
 
+/**
+ *	Concrete implementation of {@link Collision} interface.
+ */
 public class TankWithProjectile implements Collision{
 	
 	private static final int DAMAGE = 1;
@@ -14,6 +17,15 @@ public class TankWithProjectile implements Collision{
 	private AbstractTank enemyTank;
 	private List<Projectile> projectiles;
 	
+	/**
+	 * Constructor
+	 * @param playerTank
+	 * 			the player {@link Tank}.
+	 * @param enemyTank
+	 * 			the enemy {@link Tank}.
+	 * @param projectiles
+	 * 			the list of {@link Projectile}.
+	 */
 	public TankWithProjectile(AbstractTank playerTank, AbstractTank enemyTank, List<Projectile> projectiles) {
 		this.playerTank = playerTank;
 		this.enemyTank = enemyTank;
@@ -23,10 +35,10 @@ public class TankWithProjectile implements Collision{
 	@Override
 	public void manageCollision() {
 		updateTankLifeAndProjectiles(this.playerTank, 
-				projectiles.stream().filter(p -> intersects(p.getPosition(), p.getBounds(), this.playerTank.getPosition(), 
+				projectiles.stream().filter(p -> CheckIntersection.intersects(p.getPosition(), p.getBounds(), this.playerTank.getPosition(), 
 						this.playerTank.getDimension())).collect(Collectors.toList()));
 		updateTankLifeAndProjectiles(this.enemyTank, 
-				projectiles.stream().filter(p -> intersects(p.getPosition(), p.getBounds(), this.enemyTank.getPosition(), 
+				projectiles.stream().filter(p -> CheckIntersection.intersects(p.getPosition(), p.getBounds(), this.enemyTank.getPosition(), 
 						this.enemyTank.getDimension())).collect(Collectors.toList()));
 		
 	}
@@ -37,15 +49,5 @@ public class TankWithProjectile implements Collision{
 			hitProjectiles.forEach(p -> p.setDead());
 		}
 	}	
-	
-	private static boolean intersects(Pair<Double, Double> positionFirst, Pair<Double, Double> dimensionFirst, Pair<Double, Double> positionSecond, Pair<Double, Double> dimensionSecond) {
-		if(positionFirst == null || dimensionFirst == null || positionSecond == null || dimensionSecond == null) {
-			return false;
-		}
-		return positionFirst.getFirst() + dimensionFirst.getFirst() > positionSecond.getFirst() &&
-				positionFirst.getSecond() + dimensionFirst.getSecond() > positionSecond.getSecond() &&
-				positionFirst.getFirst() < positionSecond.getFirst() + dimensionSecond.getFirst() &&
-				positionFirst.getSecond() < positionSecond.getSecond() + dimensionSecond.getSecond();
-	}
 
 }

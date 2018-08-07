@@ -1,7 +1,8 @@
 package view.controller;
 
 /*
- * Enum difficoltà: permette nei settings del menu di scegliere la difficoltà. Essa fa variare la frequenza di sparo del nemico.
+ * Enumeration that describe the difficult of the game.
+ * The difficult depend to the frequency of shot of the enemy tank.
  */
 public enum Difficult {
 	
@@ -36,8 +37,8 @@ public enum Difficult {
 	
 	/**
 	 * Private constructor.
-	 * @param levelName
-	 * 		the name of the level.
+	 * @param difficultName
+	 * 		the name of the difficult.
 	 */
 	
 	private Difficult(String difficultName) {
@@ -45,13 +46,17 @@ public enum Difficult {
 	}
 	
 	/**
-	 * Getter of the levels' name.
-	 * @return the level's name.
+	 * Getter of the difficult name.
+	 * @return the difficult name.
 	 */
 	public String getName() {
 		return this.difficultName;
 	}
 	
+	/**
+	 * Getter of the frequency time of shot of the enemy {@link Tank}.
+	 * @return the period of shot in milliseconds.
+	 */
 	abstract public double getTimeShot();
 
 }

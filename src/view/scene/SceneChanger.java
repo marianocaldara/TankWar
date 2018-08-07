@@ -20,6 +20,10 @@ public interface SceneChanger {
 	 */
     public void setStage(double width, double height, Controller controller) throws IOException;
     
+    /**
+     * Getter of the {@link ViewController}.
+     * @return the {@link ViewController}.
+     */
     public ViewController getController();
     
 

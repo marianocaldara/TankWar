@@ -10,12 +10,11 @@ import exceptions.TankWithTankException;
 import model.Model;
 import model.object.AbstractTank;
 import model.object.Projectile;
-import model.utility.Pair;
 
 /**
- * Utility class that manages the collision between the game objects.
+ * Utility class that catch the collision between the game objects.
  */
-public class Collision {
+public class CheckCollision {
 	
 	private static Model WORLD;
 	
@@ -33,9 +32,10 @@ public class Collision {
 	 * @param movement
 	 * 		the {@link Input} of the player tank.
 	 * @throws TankWithTankException 
+	 * 		if there is any collision.
 	 */
 	public static void tankWithTank(AbstractTank playerTank, AbstractTank enemyTank) throws TankWithTankException {
-		if(intersects(playerTank.getPosition(), playerTank.getDimension(), enemyTank.getPosition(), enemyTank.getDimension())) {
+		if(CheckIntersection.intersects(playerTank.getPosition(), playerTank.getDimension(), enemyTank.getPosition(), enemyTank.getDimension())) {
 			throw new TankWithTankException();
 		}
 	}
@@ -45,12 +45,13 @@ public class Collision {
 	 * @param projectiles
 	 * 		a {@link List} of projectiles.
 	 * @throws TankWithProjectileException 
+	 * 		if there is any collision.
 	 */
 	public static void tankWithProjectile(List<Projectile> projectiles) throws TankWithProjectileException {
 		if (projectiles.stream()
-				.anyMatch(p -> intersects(p.getPosition(), p.getBounds(), WORLD.getPlayer().getPosition(),
+				.anyMatch(p -> CheckIntersection.intersects(p.getPosition(), p.getBounds(), WORLD.getPlayer().getPosition(),
 						WORLD.getPlayer().getDimension()))
-				|| projectiles.stream().anyMatch(p -> intersects(p.getPosition(), p.getBounds(),
+				|| projectiles.stream().anyMatch(p -> CheckIntersection.intersects(p.getPosition(), p.getBounds(),
 						WORLD.getEnemy().getPosition(), WORLD.getEnemy().getDimension()))) {
 			throw new TankWithProjectileException();
 		}
@@ -59,6 +60,7 @@ public class Collision {
 	/**
 	 * Manage the collision between the two {@link Tank} and the {@link World} borders.
 	 * @throws TankOutOfBordersException 
+	 * 		if the {@link Tank} goes out the {@link World} bounds.
 	 */
 	public static void tankWithBorders(AbstractTank tank) throws TankOutOfBordersException {
 		if (tank.getPosition().getFirst() < 0
@@ -73,8 +75,9 @@ public class Collision {
 	/**
 	 * Manage the collision between the {@link Projectile} and the {@link World} borders.
 	 * @param projectiles
-	 * 			the {@link List} of projectiles.
+	 * 			the list of {@link Projectile}.
 	 * @throws ProjectileOutOfBordersException 
+	 * 			if the {@link Projectile} goes out the {@link World} bounds.
 	 */
 	public static void projectileWithBorders(Projectile projectile) throws ProjectileOutOfBordersException {
 		if (projectile.getPosition().getFirst() + projectile.getBounds().getFirst() >= WORLD.getBounds().getFirst()
@@ -90,39 +93,18 @@ public class Collision {
 	/**
 	 * Manage the collision between two {@link Projectile}.
 	 * @param projectiles
-	 * 			the {@link List} of projectiles.
+	 * 			the list of {@link Projectile}.
 	 * @throws ProjectileWithProjectileException 
+	 * 			if there is any collision.
 	 */
 	public static void projectileWithProjectile(List<Projectile> projectiles) throws ProjectileWithProjectileException {	
 		for(Projectile p : projectiles) {
 			for(Projectile x : projectiles) {
-				if(intersects(p.getPosition(), p.getBounds(), x.getPosition(), x.getBounds()) && x != p) {
+				if(CheckIntersection.intersects(p.getPosition(), p.getBounds(), x.getPosition(), x.getBounds()) && x != p) {
 					throw new ProjectileWithProjectileException();
 				}
 			}
 		}		
-	}
-
-	/**
-	 * Control if two objects collide.
-	 * @param positionFirst
-	 * 		the position of the first object.
-	 * @param dimensionFirst
-	 * 		the dimension of the first object.
-	 * @param positionSecond
-	 * 		the position of the second object.
-	 * @param dimensionSecond
-	 * 		the dimension of the second object.
-	 * @return true if the two objects collide, false otherwise.
-	 */
-	private static boolean intersects(Pair<Double, Double> positionFirst, Pair<Double, Double> dimensionFirst, Pair<Double, Double> positionSecond, Pair<Double, Double> dimensionSecond) {
-		if(positionFirst == null || dimensionFirst == null || positionSecond == null || dimensionSecond == null) {
-			return false;
-		}
-		return positionFirst.getFirst() + dimensionFirst.getFirst() > positionSecond.getFirst() &&
-				positionFirst.getSecond() + dimensionFirst.getSecond() > positionSecond.getSecond() &&
-				positionFirst.getFirst() < positionSecond.getFirst() + dimensionSecond.getFirst() &&
-				positionFirst.getSecond() < positionSecond.getSecond() + dimensionSecond.getSecond();
 	}
 
 }

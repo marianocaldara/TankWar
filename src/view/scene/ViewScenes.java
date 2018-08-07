@@ -13,7 +13,7 @@ import view.stage.SettingStage;
 
 /**
  * 
- * Implementation of the enum who regulates the scene switching
+ * Implementation of the enumeration that regulates the scene switching.
  *
  */
 public enum ViewScenes {
@@ -143,6 +143,11 @@ public enum ViewScenes {
 	 */
     public abstract void setGameStage(double width, double height, Controller controller) throws IOException;
     
+    /**
+     * Getter of the game stage.
+     * @return the current game stage.
+     * @throws IOException
+     */
     public abstract SceneChanger getGameStage() throws IOException;
     
     

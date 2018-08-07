@@ -11,6 +11,9 @@ import javafx.util.Duration;
 import view.scene.ViewScenes;
 import view.utility.ViewUtils;
 
+/**
+ * Controller class for the stage between two levels.
+ */
 public class LoadController extends ViewController {
 	
 	private FadeTransition play;
@@ -26,8 +29,9 @@ public class LoadController extends ViewController {
 	public void init(Controller controller) {
 		String name = controller.getLevel().getCurrentLevel().getName();
 		for(int i = 0; i < name.length(); i++) {
-			this.nameLevel = this.nameLevel + name.substring(i, i+1) + " ";
+			this.nameLevel += name.substring(i, i+1) + " ";
 		}
+		this.nameLevel += "!";
 		this.playLabel.setText(this.nameLevel.toUpperCase());
 		this.play = new FadeTransition(Duration.seconds(3), this.loaderGrid);
 		this.play.setFromValue(1.0);

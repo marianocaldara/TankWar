@@ -11,6 +11,9 @@ import javafx.util.Duration;
 import view.scene.ViewScenes;
 import view.utility.ViewUtils;
 
+/**
+ *  Controller class for the ending game.
+ */
 public class EndGameController extends ViewController{
 	
 	private FadeTransition endGame;

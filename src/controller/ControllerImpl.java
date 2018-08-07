@@ -8,7 +8,7 @@ import controller.loader.FileController;
 import controller.loader.FileControllerImpl;
 import controller.objects.AI;
 import controller.objects.ControllerObjects;
-import controller.utility.Collision;
+import controller.utility.CheckCollision;
 import controller.utility.Convertitor;
 import model.Model;
 import view.View;
@@ -39,7 +39,7 @@ public class ControllerImpl implements Controller {
 		this.world = world;
 		this.view = view;
 		Convertitor.initialize(this.world, this.view);
-		Collision.initialize(this.world);
+		CheckCollision.initialize(this.world);
 		this.file = new FileControllerImpl(this.world);
 		this.level = new LevelImpl(this.file, this);
 		this.timeToShot = DEFAULT_TIME_TO_SHOT;
