@@ -55,7 +55,7 @@ public abstract class AbstractTank implements Tank{
      * @return {@link Pair} with height and widht of tank
      */
     public Pair<Double, Double> getDimension() {
-    	return DIMENSION;
+    	return new Pair<Double, Double>(DIMENSION.getFirst(), DIMENSION.getSecond());
     }
     /**
      * Shoot a projectile and return it.

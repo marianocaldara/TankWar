@@ -61,7 +61,7 @@ public class ProjectileImpl implements Projectile{
 	}
 	
 	public Pair<Double, Double> getBounds() {
-        return DIMENSION;
+        return new Pair<Double, Double>(DIMENSION.getFirst(), DIMENSION.getSecond());
 	}
 	
 	public void update() {

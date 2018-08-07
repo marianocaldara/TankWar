@@ -161,14 +161,14 @@ public class EnemyTankImpl extends AbstractTank {
          * @return {@linkplain Pair} with coordinates of cannon's tank
          */
         public Pair<Double, Double> getCannonPosition() {
-            return this.cannonPosition;
+        	return new Pair<Double, Double>(this.cannonPosition.getFirst(), this.cannonPosition.getSecond());
         }
         /**
          * Getter for dimension of cannon's tank.
          * @return {@linkplain Pair}
          */
         public Pair<Double, Double> getCannonDimension() {
-            return this.cannonDimension;
+        	return new Pair<Double, Double>(this.cannonDimension.getFirst(), this.cannonDimension.getSecond());
         }
     }
 
