@@ -1,5 +1,5 @@
 package application;
-	
+
 import java.io.IOException;
 
 import controller.ControllerImpl;
@@ -15,21 +15,21 @@ import view.ViewImpl;
  */
 public class OOPTankwar extends Application {
 
-	@Override
-	public void start(Stage primaryStage) throws IOException {
-		Model world = new World();
-		View view = new ViewImpl(primaryStage);
-		ControllerImpl.getController().initializeController(world, view);
-		view.launchView(ControllerImpl.getController());
-	}
+    @Override
+    public final void start(final Stage primaryStage) throws IOException {
+        Model world = new World();
+        View view = new ViewImpl(primaryStage);
+        ControllerImpl.getController().initializeController(world, view);
+        view.launchView(ControllerImpl.getController());
+    }
 
-	/**
-	 * The main entry point of the application.
-	 * 
-	 * @param args
-	 *            CLI arguments.
-	 */
-	public static void main(String[] args) {
-		launch(args);
-	}
+    /**
+     * The main entry point of the application.
+     * 
+     * @param args
+     *            CLI arguments.
+    */
+    public static void main(final String[] args) {
+        launch(args);
+    }
 }
