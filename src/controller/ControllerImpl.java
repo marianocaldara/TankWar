@@ -17,10 +17,11 @@ import view.View;
  * Concrete implementation of {@link Controller} interface.
  */
 public class ControllerImpl implements Controller {
+	
+	private static final ControllerImpl SINGLETON = new ControllerImpl();
 	private static final double MIN_DISTANCE = 70;
 	private static final double DEFAULT_TIME_TO_SHOT = 3000;
 	private ControllerObjects controllerObjects;
-	private Level level;
 	private FileController file;
 	private Model world;
 	private View view;
@@ -35,16 +36,25 @@ public class ControllerImpl implements Controller {
 	 * @param view
 	 * 			the {@link View} of the game.
 	 */
-	public ControllerImpl(Model world, View view){
+	private ControllerImpl(){
+			
+	}
+	
+	@Override
+	public void initializeController(Model world, View view) {
 		this.world = world;
 		this.view = view;
 		Convertitor.initialize(this.world, this.view);
 		CheckCollision.initialize(this.world);
 		this.file = new FileControllerImpl(this.world);
-		this.level = new LevelImpl(this.file, this);
+		LevelImpl.getLevelImpl().initialize(this.file, this);
 		this.timeToShot = DEFAULT_TIME_TO_SHOT;
 		this.factoryCollision = new FactoryCollisionImpl(this.world.getBounds());
 		
+	}
+
+	public static ControllerImpl getController() {
+		return SINGLETON;
 	}
 	
 	@Override
@@ -54,7 +64,7 @@ public class ControllerImpl implements Controller {
 
 	@Override
 	public Level getLevel() {
-		return this.level;
+		return LevelImpl.getLevelImpl();
 	}
 
 	@Override
@@ -80,5 +90,7 @@ public class ControllerImpl implements Controller {
 	public void setTimeToShot(double time) {
 		this.timeToShot = time;
 	}
+
+	
 
 }

@@ -10,6 +10,7 @@ import controller.loader.FileController;
  */
 public class LevelImpl implements Level {
 	
+	private static final LevelImpl SINGLETON = new LevelImpl();
 	private boolean levelStarted;
 	private boolean levelEnded;
 	private boolean gameEnded;
@@ -26,7 +27,14 @@ public class LevelImpl implements Level {
 	 * @param controller
 	 * 		the {@link Controller} of the game.
 	 */
-	public LevelImpl(FileController fileController, Controller controller) {
+	private LevelImpl() {}
+	
+	public static LevelImpl getLevelImpl() {
+		return SINGLETON;
+	}
+	
+	@Override
+	public void initialize(FileController fileController, Controller controller) {
 		this.levelStarted = false;
 		this.levelEnded = false;
 		this.gameEnded = false;
@@ -36,7 +44,7 @@ public class LevelImpl implements Level {
 		this.fileController = fileController;
 		this.controller = controller;
 	}
-
+	
 	@Override
 	public boolean isLevelStarted() {
 		return this.levelStarted;

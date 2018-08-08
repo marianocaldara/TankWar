@@ -4,11 +4,15 @@ import controller.levels.Level;
 import controller.objects.AI;
 import controller.objects.ControllerObjects;
 import controller.objects.ControllerTank;
+import model.Model;
+import view.View;
 
 /**
  * Controller's interface
  */
 public interface Controller {
+	
+	void initializeController(Model world, View view);
 	
 	/**
 	 * Getter of the {@link Tank} managed in the controller.

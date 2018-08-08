@@ -1,6 +1,8 @@
 package controller.levels;
 
+import controller.Controller;
 import controller.GameLoop;
+import controller.loader.FileController;
 import controller.objects.ControllerObjects;
 
 /**
@@ -8,6 +10,7 @@ import controller.objects.ControllerObjects;
  */
 public interface Level {
 	
+	void initialize(FileController fileController, Controller controller);
 	/**
 	 * Control if the level is started.
 	 * @return true if the level is started, false otherwise.

@@ -2,7 +2,6 @@ package application;
 	
 import java.io.IOException;
 
-import controller.Controller;
 import controller.ControllerImpl;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -20,8 +19,8 @@ public class OOPTankwar extends Application {
 	public void start(Stage primaryStage) throws IOException {
 		Model world = new World();
 		View view = new ViewImpl(primaryStage);
-		Controller controller = new ControllerImpl(world, view);
-		view.launchView(controller);
+		ControllerImpl.getController().initializeController(world, view);
+		view.launchView(ControllerImpl.getController());
 	}
 
 	/**
