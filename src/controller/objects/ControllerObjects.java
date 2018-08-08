@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import controller.collision.FactoryCollision;
+import controller.output.ControllerOutput;
+import controller.output.ControllerOutputImpl;
 import controller.utility.CheckCollision;
 import controller.utility.Convertitor;
 import exceptions.ProjectileOutOfBordersException;
@@ -38,6 +40,7 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
 	private long initialTime;
 	private long finalTime;
 	private FactoryCollision factoryCollision;
+	private ControllerOutput controllerOutput;
 	
 	/**
 	 * Constructor.
@@ -61,6 +64,11 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
 		this.timeToShot = timeToShot;
 		this.projectiles = new ArrayList<>();
 		this.factoryCollision = factoryCollision;
+		this.controllerOutput = new ControllerOutputImpl(this.projectiles, this.playerTank, this.enemyTank);
+	}
+	
+	public ControllerOutput getControllerOutput() {
+		return this.controllerOutput;
 	}
 
 	@Override
@@ -70,24 +78,14 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
 		default: ;
 		}
 
-	}
-
-	@Override
-	public List<Pair<Double, Double>> getProjectiles() {
-		return Collections.unmodifiableList(this.projectiles.stream().map(p -> Convertitor.modelToView(p.getPosition())).collect(Collectors.toList()));
-	}
+	}	
 
 	@Override
 	public void updateProjectiles() {
 		this.projectiles.forEach(p -> p.update());
 		this.checkProjectileCollision();
 		this.deleteProjectiles(this.getDeadProjectiles());
-	}
-
-	@Override
-	public Pair<Double, Double> getProjectileDimension() {
-		return Convertitor.modelToView(this.projectiles.get(0).getBounds());
-	}
+	}	
 
 	@Override
 	public void movePlayerTank(KeyEvent event, boolean b) {
@@ -117,70 +115,12 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
 		this.checkTankCollision();
 	}
 
-	@Override
-	public Pair<Double, Double> getPlayerPosition() {
-		return Convertitor.modelToView(this.playerTank.getPosition());
-	}
-
-	@Override
-	public Pair<Double, Double> getEnemyPosition() {
-		return Convertitor.modelToView(this.enemyTank.getPosition());
-	}
-
-	@Override
-	public int getPlayerLifes() {
-		return this.playerTank.getLifes();
-	}
-
-	@Override
-	public int getEnemyLifes() {
-		return this.enemyTank.getLifes();
-	}
-
-	@Override
-	public Pair<Double, Double> getTankDimension() {
-		return Convertitor.modelToView(this.playerTank.getDimension());
-	}
-
-	@Override
-	public boolean isPlayerAlive() {
-		return this.playerTank.isAlive();
-	}
-
-	@Override
-	public boolean isEnemyAlive() {
-		return this.enemyTank.isAlive();
-	}
-
-	@Override
-	public Pair<Double, Double> getCannonDimension() {
-		return Convertitor.modelToView(this.playerTank.getCannonDimension());
-	}
-
-	@Override
-	public Pair<Double, Double> getPlayerCannonPosition() {
-		return Convertitor.modelToView(this.playerTank.getCannonPosition());
-	}
-
-	@Override
-	public Pair<Double, Double> getEnemyCannonPosition() {
-		return Convertitor.modelToView(this.enemyTank.getCannonPosition());
-	}
+	
 
 	@Override
 	public void movePlayerCannon(MouseEvent event) {
 		this.playerInput.setTarget(Convertitor.viewToModel(new Pair<Double, Double>(event.getSceneX(), event.getSceneY())));
 
-	}
-
-	@Override
-	public double getPlayerAngle() {
-		return this.playerTank.getAngle();
-	}
-
-	@Override
-	public double getEnemyAngle() {
-		return this.enemyTank.getAngle();
 	}
 	
 	/**

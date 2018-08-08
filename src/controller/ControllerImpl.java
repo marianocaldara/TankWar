@@ -8,6 +8,7 @@ import controller.loader.FileController;
 import controller.loader.FileControllerImpl;
 import controller.objects.AI;
 import controller.objects.ControllerObjects;
+import controller.output.ControllerOutput;
 import controller.utility.CheckCollision;
 import controller.utility.Convertitor;
 import model.Model;
@@ -55,6 +56,11 @@ public class ControllerImpl implements Controller {
 
 	public static ControllerImpl getController() {
 		return SINGLETON;
+	}
+	
+	@Override
+	public ControllerOutput getControllerOutput() {
+		return this.controllerObjects.getControllerOutput();
 	}
 	
 	@Override

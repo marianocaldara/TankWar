@@ -4,6 +4,7 @@ import controller.levels.Level;
 import controller.objects.AI;
 import controller.objects.ControllerObjects;
 import controller.objects.ControllerTank;
+import controller.output.ControllerOutput;
 import model.Model;
 import view.View;
 
@@ -11,6 +12,8 @@ import view.View;
  * Controller's interface
  */
 public interface Controller {
+	
+	ControllerOutput getControllerOutput();
 	
 	void initializeController(Model world, View view);
 	

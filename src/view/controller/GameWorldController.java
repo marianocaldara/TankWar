@@ -130,7 +130,7 @@ public class GameWorldController extends ViewController{
     private void drawLives() {
     	this.playerLives.forEach(p -> this.worldGroup.getChildren().removeAll(this.playerLives));
     	this.playerLives.removeAll(this.playerLives);
-    	for(int i = 0; i < this.controller.getControllerObjects().getPlayerLifes(); i++) {
+    	for(int i = 0; i < this.controller.getControllerOutput().getPlayerLifes(); i++) {
     		ImageView lifeImage = new ImageView(this.life);
     		lifeImage.setLayoutX(i*ViewUtils.getScene().getWidth()/WIDTH_RAPPORT);
     		lifeImage.setLayoutY(0);
@@ -141,7 +141,7 @@ public class GameWorldController extends ViewController{
     	}
     	this.enemyLives.forEach(p -> this.worldGroup.getChildren().removeAll(this.enemyLives));
     	this.enemyLives.removeAll(this.enemyLives);
-    	for(int i = 0; i < this.controller.getControllerObjects().getEnemyLifes(); i++) {
+    	for(int i = 0; i < this.controller.getControllerOutput().getEnemyLifes(); i++) {
     		ImageView lifeImage = new ImageView(this.life);
     		lifeImage.setFitWidth(ViewUtils.getScene().getWidth()/WIDTH_RAPPORT);
     		lifeImage.setFitHeight(ViewUtils.getScene().getHeight()/HEIGHT_RAPPORT);
@@ -170,12 +170,12 @@ public class GameWorldController extends ViewController{
     private void drawProjectiles() {
     	this.worldGroup.getChildren().removeAll(this.projectiles);
     	this.projectiles.removeAll(this.projectiles);
-    	this.controller.getControllerObjects().getProjectiles().forEach(p -> {
+    	this.controller.getControllerOutput().getProjectiles().forEach(p -> {
     		ImageView projectileImage = new ImageView(projectile);
     		projectileImage.setLayoutX(p.getFirst());
     		projectileImage.setLayoutY(p.getSecond());
-    		projectileImage.setFitWidth(this.controller.getControllerObjects().getProjectileDimension().getFirst());
-    		projectileImage.setFitHeight(this.controller.getControllerObjects().getProjectileDimension().getSecond());
+    		projectileImage.setFitWidth(this.controller.getControllerOutput().getProjectileDimension().getFirst());
+    		projectileImage.setFitHeight(this.controller.getControllerOutput().getProjectileDimension().getSecond());
     		this.projectiles.add(projectileImage);
     	});
     	this.worldGroup.getChildren().addAll(this.projectiles);
@@ -185,30 +185,30 @@ public class GameWorldController extends ViewController{
      * Draw the two {@link Tank}.
      */
     private void drawTank() {
-    	this.playerTank.setLayoutX(this.controller.getControllerObjects().getPlayerPosition().getFirst());
-		this.playerTank.setLayoutY(this.controller.getControllerObjects().getPlayerPosition().getSecond());
-		this.enemyTank.setLayoutX(this.controller.getControllerObjects().getEnemyPosition().getFirst());
-		this.enemyTank.setLayoutY(this.controller.getControllerObjects().getEnemyPosition().getSecond());
-		this.playerTank.setFitWidth(this.controller.getControllerObjects().getTankDimension().getFirst());
-		this.playerTank.setFitHeight(this.controller.getControllerObjects().getTankDimension().getSecond());
-		this.enemyTank.setFitWidth(this.controller.getControllerObjects().getTankDimension().getFirst());
-		this.enemyTank.setFitHeight(this.controller.getControllerObjects().getTankDimension().getSecond());
+    	this.playerTank.setLayoutX(this.controller.getControllerOutput().getPlayerPosition().getFirst());
+		this.playerTank.setLayoutY(this.controller.getControllerOutput().getPlayerPosition().getSecond());
+		this.enemyTank.setLayoutX(this.controller.getControllerOutput().getEnemyPosition().getFirst());
+		this.enemyTank.setLayoutY(this.controller.getControllerOutput().getEnemyPosition().getSecond());
+		this.playerTank.setFitWidth(this.controller.getControllerOutput().getTankDimension().getFirst());
+		this.playerTank.setFitHeight(this.controller.getControllerOutput().getTankDimension().getSecond());
+		this.enemyTank.setFitWidth(this.controller.getControllerOutput().getTankDimension().getFirst());
+		this.enemyTank.setFitHeight(this.controller.getControllerOutput().getTankDimension().getSecond());
     }
     
     /**
      * Draw the two cannon.
      */
     private void drawCannon() {
-    	this.playerCannon.setLayoutX(this.controller.getControllerObjects().getPlayerCannonPosition().getFirst());
-		this.playerCannon.setLayoutY(this.controller.getControllerObjects().getPlayerCannonPosition().getSecond());
-		this.enemyCannon.setLayoutX(this.controller.getControllerObjects().getEnemyCannonPosition().getFirst());
-		this.enemyCannon.setLayoutY(this.controller.getControllerObjects().getEnemyCannonPosition().getSecond());
-		this.playerCannon.setFitWidth(this.controller.getControllerObjects().getCannonDimension().getFirst());
-		this.playerCannon.setFitHeight(this.controller.getControllerObjects().getCannonDimension().getSecond());
-		this.enemyCannon.setFitWidth(this.controller.getControllerObjects().getCannonDimension().getFirst());
-		this.enemyCannon.setFitHeight(this.controller.getControllerObjects().getCannonDimension().getSecond());
-		this.playerCannon.setRotate(this.controller.getControllerObjects().getPlayerAngle());
-		this.enemyCannon.setRotate(this.controller.getControllerObjects().getEnemyAngle());
+    	this.playerCannon.setLayoutX(this.controller.getControllerOutput().getPlayerCannonPosition().getFirst());
+		this.playerCannon.setLayoutY(this.controller.getControllerOutput().getPlayerCannonPosition().getSecond());
+		this.enemyCannon.setLayoutX(this.controller.getControllerOutput().getEnemyCannonPosition().getFirst());
+		this.enemyCannon.setLayoutY(this.controller.getControllerOutput().getEnemyCannonPosition().getSecond());
+		this.playerCannon.setFitWidth(this.controller.getControllerOutput().getCannonDimension().getFirst());
+		this.playerCannon.setFitHeight(this.controller.getControllerOutput().getCannonDimension().getSecond());
+		this.enemyCannon.setFitWidth(this.controller.getControllerOutput().getCannonDimension().getFirst());
+		this.enemyCannon.setFitHeight(this.controller.getControllerOutput().getCannonDimension().getSecond());
+		this.playerCannon.setRotate(this.controller.getControllerOutput().getPlayerAngle());
+		this.enemyCannon.setRotate(this.controller.getControllerOutput().getEnemyAngle());
 		if(this.enemyCannon.getLayoutX() < 0) {
 			this.enemyCannon.setLayoutX(0);
 		}
