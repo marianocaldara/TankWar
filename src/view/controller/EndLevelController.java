@@ -14,29 +14,30 @@ import view.utility.ViewUtils;
 /**
  * Controller class for the ending level.
  */
-public class EndLevelController extends ViewController{
-	
-	private FadeTransition endLevel;
-	
-	@FXML
-	private Label endLevelLabel;
+public class EndLevelController extends ViewController {
 
-	@FXML
-	private GridPane endLevelGrid;
+    private FadeTransition endLevel;
 
-	@Override
-	public void init(Controller controller) {
-		this.endLevel = new FadeTransition(Duration.seconds(3), this.endLevelGrid);
-		this.endLevel.setFromValue(1.0);
-		this.endLevel.setToValue(0.5);
-		this.endLevel.setOnFinished(e -> {
-			try {
-				ViewScenes.LOADING.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(), controller);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-		});
-		this.endLevel.play();
-	}
+    @FXML
+    private Label endLevelLabel;
+
+    @FXML
+    private GridPane endLevelGrid;
+
+    @Override
+    public void init(Controller controller) {
+        this.endLevel = new FadeTransition(Duration.seconds(3), this.endLevelGrid);
+        this.endLevel.setFromValue(1.0);
+        this.endLevel.setToValue(0.5);
+        this.endLevel.setOnFinished(e -> {
+            try {
+                ViewScenes.LOADING.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(),
+                        controller);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
+        this.endLevel.play();
+    }
 
 }

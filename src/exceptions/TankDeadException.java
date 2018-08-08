@@ -1,13 +1,15 @@
 package exceptions;
+
 /**
- * Exception for Model 
+ * Exception for Model
  */
-public class TankDeadException extends IllegalStateException{
+public class TankDeadException extends IllegalStateException {
 
     /**
      * 
      */
     private static final long serialVersionUID = 2201790410334724906L;
+
     /**
      * Constructor.
      */
@@ -17,7 +19,9 @@ public class TankDeadException extends IllegalStateException{
 
     /**
      * Constructor.
-     * @param msg {@inheritDoc IllegalStateException#IllegalStateException(String)}
+     * 
+     * @param msg
+     *            {@inheritDoc IllegalStateException#IllegalStateException(String)}
      */
     public TankDeadException(String msg) {
         super(msg);

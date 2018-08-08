@@ -13,30 +13,31 @@ import view.scene.SceneChanger;
 import view.utility.ViewUtils;
 
 /**
- * Concrete implementation of the {@link SceneChanger} interface. It manages the loading level stage.
+ * Concrete implementation of the {@link SceneChanger} interface. It manages the
+ * loading level stage.
  */
-public class LoadingStage implements SceneChanger{
+public class LoadingStage implements SceneChanger {
 
-	private LoadController loader;
+    private LoadController loader;
 
-	@Override
+    @Override
     public void setStage(double width, double height, Controller controller) throws IOException {
-    	final FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/JavaFX/FadePlay.fxml"));
+        final FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/JavaFX/FadePlay.fxml"));
         final Parent root = loader.load();
         this.loader = loader.getController();
         this.loader.init(controller);
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
         Stage stage = ViewUtils.getStage();
-        stage.centerOnScreen();       
+        stage.centerOnScreen();
         stage.hide();
         stage.setScene(scene);
         stage.show();
     }
 
-	@Override
-	public ViewController getController() {
-		return this.loader;
-	}
+    @Override
+    public ViewController getController() {
+        return this.loader;
+    }
 
 }

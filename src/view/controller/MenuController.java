@@ -18,9 +18,9 @@ import javafx.scene.control.ButtonBar.ButtonData;
 /**
  * Implementation of the view controller for the menu stage.
  */
-public class MenuController extends ViewController{
-	
-	private Controller controller;
+public class MenuController extends ViewController {
+
+    private Controller controller;
 
     @FXML
     private JFXButton play;
@@ -28,41 +28,46 @@ public class MenuController extends ViewController{
     private JFXButton settings;
     @FXML
     private JFXButton exit;
-    
+
     @Override
-	public void init(Controller controller) {
-		this.controller = controller;
-		
-	}
+    public void init(Controller controller) {
+        this.controller = controller;
+
+    }
 
     /**
      * This method allow to switch to the game world stage
+     * 
      * @param event
-     * 			the action event.
+     *            the action event.
      * @throws IOException
      */
     public void playAction(ActionEvent event) throws IOException {
-    	ViewScenes.LOADING.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(), this.controller);
+        ViewScenes.LOADING.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(),
+                this.controller);
     }
 
     /**
      * This method allow to switch to the settings stage
+     * 
      * @param event
-     * 			the action event.
-     * @throws IOException 
+     *            the action event.
+     * @throws IOException
      */
     public void settingsAction(ActionEvent event) throws IOException {
-    	ViewScenes.SETTING.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(), this.controller);
+        ViewScenes.SETTING.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(),
+                this.controller);
 
     }
 
     /**
      * This method allow to exit the GUI
+     * 
      * @param event
-     * 			the action event.
+     *            the action event.
      * @throws IOException
      */
-    public void exitAction(ActionEvent event) throws IOException{
+    public void exitAction(ActionEvent event) throws IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Requested");
         alert.setHeaderText("Are you really sure you wanna to quit ?");
@@ -77,5 +82,5 @@ public class MenuController extends ViewController{
         }
 
     }
-    
+
 }

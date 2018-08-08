@@ -14,8 +14,9 @@ public class ViewUtils {
 
     /**
      * This method allows to know the initial stage of the application
+     * 
      * @param stage
-     * 			the actual stage.
+     *            the actual stage.
      */
     public static void setPrimaryStage(Stage stage) {
         CURRENT_STAGE = stage;
@@ -23,8 +24,8 @@ public class ViewUtils {
 
     /**
      * This method allows to get the current stage
-     * @return
-     * 			the current stage.
+     * 
+     * @return the current stage.
      */
     public static Stage getStage() {
         return CURRENT_STAGE;
@@ -32,8 +33,8 @@ public class ViewUtils {
 
     /**
      * This method allows to get the current scene
-     * @return
-     * 			the current scene.
+     * 
+     * @return the current scene.
      */
     public static Scene getScene() {
         return CURRENT_STAGE.getScene();

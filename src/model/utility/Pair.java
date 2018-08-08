@@ -4,50 +4,63 @@ package model.utility;
  * Simple Pair to memorize two object.
  *
  * @param <X>
- *      First type of object
+ *            First type of object
  * @param <Y>
- *      Second type of object
+ *            Second type of object
  */
 public class Pair<X, Y> {
     private X x;
     private Y y;
-    
+
     /**
      * Simple constructor.
-     * @param x first object
-     * @param y second object 
+     * 
+     * @param x
+     *            first object
+     * @param y
+     *            second object
      */
     public Pair(final X x, final Y y) {
         this.x = x;
         this.y = y;
     }
+
     /**
      * Getter.
+     * 
      * @return first object
      */
     public X getFirst() {
         return this.x;
     }
+
     /**
      * Getter.
+     * 
      * @return the second object
      */
     public Y getSecond() {
         return this.y;
     }
+
     /**
      * Setter.
-     * @param x first object to set
+     * 
+     * @param x
+     *            first object to set
      */
     public void setFirst(final X x) {
-        this.x=x;
+        this.x = x;
     }
+
     /**
      * Setter.
-     * @param y second object to set
+     * 
+     * @param y
+     *            second object to set
      */
     public void setSecond(final Y y) {
-        this.y=y;
+        this.y = y;
     }
 
     @Override
@@ -62,25 +75,32 @@ public class Pair<X, Y> {
     @Override
     public boolean equals(final Object obj) {
         if (this == obj) {
-            return true;}
+            return true;
+        }
         if (obj == null) {
-            return false;}
+            return false;
+        }
         if (getClass() != obj.getClass()) {
-            return false;}
-        if(!(obj instanceof Pair) || !(obj instanceof Pair<?, ?>)) {
+            return false;
+        }
+        if (!(obj instanceof Pair) || !(obj instanceof Pair<?, ?>)) {
             return false;
         }
         final Pair<?, ?> other = (Pair<?, ?>) obj;
         if (x == null) {
             if (other.x != null) {
-                return false;}
+                return false;
+            }
         } else if (!x.equals(other.x)) {
-            return false;}
+            return false;
+        }
         if (y == null) {
             if (other.y != null) {
-                return false;}
+                return false;
+            }
         } else if (!y.equals(other.y)) {
-            return false;}
+            return false;
+        }
         return true;
     }
 }

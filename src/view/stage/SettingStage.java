@@ -13,15 +13,16 @@ import view.scene.SceneChanger;
 import view.utility.ViewUtils;
 
 /**
- * Concrete implementation of the {@link SceneChanger} interface. It manages the settings stage.
+ * Concrete implementation of the {@link SceneChanger} interface. It manages the
+ * settings stage.
  */
 public class SettingStage implements SceneChanger {
-	
-	private SettingController setting;
 
-	@Override
-	public void setStage(double width, double height, Controller controller) throws IOException {
-		final FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/javaFX/Setting.fxml"));
+    private SettingController setting;
+
+    @Override
+    public void setStage(double width, double height, Controller controller) throws IOException {
+        final FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/javaFX/Setting.fxml"));
         final Parent root = loader.load();
         this.setting = loader.getController();
         this.setting.init(controller);
@@ -33,11 +34,11 @@ public class SettingStage implements SceneChanger {
         stage.setScene(scene);
         stage.show();
 
-	}
+    }
 
-	@Override
-	public ViewController getController() {
-		return this.setting;
-	}
+    @Override
+    public ViewController getController() {
+        return this.setting;
+    }
 
 }

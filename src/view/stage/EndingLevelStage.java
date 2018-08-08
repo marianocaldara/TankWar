@@ -13,31 +13,32 @@ import view.scene.SceneChanger;
 import view.utility.ViewUtils;
 
 /**
- * Concrete implementation of the {@link SceneChanger} interface. It manages the ending level stage.
+ * Concrete implementation of the {@link SceneChanger} interface. It manages the
+ * ending level stage.
  */
-public class EndingLevelStage implements SceneChanger{
-	
-	private EndLevelController endLevel = new EndLevelController();
+public class EndingLevelStage implements SceneChanger {
 
-	@Override
-	public void setStage(double width, double height, Controller controller) throws IOException {
-		final FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/JavaFX/FadeLevelEnded.fxml"));
+    private EndLevelController endLevel = new EndLevelController();
+
+    @Override
+    public void setStage(double width, double height, Controller controller) throws IOException {
+        final FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/JavaFX/FadeLevelEnded.fxml"));
         final Parent root = loader.load();
         this.endLevel = loader.getController();
         this.endLevel.init(controller);
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
         Stage stage = ViewUtils.getStage();
-        stage.centerOnScreen();       
+        stage.centerOnScreen();
         stage.hide();
         stage.setScene(scene);
         stage.show();
-		
-	}
 
-	@Override
-	public ViewController getController() {
-		return this.endLevel;
-	}
+    }
+
+    @Override
+    public ViewController getController() {
+        return this.endLevel;
+    }
 
 }

@@ -13,15 +13,16 @@ import view.scene.SceneChanger;
 import view.utility.ViewUtils;
 
 /**
- * Concrete implementation of the {@link SceneChanger} interface. It manages the menu stage.
+ * Concrete implementation of the {@link SceneChanger} interface. It manages the
+ * menu stage.
  */
-public class MenuStage implements SceneChanger{
-	
-	private MenuController menuController;
+public class MenuStage implements SceneChanger {
 
-	@Override
+    private MenuController menuController;
+
+    @Override
     public void setStage(double width, double height, Controller controller) throws IOException {
-		final FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/javaFX/Menu.fxml"));
+        final FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/javaFX/Menu.fxml"));
         final Parent root = loader.load();
         this.menuController = loader.getController();
         this.menuController.init(controller);
@@ -34,9 +35,9 @@ public class MenuStage implements SceneChanger{
         stage.show();
     }
 
-	@Override
-	public ViewController getController() {
-		return this.menuController;
-	}
-	
+    @Override
+    public ViewController getController() {
+        return this.menuController;
+    }
+
 }

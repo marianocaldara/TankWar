@@ -6,6 +6,7 @@ import model.object.EnemyTank;
 import model.object.PlayerTank;
 import model.object.Tank;
 import model.utility.Pair;
+
 /**
  * Implementation of Model interface.
  */
@@ -15,22 +16,26 @@ public class World implements Model {
     private Tank enemy;
     private Input playerInput;
     private Input enemyInput;
+
     /**
      * Constructor.
-     * <p>Set player input and enemy input.
+     * <p>
+     * Set player input and enemy input.
      */
     public World() {
-    	super();
-    }
-    
-    @Override
-    public void configPlayerTank(final Pair<Double, Double> position, int lifes, final double speed, final double projectileSpeed) {
-       this.player = new PlayerTank(position, lifes, speed, projectileSpeed);
-       this.playerInput = new InputImpl();
+        super();
     }
 
     @Override
-    public void configEnemyTank(final Pair<Double, Double> position, int lifes, final double speed, final double projectileSpeed) {
+    public void configPlayerTank(final Pair<Double, Double> position, int lifes, final double speed,
+            final double projectileSpeed) {
+        this.player = new PlayerTank(position, lifes, speed, projectileSpeed);
+        this.playerInput = new InputImpl();
+    }
+
+    @Override
+    public void configEnemyTank(final Pair<Double, Double> position, int lifes, final double speed,
+            final double projectileSpeed) {
         this.enemy = new EnemyTank(position, lifes, speed, projectileSpeed);
         this.enemyInput = new InputImpl();
     }
@@ -52,12 +57,12 @@ public class World implements Model {
 
     @Override
     public Input getPlayerInput() {
-	return this.playerInput;
+        return this.playerInput;
     }
 
     @Override
     public Input getEnemyInput() {
         return this.enemyInput;
     }
-   
+
 }

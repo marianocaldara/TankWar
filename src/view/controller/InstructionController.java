@@ -13,11 +13,11 @@ import view.utility.ViewUtils;
 /**
  * Controller class for instruction.
  */
-public class InstructionController extends ViewController{
-	
-	private Controller controller;
-	
-	@FXML
+public class InstructionController extends ViewController {
+
+    private Controller controller;
+
+    @FXML
     private GridPane instructionGrid;
 
     @FXML
@@ -25,22 +25,24 @@ public class InstructionController extends ViewController{
 
     /**
      * Allow to return to the settings stage.
+     * 
      * @param event
-     * 			the mouse event.
+     *            the mouse event.
      */
     @FXML
     void exitAction(MouseEvent event) {
-    	try {
-			ViewScenes.SETTING.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(), controller);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+        try {
+            ViewScenes.SETTING.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(),
+                    controller);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-	@Override
-	public void init(Controller controller) {
-		this.controller = controller;
-		
-	}
+    @Override
+    public void init(Controller controller) {
+        this.controller = controller;
+
+    }
 
 }

@@ -21,81 +21,86 @@ import view.utility.ViewUtils;
  */
 public class SettingController extends ViewController {
 
-	private Controller controller;
+    private Controller controller;
 
-	@FXML
-	private JFXComboBox<String> difficultBox;
+    @FXML
+    private JFXComboBox<String> difficultBox;
 
-	@FXML
-	private JFXComboBox<String> levelsBox;
+    @FXML
+    private JFXComboBox<String> levelsBox;
 
-	@FXML
-	private GridPane settingsGrid;
-	
-	 @FXML
-	 private JFXButton instructionButton;
+    @FXML
+    private GridPane settingsGrid;
 
-	/**
-	 * Setter of the game difficult according to the selected item of the difficultBox.
-	 * @param event
-	 * 			the event of the difficultBox.
-	 */
-	@FXML
-	void difficultAction(ActionEvent event) {
-		if (this.difficultBox.getValue().equals(Difficult.EASY.getName())) {
-			this.controller.setTimeToShot(Difficult.EASY.getTimeShot());
-		} else if (this.difficultBox.getValue().equals(Difficult.MEDIUM.getName())) {
-			this.controller.setTimeToShot(Difficult.MEDIUM.getTimeShot());
-		} else if (this.difficultBox.getValue().equals(Difficult.HARD.getName())) {
-			this.controller.setTimeToShot(Difficult.HARD.getTimeShot());
-		}
-	}
+    @FXML
+    private JFXButton instructionButton;
 
-	/**
-	 * Setter of the game level according to the selected item of the levelBox.
-	 * @param event
-	 * 			the event of the levelBox.
-	 */
-	@FXML
-	void levelAction(ActionEvent event) {
-		if (this.levelsBox.getValue().equals(Levels.LEVEL_1.getName())) {
-			this.controller.getLevel().setCurrentLevel(Levels.LEVEL_1);
-		} else if (this.levelsBox.getValue().equals(Levels.LEVEL_2.getName())) {
-			this.controller.getLevel().setCurrentLevel(Levels.LEVEL_2);
-		} else if (this.levelsBox.getValue().equals(Levels.LEVEL_3.getName())) {
-			this.controller.getLevel().setCurrentLevel(Levels.LEVEL_3);
-		}
-	}
+    /**
+     * Setter of the game difficult according to the selected item of the
+     * difficultBox.
+     * 
+     * @param event
+     *            the event of the difficultBox.
+     */
+    @FXML
+    void difficultAction(ActionEvent event) {
+        if (this.difficultBox.getValue().equals(Difficult.EASY.getName())) {
+            this.controller.setTimeToShot(Difficult.EASY.getTimeShot());
+        } else if (this.difficultBox.getValue().equals(Difficult.MEDIUM.getName())) {
+            this.controller.setTimeToShot(Difficult.MEDIUM.getTimeShot());
+        } else if (this.difficultBox.getValue().equals(Difficult.HARD.getName())) {
+            this.controller.setTimeToShot(Difficult.HARD.getTimeShot());
+        }
+    }
 
-	/**
-	 * Allows to return to the menu.
-	 * @param event
-	 * 			the {@link MouseEvent} of the exit image.
-	 */
-	@FXML
-	void exitAction(MouseEvent event) {
-		try {
-			ViewScenes.MENU.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(), controller);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	@FXML
-	void instructionAction(ActionEvent event) {
-		try {
-			ViewScenes.ISTRUCTION.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(), controller);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+    /**
+     * Setter of the game level according to the selected item of the levelBox.
+     * 
+     * @param event
+     *            the event of the levelBox.
+     */
+    @FXML
+    void levelAction(ActionEvent event) {
+        if (this.levelsBox.getValue().equals(Levels.LEVEL_1.getName())) {
+            this.controller.getLevel().setCurrentLevel(Levels.LEVEL_1);
+        } else if (this.levelsBox.getValue().equals(Levels.LEVEL_2.getName())) {
+            this.controller.getLevel().setCurrentLevel(Levels.LEVEL_2);
+        } else if (this.levelsBox.getValue().equals(Levels.LEVEL_3.getName())) {
+            this.controller.getLevel().setCurrentLevel(Levels.LEVEL_3);
+        }
+    }
 
-	@Override
-	public void init(Controller controller) {
-		this.controller = controller;
-		Arrays.asList(Levels.values()).forEach(l -> this.levelsBox.getItems().add(l.getName()));
-		Arrays.asList(Difficult.values()).forEach(d -> this.difficultBox.getItems().add(d.getName()));
+    /**
+     * Allows to return to the menu.
+     * 
+     * @param event
+     *            the {@link MouseEvent} of the exit image.
+     */
+    @FXML
+    void exitAction(MouseEvent event) {
+        try {
+            ViewScenes.MENU.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(), controller);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-	}
+    @FXML
+    void instructionAction(ActionEvent event) {
+        try {
+            ViewScenes.ISTRUCTION.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(),
+                    controller);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void init(Controller controller) {
+        this.controller = controller;
+        Arrays.asList(Levels.values()).forEach(l -> this.levelsBox.getItems().add(l.getName()));
+        Arrays.asList(Difficult.values()).forEach(d -> this.difficultBox.getItems().add(d.getName()));
+
+    }
 
 }

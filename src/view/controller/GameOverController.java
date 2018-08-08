@@ -14,9 +14,9 @@ import view.utility.ViewUtils;
 /**
  * Controller class for the game over.
  */
-public class GameOverController extends ViewController{
-	
-	private FadeTransition gameOver;
+public class GameOverController extends ViewController {
+
+    private FadeTransition gameOver;
 
     @FXML
     private GridPane gameOverGrid;
@@ -24,19 +24,20 @@ public class GameOverController extends ViewController{
     @FXML
     private Label gameOverLabel;
 
-	@Override
-	public void init(Controller controller) {
-		this.gameOver = new FadeTransition(Duration.seconds(3), this.gameOverGrid);
-		this.gameOver.setFromValue(1.0);
-		this.gameOver.setToValue(0.5);
-		this.gameOver.setOnFinished(e -> {
-			try {
-				ViewScenes.MENU.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(), controller);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-		});
-		this.gameOver.play();
-	}
+    @Override
+    public void init(Controller controller) {
+        this.gameOver = new FadeTransition(Duration.seconds(3), this.gameOverGrid);
+        this.gameOver.setFromValue(1.0);
+        this.gameOver.setToValue(0.5);
+        this.gameOver.setOnFinished(e -> {
+            try {
+                ViewScenes.MENU.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(),
+                        controller);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
+        this.gameOver.play();
+    }
 
 }
