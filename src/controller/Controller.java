@@ -13,8 +13,19 @@ import view.View;
  */
 public interface Controller {
 	
+	/**
+	 * Getter of the {@link ControllerOutput}.
+	 * @return the {@link ControllerOutput}.
+	 */
 	ControllerOutput getControllerOutput();
 	
+	/**
+	 * Initialize the {@link Controller} fields.
+	 * @param world
+	 * 			the game {@link World}.
+	 * @param view
+	 * 			the game {@link View}.
+	 */
 	void initializeController(Model world, View view);
 	
 	/**

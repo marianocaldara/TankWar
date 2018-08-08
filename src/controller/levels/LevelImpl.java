@@ -21,11 +21,7 @@ public class LevelImpl implements Level {
 	private Controller controller;
 	
 	/**
-	 * Constructor.
-	 * @param fileController
-	 * 		the {@link FileController}.
-	 * @param controller
-	 * 		the {@link Controller} of the game.
+	 * Private constructor.
 	 */
 	private LevelImpl() {}
 	

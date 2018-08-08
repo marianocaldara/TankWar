@@ -30,14 +30,19 @@ public class ControllerImpl implements Controller {
 	private FactoryCollision factoryCollision;
 	
 	/**
-	 * Constructor
-	 * @param world
-	 * 			the {@link Model} of the game.
-	 * @param view
-	 * 			the {@link View} of the game.
+	 * Private constructor.
 	 */
 	private ControllerImpl(){
 			
+	}
+	
+	/**
+	 * Getter of the object {@link ControllerImpl}.
+	 * 
+	 * @return the object {@link ControllerImpl}.
+	 */
+	public static ControllerImpl getController() {
+		return SINGLETON;
 	}
 	
 	@Override
@@ -51,15 +56,6 @@ public class ControllerImpl implements Controller {
 		this.timeToShot = DEFAULT_TIME_TO_SHOT;
 		this.factoryCollision = new FactoryCollisionImpl(this.world.getBounds());
 		
-	}
-
-	/**
-	 * Getter of the object {@link ControllerImpl}.
-	 * 
-	 * @return the object {@link ControllerImpl}.
-	 */
-	public static ControllerImpl getController() {
-		return SINGLETON;
 	}
 	
 	@Override
