@@ -2,7 +2,7 @@ package model;
 
 import model.input.Input;
 import model.input.TankInput;
-import model.object.AbstractTank;
+import model.object.Tank;
 import model.utility.Pair;
 /**
  * Model interface contain all elements that game needs.
@@ -29,12 +29,12 @@ public interface Model {
      * Getter for player.
      * @return player's Tank
      */
-    AbstractTank getPlayer();
+    Tank getPlayer();
     /**
      * Getter for enemy
      * @return enemie's Tank
      */
-    AbstractTank getEnemy();
+    Tank getEnemy();
     /**
      * Getter for bounds of World.
      * @return bounds First = width, Second = height

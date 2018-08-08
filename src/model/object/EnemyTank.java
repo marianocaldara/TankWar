@@ -2,22 +2,33 @@ package model.object;
 
 import model.utility.Calculate;
 import model.utility.Pair;
-
-public class NewTank extends PlayerTankImpl{
-    
-    public NewTank(Pair<Double, Double> position, int lifes, double speed, double projectileSpeed) {
+/**
+ * EnemyTank that is the enemy of player, extends Tank.
+ * The one difference between them are the position of Cannon, and shot that is influenced by different position of Tank.
+ * @see Tank
+ */
+public class EnemyTank extends PlayerTank implements Tank{
+    /**
+     * {@inheritDoc}
+     */
+    public EnemyTank(Pair<Double, Double> position, int lifes, double speed, double projectileSpeed) {
         super(position, lifes, speed, projectileSpeed);
+        super.cannon = new EnemyTank.Cannon();
     }
-    
-    private class Cannon extends PlayerTankImpl.Cannon{
-        
+    /**
+     * 
+     * Cannon class for enemy Tank
+     * {@linkplain PlayerTank#cannon}
+     * 
+     * <p> He allows the Tank to shoot.
+     */
+    private class Cannon extends PlayerTank.Cannon{
         @Override
         public void update(final Pair<Double, Double> position, final Pair<Double, Double> target) {
             this.cannonPosition = new Pair<Double, Double>(position.getFirst() - DIMENSION.getFirst() / 2,
                     position.getSecond() + DIMENSION.getSecond() / 2 - cannonDimension.getSecond() / 2);
             this.angle = Calculate.angle(new Pair<>(cannonPosition.getFirst(), cannonPosition.getSecond() + cannonDimension.getSecond() / 2), target);
         }
-        
         @Override
         public Projectile shot() {
             if (this.angle >= 30 && this.angle < 90) {

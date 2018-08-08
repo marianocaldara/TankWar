@@ -8,8 +8,8 @@ import exceptions.TankOutOfBordersException;
 import exceptions.TankWithProjectileException;
 import exceptions.TankWithTankException;
 import model.Model;
-import model.object.AbstractTank;
 import model.object.Projectile;
+import model.object.Tank;
 
 /**
  * Utility class that catch the collision between the game objects.
@@ -34,7 +34,7 @@ public class CheckCollision {
 	 * @throws TankWithTankException 
 	 * 		if there is any collision.
 	 */
-	public static void tankWithTank(AbstractTank playerTank, AbstractTank enemyTank) throws TankWithTankException {
+	public static void tankWithTank(Tank playerTank, Tank enemyTank) throws TankWithTankException {
 		if(CheckIntersection.intersects(playerTank.getPosition(), playerTank.getDimension(), enemyTank.getPosition(), enemyTank.getDimension())) {
 			throw new TankWithTankException();
 		}
@@ -62,7 +62,7 @@ public class CheckCollision {
 	 * @throws TankOutOfBordersException 
 	 * 		if the {@link Tank} goes out the {@link World} bounds.
 	 */
-	public static void tankWithBorders(AbstractTank tank) throws TankOutOfBordersException {
+	public static void tankWithBorders(Tank tank) throws TankOutOfBordersException {
 		if (tank.getPosition().getFirst() < 0
 				|| tank.getPosition().getFirst() + tank.getDimension().getFirst() > WORLD.getBounds().getFirst()
 				|| (tank.getPosition().getSecond() < 0 || tank.getPosition().getSecond()

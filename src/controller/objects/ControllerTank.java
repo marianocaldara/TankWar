@@ -2,7 +2,6 @@ package controller.objects;
 
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import model.utility.Pair;
 
 /**
  * Interface to control {@link Tank}

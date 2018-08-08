@@ -3,8 +3,8 @@ package controller.collision;
 import java.util.List;
 import java.util.Map;
 
-import model.object.AbstractTank;
 import model.object.Projectile;
+import model.object.Tank;
 import model.utility.Direction;
 
 /**
@@ -22,7 +22,7 @@ public interface FactoryCollision {
 	 * 			the player movements.
 	 * @return a new {@link TankWithTank} collision.
 	 */
-	Collision tankWithTankCollision(AbstractTank playerTank, AbstractTank enemyTank, Map<Direction, Boolean> movement);
+	Collision tankWithTankCollision(Tank playerTank, Tank enemyTank, Map<Direction, Boolean> movement);
 	
 	/**
 	 * Create a new {@link TankWithBorders} collision.
@@ -30,7 +30,7 @@ public interface FactoryCollision {
 	 * 			the colliding {@link Tank}.
 	 * @return a new {@link TankWithBorders} collision.
 	 */
-	Collision tankWithBordersCollision(AbstractTank tank);
+	Collision tankWithBordersCollision(Tank tank);
 	
 	/**
 	 * Create a new {@link TankWithProjectile} collision.
@@ -42,7 +42,7 @@ public interface FactoryCollision {
 	 * 			the list of {@link Projectile}.
 	 * @return a new {@link TankWithProjectile} collision.
 	 */
-	Collision tankWithProjectileCollision(AbstractTank playerTank, AbstractTank enemyTank, List<Projectile> projectiles);
+	Collision tankWithProjectileCollision(Tank playerTank, Tank enemyTank, List<Projectile> projectiles);
 	
 	/**
 	 * Create a new {@link ProjectileWithBorders} collision.

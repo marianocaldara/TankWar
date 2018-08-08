@@ -3,15 +3,22 @@ package model.object;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import exceptions.TankDeadException;
 import model.input.Input;
 import model.input.InputImpl;
 import model.utility.Calculate;
 import model.utility.Direction;
 import model.utility.Pair;
 
-public class PlayerTankImpl extends AbstractTank {
+public class PlayerTank implements Tank {
 
-    private Cannon cannon = new Cannon();
+    protected int lifes;
+    protected Pair<Double, Double> position;
+    protected final static Pair<Double, Double> DIMENSION = new Pair<>(25.0, 25.0);
+    protected double speed;
+    protected double speedX = 0;
+    protected double speedY = 0;
+    protected Cannon cannon = new Cannon();
     protected double projectileSpeed;
     /**
      * Constructor.
@@ -20,36 +27,63 @@ public class PlayerTankImpl extends AbstractTank {
      * @param speed of tank
      * @param projectileSpeed speed of {@linkplain Projectile}
      */
-    public PlayerTankImpl(final Pair<Double, Double> position, final int lifes, final double speed, final double projectileSpeed) {
+    public PlayerTank(final Pair<Double, Double> position, final int lifes, final double speed, final double projectileSpeed) {
         this.position = position;
         this.lifes = lifes;
         this.speed = speed;
         this.projectileSpeed = projectileSpeed;
         this.cannon.update(this.position, new Pair<Double, Double>(0.0, 0.0));
     }
-
     @Override
-    public Projectile shot() {
+    public boolean isAlive() {
+        return this.lifes!=0;
+    }
+    @Override
+    public int getLifes() {
+        return this.lifes;
+    }
+    @Override
+    public void setPosition(final Pair<Double, Double> position) {
+        this.position = position;
+    }
+    @Override
+    public Pair<Double, Double> getPosition() {
+        return this.position;
+    }
+    @Override
+    public void damage(final int damage) {
+        this.lifes -= damage;
+    }
+    @Override
+    public Pair<Double, Double> getDimension() {
+        return new Pair<Double, Double>(DIMENSION.getFirst(), DIMENSION.getSecond());
+    }
+    
+    @Override
+    public Projectile shot() throws TankDeadException{
+        if(!isAlive()) {
+            throw new TankDeadException("This Tank is dead, cannot shot");
+        }
         return this.cannon.shot();
     }
 
     @Override
-    public void update(Input i) {
+    public void update(Input i) throws TankDeadException{
+        if(!isAlive()) {
+            throw new TankDeadException("This Tank is dead");
+        }
         this.setDirection(i.getMovement());
         this.updatePosition();
         this.updateCannon(i.getTargetPosition());
     }
-
     @Override
     public Pair<Double, Double> getCannonPosition() {
         return this.cannon.getCannonPosition();
     }
-
     @Override
     public Pair<Double, Double> getCannonDimension() {
         return this.cannon.getCannonDimension();
     }
-
     @Override
     public double getAngle() {
         return this.cannon.getAngle();

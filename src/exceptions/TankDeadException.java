@@ -1,7 +1,6 @@
 package exceptions;
 /**
  * Exception for Model 
- *
  */
 public class TankDeadException extends IllegalStateException{
 

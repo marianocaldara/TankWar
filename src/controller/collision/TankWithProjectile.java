@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import controller.utility.CheckIntersection;
-import model.object.AbstractTank;
 import model.object.Projectile;
+import model.object.Tank;
 
 /**
  *	Concrete implementation of {@link Collision} interface.
@@ -13,8 +13,8 @@ import model.object.Projectile;
 public class TankWithProjectile implements Collision{
 	
 	private static final int DAMAGE = 1;
-	private AbstractTank playerTank;
-	private AbstractTank enemyTank;
+	private Tank playerTank;
+	private Tank enemyTank;
 	private List<Projectile> projectiles;
 	
 	/**
@@ -26,7 +26,7 @@ public class TankWithProjectile implements Collision{
 	 * @param projectiles
 	 * 			the list of {@link Projectile}.
 	 */
-	public TankWithProjectile(AbstractTank playerTank, AbstractTank enemyTank, List<Projectile> projectiles) {
+	public TankWithProjectile(Tank playerTank, Tank enemyTank, List<Projectile> projectiles) {
 		this.playerTank = playerTank;
 		this.enemyTank = enemyTank;
 		this.projectiles = projectiles;
@@ -43,7 +43,7 @@ public class TankWithProjectile implements Collision{
 		
 	}
 	
-	private static void updateTankLifeAndProjectiles(AbstractTank tank, List<Projectile> hitProjectiles) {
+	private static void updateTankLifeAndProjectiles(Tank tank, List<Projectile> hitProjectiles) {
 		if(!hitProjectiles.isEmpty()) {
 			tank.damage(DAMAGE * hitProjectiles.size());
 			hitProjectiles.forEach(p -> p.setDead());

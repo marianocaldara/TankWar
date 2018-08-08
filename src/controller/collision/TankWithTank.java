@@ -2,7 +2,7 @@ package controller.collision;
 
 import java.util.Map;
 
-import model.object.AbstractTank;
+import model.object.Tank;
 import model.utility.Direction;
 import model.utility.Pair;
 
@@ -12,8 +12,8 @@ import model.utility.Pair;
 public class TankWithTank implements Collision {
 	
 	private static final double MARGINAL_DISTANCE = 5;
-	private AbstractTank playerTank;
-	private AbstractTank enemyTank;
+	private Tank playerTank;
+	private Tank enemyTank;
 	private Map<Direction, Boolean> movement;
 	
 	/**
@@ -25,7 +25,7 @@ public class TankWithTank implements Collision {
 	 * @param movement
 	 * 			the player movements.
 	 */
-	public TankWithTank(AbstractTank playerTank, AbstractTank enemyTank, Map<Direction, Boolean> movement) {
+	public TankWithTank(Tank playerTank, Tank enemyTank, Map<Direction, Boolean> movement) {
 		this.playerTank = playerTank;
 		this.enemyTank = enemyTank;
 		this.movement = movement;

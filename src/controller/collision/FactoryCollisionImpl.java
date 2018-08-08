@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import model.Model;
-import model.object.AbstractTank;
 import model.object.Projectile;
+import model.object.Tank;
 import model.utility.Pair;
 import model.utility.Direction;
 
@@ -26,17 +26,17 @@ public class FactoryCollisionImpl implements FactoryCollision {
 	}
 
 	@Override
-	public Collision tankWithTankCollision(AbstractTank playerTank, AbstractTank enemyTank, Map<Direction, Boolean> movement) {
+	public Collision tankWithTankCollision(Tank playerTank, Tank enemyTank, Map<Direction, Boolean> movement) {
 		return new TankWithTank(playerTank, enemyTank, movement);
 	}
 
 	@Override
-	public Collision tankWithBordersCollision(AbstractTank tank) {
+	public Collision tankWithBordersCollision(Tank tank) {
 		return new TankWithBorders(tank, worldBounds);
 	}
 
 	@Override
-	public Collision tankWithProjectileCollision(AbstractTank playerTank, AbstractTank enemyTank, List<Projectile> projectiles) {
+	public Collision tankWithProjectileCollision(Tank playerTank, Tank enemyTank, List<Projectile> projectiles) {
 		return new TankWithProjectile(playerTank, enemyTank, projectiles);
 	}
 

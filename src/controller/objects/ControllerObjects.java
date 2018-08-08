@@ -1,7 +1,6 @@
 package controller.objects;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,8 +17,8 @@ import exceptions.TankWithTankException;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import model.input.Input;
-import model.object.AbstractTank;
 import model.object.Projectile;
+import model.object.Tank;
 import model.utility.Calculate;
 import model.utility.Direction;
 import model.utility.Pair;
@@ -32,8 +31,8 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
 	
 	private static final double MIN_DISTANCE_TO_SHOT = 350;
 	private static double MIN_DISTANCE;
-	private final AbstractTank playerTank;
-	private final AbstractTank enemyTank;
+	private final Tank playerTank;
+	private final Tank enemyTank;
 	private final Input playerInput;
 	private List<Projectile> projectiles;
 	private double timeToShot;
@@ -55,7 +54,7 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
 	 * @param timeToShot
 	 * 		the the time in ms between two enemy shots.
 	 */
-	public ControllerObjects(final FactoryCollision factoryCollision, final AbstractTank playerTank, final AbstractTank enemyTank, final Input playerInput, double minDistance, 
+	public ControllerObjects(final FactoryCollision factoryCollision, final Tank playerTank, final Tank enemyTank, final Input playerInput, double minDistance, 
 			double timeToShot) {
 		this.playerTank = playerTank;
 		this.enemyTank = enemyTank;

@@ -1,6 +1,6 @@
 package controller.collision;
 
-import model.object.AbstractTank;
+import model.object.Tank;
 import model.utility.Pair;
 
 /**
@@ -8,7 +8,7 @@ import model.utility.Pair;
  */
 public class TankWithBorders implements Collision {
 	
-	private AbstractTank tank;
+	private Tank tank;
 	private final Pair<Double, Double> worldBounds;
 	
 	/**
@@ -18,7 +18,7 @@ public class TankWithBorders implements Collision {
 	 * @param worldBounds
 	 * 			the {@link Model} bounds.
 	 */
-	public TankWithBorders(AbstractTank tank, final Pair<Double, Double> worldBounds) {
+	public TankWithBorders(Tank tank, final Pair<Double, Double> worldBounds) {
 		this.tank = tank;
 		this.worldBounds = worldBounds;
 	}

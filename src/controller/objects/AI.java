@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import model.input.Input;
-import model.object.AbstractTank;
 import model.object.Projectile;
+import model.object.Tank;
 import model.utility.Calculate;
 import model.utility.Direction;
 import model.utility.Pair;
@@ -49,7 +49,7 @@ public class AI {
      * @return
      * 		the enemy tank {@link Input}.
      */
-    public static Input act(AbstractTank enemy, AbstractTank player, List<Projectile> p) {
+    public static Input act(Tank enemy, Tank player, List<Projectile> p) {
     	move(enemy, player, p);
     	target(enemy, player, p);
     	return ENEMY_INPUT;
@@ -65,7 +65,7 @@ public class AI {
      * @param p
      * 		the {@link List} of {@link Projectile}.
      */
-    private static void move(AbstractTank enemy, AbstractTank player, List<Projectile> projectiles) {
+    private static void move(Tank enemy, Tank player, List<Projectile> projectiles) {
     	if(projectiles.isEmpty()) {
     		 if ((int)Calculate.distance(enemy.getPosition(), player.getPosition()) > CRITICAL_DISTANCE) {
     	        	moveEnemy(enemy, player, true);
@@ -88,7 +88,7 @@ public class AI {
      * @param p
      * 		the {@link List} of {@link Projectile}.
      */
-    private static void target(AbstractTank enemy, AbstractTank player, List<Projectile> p) {
+    private static void target(Tank enemy, Tank player, List<Projectile> p) {
     		 if(p.isEmpty()) {
     	        	ENEMY_INPUT.setTarget(player.getPosition());
     	        }
@@ -106,7 +106,7 @@ public class AI {
      * @param b
      * 		a {@link Boolean}. It's true if the enemy tank has to go closer, false otherwise.
      */
-    private static void moveEnemy(AbstractTank enemy, AbstractTank player, boolean b) {
+    private static void moveEnemy(Tank enemy, Tank player, boolean b) {
         // RIGHT and LEFT
         if (enemy.getPosition().getFirst() > player.getPosition().getFirst()) {
             ENEMY_INPUT.getMovement().put(Direction.LEFT, b);
@@ -140,7 +140,7 @@ public class AI {
      * @param p
      * 		the {@link Projectile}.
      */
-    private static void goAway(AbstractTank enemy, Projectile p) {
+    private static void goAway(Tank enemy, Projectile p) {
         // RIGHT and LEFT
         if ((enemy.getPosition().getFirst().intValue() - p.getPosition().getFirst().intValue()) < MIN_DISTANCE
         		&& p.getPosition().getFirst().intValue() < enemy.getPosition().getFirst().intValue()) {
@@ -172,7 +172,7 @@ public class AI {
      * 		the enemy {@link Tank}.
      * @return a new {@link Projectile}.
      */
-    public static Projectile shotEnemy(AbstractTank enemy) {
+    public static Projectile shotEnemy(Tank enemy) {
     	return enemy.shot();
 		
     }
@@ -185,7 +185,7 @@ public class AI {
      * 		the enemy {@link Tank}.
      * @return the nearest projectile.
      */
-    private static Projectile getNearest(List<Projectile> projectiles, AbstractTank enemy) {
+    private static Projectile getNearest(List<Projectile> projectiles, Tank enemy) {
     	return projectiles.stream().sorted(new Comparator<Projectile>() {
 
 			@Override

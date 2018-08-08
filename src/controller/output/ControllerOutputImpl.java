@@ -5,17 +5,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import controller.utility.Convertitor;
-import model.object.AbstractTank;
 import model.object.Projectile;
+import model.object.Tank;
 import model.utility.Pair;
 
 public class ControllerOutputImpl implements ControllerOutput {
 	
 	private List<Projectile> projectiles;
-	private AbstractTank playerTank;
-	private AbstractTank enemyTank;
+	private Tank playerTank;
+	private Tank enemyTank;
 	
-	public ControllerOutputImpl(List<Projectile> projectiles, AbstractTank playerTank, AbstractTank enemyTank) {
+	public ControllerOutputImpl(List<Projectile> projectiles, Tank playerTank, Tank enemyTank) {
 		this.projectiles = projectiles;
 		this.playerTank = playerTank;
 		this.enemyTank = enemyTank;
