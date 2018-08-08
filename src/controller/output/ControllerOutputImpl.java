@@ -4,17 +4,31 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import controller.Controller;
 import controller.utility.Convertitor;
 import model.object.AbstractTank;
 import model.object.Projectile;
 import model.utility.Pair;
 
+/**
+ * Concrete implementation of the {@link ControllerOutput} interface.
+ * This class manage the output made by the {@link Controller}.
+ */
 public class ControllerOutputImpl implements ControllerOutput {
 	
 	private List<Projectile> projectiles;
 	private AbstractTank playerTank;
 	private AbstractTank enemyTank;
 	
+	/**
+	 * Constructor.
+	 * @param projectiles
+	 * 			the list of {@link Projectile}.
+	 * @param playerTank
+	 * 			the player {@link Tank}.
+	 * @param enemyTank
+	 * 			the enemy {@link Tank}.
+	 */
 	public ControllerOutputImpl(List<Projectile> projectiles, AbstractTank playerTank, AbstractTank enemyTank) {
 		this.projectiles = projectiles;
 		this.playerTank = playerTank;

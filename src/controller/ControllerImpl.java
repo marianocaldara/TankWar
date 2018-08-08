@@ -53,6 +53,11 @@ public class ControllerImpl implements Controller {
 		
 	}
 
+	/**
+	 * Getter of the object {@link ControllerImpl}.
+	 * 
+	 * @return the object {@link ControllerImpl}.
+	 */
 	public static ControllerImpl getController() {
 		return SINGLETON;
 	}

@@ -29,6 +29,10 @@ public class LevelImpl implements Level {
 	 */
 	private LevelImpl() {}
 	
+	/**
+	 * Getter of the object {@link LevelImpl}.
+	 * @return the object {@link LevelImpl}.
+	 */
 	public static LevelImpl getLevelImpl() {
 		return SINGLETON;
 	}
