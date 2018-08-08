@@ -1,7 +1,6 @@
 package controller.objects;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,7 +30,7 @@ import model.utility.Pair;
 public class ControllerObjects implements ControllerTank, ControllerProjectile {
 	
 	private static final double MIN_DISTANCE_TO_SHOT = 350;
-	private static double MIN_DISTANCE;
+	private static final double MIN_DISTANCE = 70;
 	private final AbstractTank playerTank;
 	private final AbstractTank enemyTank;
 	private final Input playerInput;
@@ -50,17 +49,14 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
 	 * 		the enemy {@link Tank}.
 	 * @param playerInput
 	 * 		the player {@link Input}.
-	 * @param minDistance
-	 * 		the minimum distance between a {@link Projectile} and the enemy {@link Tank}. If the distance is lower the tank targets the projectile.
 	 * @param timeToShot
 	 * 		the the time in ms between two enemy shots.
 	 */
-	public ControllerObjects(final FactoryCollision factoryCollision, final AbstractTank playerTank, final AbstractTank enemyTank, final Input playerInput, double minDistance, 
+	public ControllerObjects(final FactoryCollision factoryCollision, final AbstractTank playerTank, final AbstractTank enemyTank, final Input playerInput, 
 			double timeToShot) {
 		this.playerTank = playerTank;
 		this.enemyTank = enemyTank;
 		this.playerInput = playerInput;
-		MIN_DISTANCE = minDistance;
 		this.timeToShot = timeToShot;
 		this.projectiles = new ArrayList<>();
 		this.factoryCollision = factoryCollision;

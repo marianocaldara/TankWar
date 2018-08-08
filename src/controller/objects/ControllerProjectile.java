@@ -1,9 +1,7 @@
 package controller.objects;
 
-import java.util.List;
 
 import javafx.scene.input.MouseEvent;
-import model.utility.Pair;
 
 /**
  * Interface to control {@link Projectile}.

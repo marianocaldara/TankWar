@@ -20,7 +20,6 @@ import view.View;
 public class ControllerImpl implements Controller {
 	
 	private static final ControllerImpl SINGLETON = new ControllerImpl();
-	private static final double MIN_DISTANCE = 70;
 	private static final double DEFAULT_TIME_TO_SHOT = 3000;
 	private ControllerObjects controllerObjects;
 	private FileController file;
@@ -86,9 +85,9 @@ public class ControllerImpl implements Controller {
 
 	@Override
 	public void initializeObjects() {
-		this.controllerObjects = new ControllerObjects(this.factoryCollision, this.world.getPlayer(), this.world.getEnemy(), this.world.getPlayerInput(), MIN_DISTANCE, 
+		this.controllerObjects = new ControllerObjects(this.factoryCollision, this.world.getPlayer(), this.world.getEnemy(), this.world.getPlayerInput(), 
 				this.timeToShot);
-		AI.initialize(this.world.getBounds(), MIN_DISTANCE, this.world.getEnemyInput());
+		AI.initialize(this.world.getBounds(), this.world.getEnemyInput());
 		
 	}
 	

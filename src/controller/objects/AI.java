@@ -21,20 +21,17 @@ public class AI {
 	private final static int CRITICAL_DISTANCE = 300;
     private static Pair<Double, Double> DIMENSION;
     private static Input ENEMY_INPUT;
-    private static double MIN_DISTANCE;
+    private static final double MIN_DISTANCE = 70;
     
     /**
      * Initialize the fields of the class.
      * @param dimension
      * 		the dimension of the {@link World}.
-     * @param minDistance
-     * 		the minimum distance between a {@link Projectile} and the enemy {@link Tank}. If the distance is lower the tank targets the projectile.
      * @param enemyInput
      * 		the enemy {@link Input}.
      */
-    public static void initialize(Pair<Double, Double> dimension, double minDistance, Input enemyInput) {
+    public static void initialize(Pair<Double, Double> dimension, Input enemyInput) {
     	DIMENSION = dimension;
-    	MIN_DISTANCE = minDistance;
     	ENEMY_INPUT = enemyInput;
     }
     
