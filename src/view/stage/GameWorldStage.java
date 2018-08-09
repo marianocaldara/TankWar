@@ -28,7 +28,7 @@ public class GameWorldStage implements SceneChanger {
         final Parent root = loader.load();
         this.gameWorld = loader.getController();
         this.gameWorld.init(controller);
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, width, height);
         scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
         Stage stage = ViewUtils.getStage();
         stage.centerOnScreen();
