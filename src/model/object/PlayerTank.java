@@ -161,6 +161,10 @@ public class PlayerTank implements Tank {
         private static final double WIDHT = 22.5;
         private static final double HEIGHT = 5.0;
         private static final double MARGINAL_DISTANCE = 10;
+        private static final double ANGLE_150 = 150;
+        private static final double ANGLE_180 = 180;
+        private static final double ANGLE_210 = 210;
+        private static final double ANGLE_270 = 270;
         private Pair<Double, Double> cannonDimension = new Pair<Double, Double>(WIDHT, HEIGHT);
         private Pair<Double, Double> cannonPosition;
         private double angle;
@@ -187,31 +191,30 @@ public class PlayerTank implements Tank {
          * 
          * @return the projectile just shooted
          */
-        @SuppressWarnings("checkstyle:magicnumber")
         public Projectile shot() {
-            if (this.angle >= 90 && this.angle < 150) {
+            if (this.angle >= 90 && this.angle < ANGLE_150) {
                 return new ProjectileImpl(new Pair<Double, Double>(
                         this.cannonPosition.getFirst() + this.cannonDimension.getFirst() / 2
                                 - (Tank.getDimension().getSecond() * Math.tan(Math.toRadians(this.angle - 90))),
                         position.getSecond() + Tank.getDimension().getSecond()), this.angle, projectileSpeed);
-            } else if (this.angle >= 150 && this.angle < 180) {
+            } else if (this.angle >= ANGLE_150 && this.angle < ANGLE_180) {
                 return new ProjectileImpl(
                         new Pair<Double, Double>(position.getFirst() - MARGINAL_DISTANCE,
                                 position.getSecond() + Tank.getDimension().getSecond() / 2
                                         + (this.cannonDimension.getFirst()
                                                 * Math.tan(Math.toRadians(180 - this.angle)))),
                         this.angle, projectileSpeed);
-            } else if (this.angle >= 180 && this.angle < 210) {
+            } else if (this.angle >= 180 && this.angle < ANGLE_210) {
                 return new ProjectileImpl(
                         new Pair<Double, Double>(position.getFirst() - MARGINAL_DISTANCE,
                                 position.getSecond() + Tank.getDimension().getSecond() / 2
                                         - (this.cannonDimension.getFirst()
                                                 * Math.tan(Math.toRadians(this.angle - 180)))),
                         this.angle, projectileSpeed);
-            } else if (this.angle >= 210 && this.angle < 270) {
+            } else if (this.angle >= ANGLE_210 && this.angle < ANGLE_270) {
                 return new ProjectileImpl(new Pair<Double, Double>(
                         this.cannonPosition.getFirst() + +this.cannonDimension.getFirst() / 2
-                                - (Tank.getDimension().getSecond() * Math.tan(Math.toRadians(270 - this.angle))),
+                                - (Tank.getDimension().getSecond() * Math.tan(Math.toRadians(ANGLE_270 - this.angle))),
                         position.getSecond() - 10), this.angle, projectileSpeed);
             } else {
                 return new ProjectileImpl(

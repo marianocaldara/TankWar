@@ -32,6 +32,11 @@ public class EnemyTank extends PlayerTank implements Tank {
      * He allows the Tank to shoot.
      */
     private class Cannon extends PlayerTank.Cannon {
+        private static final double ANGLE_30 = 30;
+        private static final double ANGLE_90 = 90;
+        private static final double ANGLE_330 = 330;
+        private static final double ANGLE_359 = 359;
+        private static final double ANGLE_270 = 270;
         @Override
         public void update(final Pair<Double, Double> position, final Pair<Double, Double> target) {
             setCannonPosition(new Pair<Double, Double>(position.getFirst() - Tank.getDimension().getFirst() / 2,
@@ -40,30 +45,29 @@ public class EnemyTank extends PlayerTank implements Tank {
                     new Pair<>(getCannonPosition().getFirst(), getCannonPosition().getSecond() + this.getCannonDimension().getSecond() / 2),
                     target));
         }
-        @SuppressWarnings("checkstyle:magicnumber")
         @Override
         public Projectile shot() {
-            if (getAngle() >= 30 && getAngle() < 90) {
+            if (getAngle() >= ANGLE_30 && getAngle() < ANGLE_90) {
                 return new ProjectileImpl(new Pair<Double, Double>(
                        getCannonPosition().getFirst() + super.getCannonDimension().getFirst() / 2
                                 + (Tank.getDimension().getSecond() * Math.tan(Math.toRadians(90 - getAngle()))),
                         getPosition().getSecond() + Tank.getDimension().getSecond()), getAngle(), getProjectileSpeed());
-            } else if (getAngle() >= 0 && getAngle() < 30) {
+            } else if (getAngle() >= 0 && getAngle() < ANGLE_30) {
                 return new ProjectileImpl(
                         new Pair<Double, Double>(getPosition().getFirst() + this.getCannonDimension().getFirst(),
                                 getPosition().getSecond() + Tank.getDimension().getSecond() / 2
                                         + (this.getCannonDimension().getFirst() * Math.tan(Math.toRadians(getAngle())))),
                         getAngle(), getProjectileSpeed());
-            } else if (getAngle() >= 330 && getAngle() <= 359) {
+            } else if (getAngle() >= ANGLE_330 && getAngle() <= ANGLE_359) {
                 return new ProjectileImpl(
                         new Pair<Double, Double>(getPosition().getFirst() + this.getCannonDimension().getFirst(),
                                 getPosition().getSecond() + Tank.getDimension().getSecond() / 2
                                         - (this.getCannonDimension().getFirst() * Math.tan(Math.toRadians(360 - getAngle())))),
                         getAngle(), getProjectileSpeed());
-            } else if (getAngle() >= 270 && getAngle() < 330) {
+            } else if (getAngle() >= ANGLE_270 && getAngle() < ANGLE_330) {
                 return new ProjectileImpl(new Pair<Double, Double>(
                         getCannonPosition().getFirst() + this.getCannonDimension().getFirst() / 2
-                                + (Tank.getDimension().getSecond() * Math.tan(Math.toRadians(getAngle() - 270))),
+                                + (Tank.getDimension().getSecond() * Math.tan(Math.toRadians(getAngle() - ANGLE_270))),
                         getPosition().getSecond() - Cannon.this.getMarginalDistance()), getAngle(), getProjectileSpeed());
             } else {
                 return new ProjectileImpl(
