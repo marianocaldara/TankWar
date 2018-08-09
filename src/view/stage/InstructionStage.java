@@ -26,7 +26,7 @@ public class InstructionStage implements SceneChanger {
         final Parent root = loader.load();
         this.instruction = loader.getController();
         this.instruction.init(controller);
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, width, height);
         scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
         Stage stage = ViewUtils.getStage();
         stage.centerOnScreen();

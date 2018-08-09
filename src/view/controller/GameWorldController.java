@@ -61,22 +61,22 @@ public class GameWorldController extends ViewController {
      * Manage the {@link KeyEvent} to move the player {@link Tank}.
      */
     public void moveTank() {
-        ViewUtils.getScene().setOnKeyPressed(e -> this.controller.getControllerObjects().movePlayerTank(e, true));
-        ViewUtils.getScene().setOnKeyReleased(e -> this.controller.getControllerObjects().movePlayerTank(e, false));
+        ViewUtils.getScene().setOnKeyPressed(e -> this.controller.getControllerInput().setKeyInput(e, true));
+        ViewUtils.getScene().setOnKeyReleased(e -> this.controller.getControllerInput().setKeyInput(e, false));
     }
 
     /**
      * Manage the {@link MouseEvent} to move the player cannon.
      */
     public void moveCannon() {
-        ViewUtils.getScene().setOnMouseMoved(e -> this.controller.getControllerObjects().movePlayerCannon(e));
+        ViewUtils.getScene().setOnMouseMoved(e -> this.controller.getControllerInput().setMouseMovement(e));
     }
 
     /**
      * Manage the {@link MouseEvent} to allow the player {@link Tank} shot.
      */
     public void shot() {
-        ViewUtils.getScene().setOnMouseClicked(e -> this.controller.getControllerObjects().playerShot(e));
+        ViewUtils.getScene().setOnMouseClicked(e -> this.controller.getControllerInput().setMouseClicked(e));
     }
 
     /**
@@ -113,7 +113,6 @@ public class GameWorldController extends ViewController {
      * Repaint the objects of the {@link View}.
      */
     private void repaint() {
-
         this.drawBackGround();
         this.drawTank();
         this.drawCannon();
@@ -123,7 +122,7 @@ public class GameWorldController extends ViewController {
     }
 
     /**
-     * Draw the lifes of the two {@link Tank}.
+     * Draw the lives of the two {@link Tank}.
      */
     private void drawLives() {
         this.playerLives.forEach(p -> this.worldGroup.getChildren().removeAll(this.playerLives));
@@ -154,11 +153,9 @@ public class GameWorldController extends ViewController {
     }
 
     /**
-     * 
+     * Draw the background of the scene.
      */
     private void drawBackGround() {
-        this.worldCanvas.setWidth(ViewUtils.getScene().getWidth());
-        this.worldCanvas.setHeight(ViewUtils.getScene().getHeight());
         this.backGround.setFitWidth(ViewUtils.getScene().getWidth());
         this.backGround.setFitHeight(ViewUtils.getScene().getHeight());
     }

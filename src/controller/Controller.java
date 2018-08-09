@@ -1,5 +1,6 @@
 package controller;
 
+import controller.input.ProcessInput;
 import controller.levels.Level;
 import controller.objects.ControllerObjects;
 import controller.output.ControllerOutput;
@@ -17,6 +18,13 @@ public interface Controller {
      * @return the {@link ControllerOutput}.
      */
     ControllerOutput getControllerOutput();
+
+    /**
+     * Getter of the {@link ProcessInput}.
+     * 
+     * @return the {@link ProcessInput}.
+     */
+    ProcessInput getControllerInput();
 
     /**
      * Initialize the {@link Controller} fields.

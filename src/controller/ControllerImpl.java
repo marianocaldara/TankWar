@@ -2,6 +2,8 @@ package controller;
 
 import controller.collision.FactoryCollision;
 import controller.collision.FactoryCollisionImpl;
+import controller.input.ProcessInput;
+import controller.input.ProcessInputImpl;
 import controller.levels.Level;
 import controller.levels.LevelImpl;
 import controller.loader.FileController;
@@ -66,6 +68,11 @@ public final class ControllerImpl implements Controller {
     }
 
     @Override
+    public ProcessInput getControllerInput() {
+        return ProcessInputImpl.getProcessInput();
+    }
+
+    @Override
     public Level getLevel() {
         return LevelImpl.getLevelImpl();
     }
@@ -86,6 +93,7 @@ public final class ControllerImpl implements Controller {
         this.controllerObjects = new ControllerObjects(this.factoryCollision, this.world.getPlayer(),
                 this.world.getEnemy(), this.world.getPlayerInput(), this.timeToShot);
         AI.initialize(this.world.getBounds(), this.world.getEnemyInput());
+        ProcessInputImpl.getProcessInput().initialize(this.controllerObjects, LevelImpl.getLevelImpl());
     }
 
     @Override

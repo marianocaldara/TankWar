@@ -50,6 +50,11 @@ public interface Level {
     void setLevelEnded();
 
     /**
+     * Set to current level paused and stop the {@link GameLoop}.
+     */
+    void setLevelPaused();
+
+    /**
      * Getter of the current level play.
      * 
      * @return the current level.

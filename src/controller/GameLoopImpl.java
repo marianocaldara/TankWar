@@ -130,6 +130,9 @@ public class GameLoopImpl extends Thread implements GameLoop {
         }
     }
 
+    /**
+     * Update the level state according to the controller.
+     */
     private void updateLevelState() {
         if (!this.controller.getControllerOutput().isPlayerAlive()) {
             this.controller.getLevel().setGameOver();
