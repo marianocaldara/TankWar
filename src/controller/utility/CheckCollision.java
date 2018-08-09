@@ -14,29 +14,37 @@ import model.object.Tank;
 /**
  * Utility class that catch the collision between the game objects.
  */
-public class CheckCollision {
+public final class CheckCollision {
 
-    private static Model WORLD;
+    private static Model world;
+
+    /**
+     * Constructor.
+     */
+    private CheckCollision() { }
 
     /**
      * Initialize the fields of the class.
      * 
-     * @param world
+     * @param model
      *            the {@link Model}.
      */
-    public static void initialize(Model world) {
-        WORLD = world;
+    public static void initialize(final Model model) {
+        world = model;
     }
 
     /**
      * Manage the collision between the two {@link Tank}.
-     * 
-     * @param movement
-     *            the {@link Input} of the player tank.
+     *
+     * @param playerTank
+     *          the player {@link Tank}.
+     * @param enemyTank
+     *          the enemy {@link Tank}.
+     *
      * @throws TankWithTankException
      *             if there is any collision.
      */
-    public static void tankWithTank(Tank playerTank, Tank enemyTank) throws TankWithTankException {
+    public static void tankWithTank(final Tank playerTank, final Tank enemyTank) throws TankWithTankException {
         if (CheckIntersection.intersects(playerTank.getPosition(), playerTank.getDimension(), enemyTank.getPosition(),
                 enemyTank.getDimension())) {
             throw new TankWithTankException();
@@ -51,12 +59,12 @@ public class CheckCollision {
      * @throws TankWithProjectileException
      *             if there is any collision.
      */
-    public static void tankWithProjectile(List<Projectile> projectiles) throws TankWithProjectileException {
+    public static void tankWithProjectile(final List<Projectile> projectiles) throws TankWithProjectileException {
         if (projectiles.stream()
                 .anyMatch(p -> CheckIntersection.intersects(p.getPosition(), p.getBounds(),
-                        WORLD.getPlayer().getPosition(), WORLD.getPlayer().getDimension()))
+                        world.getPlayer().getPosition(), world.getPlayer().getDimension()))
                 || projectiles.stream().anyMatch(p -> CheckIntersection.intersects(p.getPosition(), p.getBounds(),
-                        WORLD.getEnemy().getPosition(), WORLD.getEnemy().getDimension()))) {
+                        world.getEnemy().getPosition(), world.getEnemy().getDimension()))) {
             throw new TankWithProjectileException();
         }
     }
@@ -65,14 +73,16 @@ public class CheckCollision {
      * Manage the collision between the two {@link Tank} and the {@link World}
      * borders.
      * 
+     * @param tank
+     *          the colliding {@link Tank}.
      * @throws TankOutOfBordersException
      *             if the {@link Tank} goes out the {@link World} bounds.
      */
-    public static void tankWithBorders(Tank tank) throws TankOutOfBordersException {
+    public static void tankWithBorders(final Tank tank) throws TankOutOfBordersException {
         if (tank.getPosition().getFirst() < 0
-                || tank.getPosition().getFirst() + tank.getDimension().getFirst() > WORLD.getBounds().getFirst()
+                || tank.getPosition().getFirst() + tank.getDimension().getFirst() > world.getBounds().getFirst()
                 || (tank.getPosition().getSecond() < 0 || tank.getPosition().getSecond()
-                        + tank.getDimension().getSecond() > WORLD.getBounds().getSecond())) {
+                        + tank.getDimension().getSecond() > world.getBounds().getSecond())) {
             throw new TankOutOfBordersException();
 
         }
@@ -82,15 +92,15 @@ public class CheckCollision {
      * Manage the collision between the {@link Projectile} and the {@link World}
      * borders.
      * 
-     * @param projectiles
-     *            the list of {@link Projectile}.
+     * @param projectile
+     *            the colliding {@link Projectile}.
      * @throws ProjectileOutOfBordersException
      *             if the {@link Projectile} goes out the {@link World} bounds.
      */
-    public static void projectileWithBorders(Projectile projectile) throws ProjectileOutOfBordersException {
-        if (projectile.getPosition().getFirst() + projectile.getBounds().getFirst() >= WORLD.getBounds().getFirst()
+    public static void projectileWithBorders(final Projectile projectile) throws ProjectileOutOfBordersException {
+        if (projectile.getPosition().getFirst() + projectile.getBounds().getFirst() >= world.getBounds().getFirst()
                 || projectile.getPosition().getFirst() <= 0 || projectile.getPosition().getSecond()
-                        + projectile.getBounds().getSecond() >= WORLD.getBounds().getSecond()
+                        + projectile.getBounds().getSecond() >= world.getBounds().getSecond()
                 || projectile.getPosition().getSecond() <= 0) {
             throw new ProjectileOutOfBordersException();
 
@@ -106,7 +116,7 @@ public class CheckCollision {
      * @throws ProjectileWithProjectileException
      *             if there is any collision.
      */
-    public static void projectileWithProjectile(List<Projectile> projectiles) throws ProjectileWithProjectileException {
+    public static void projectileWithProjectile(final List<Projectile> projectiles) throws ProjectileWithProjectileException {
         for (Projectile p : projectiles) {
             for (Projectile x : projectiles) {
                 if (CheckIntersection.intersects(p.getPosition(), p.getBounds(), x.getPosition(), x.getBounds())

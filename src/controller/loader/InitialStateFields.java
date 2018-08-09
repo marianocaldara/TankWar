@@ -5,6 +5,9 @@ package controller.loader;
  */
 public enum InitialStateFields {
 
+    /**
+     * The list of the initial fields to set the two {@link Tank}.
+     */
     POSX("X"), POSY("Y"), SPEED("speed"), LIFES("lifes"), P_SPEED("pSpeed");
 
     private String fieldName;
@@ -16,7 +19,7 @@ public enum InitialStateFields {
      *            the name of the field.
      */
 
-    private InitialStateFields(String fieldName) {
+    InitialStateFields(final String fieldName) {
         this.fieldName = fieldName;
     }
 

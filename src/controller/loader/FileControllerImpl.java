@@ -18,7 +18,7 @@ public class FileControllerImpl implements FileController {
     private static final String PATH = "res/levels/";
     private static final String EXTENSION = ".json";
     private JSONParser json;
-    private Model world;
+    private final Model world;
 
     /**
      * Instance a new FileController.
@@ -26,14 +26,14 @@ public class FileControllerImpl implements FileController {
      * @param world
      *            the {@link Model} of the game.
      */
-    public FileControllerImpl(Model world) {
+    public FileControllerImpl(final Model world) {
         super();
         this.world = world;
         this.json = new JSONParser();
     }
 
     @Override
-    public void loadLevel(Levels level) {
+    public final void loadLevel(final Levels level) {
         Object obj;
         JSONObject jsonObject;
         try {

@@ -1,15 +1,20 @@
 package controller.levels;
 
 import controller.Controller;
-import controller.GameLoop;
 import controller.loader.FileController;
-import controller.objects.ControllerObjects;
 
 /**
  * Interface for the levels' control.
  */
 public interface Level {
 
+    /**
+     * Initialize the fields.
+     * @param fileController
+     *          the {@link FileController}.
+     * @param controller
+     *          the game {@link Controller}.
+     */
     void initialize(FileController fileController, Controller controller);
 
     /**
@@ -60,7 +65,7 @@ public interface Level {
     void setCurrentLevel(Levels currentLevel);
 
     /**
-     * Control if the game is ended
+     * Control if the game is ended.
      * 
      * @return true if the game is ended, false otherwise.
      */

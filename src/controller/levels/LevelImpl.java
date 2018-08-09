@@ -1,14 +1,15 @@
 package controller.levels;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Iterator;
 
 import controller.Controller;
 import controller.loader.FileController;
 
 /**
- * Concrete implementation of {@link Level} interface.
+ * Concrete implementation of {@link FileController} interface.
  */
-public class LevelImpl implements Level {
+public final class LevelImpl implements Level { 
 
     private static final LevelImpl SINGLETON = new LevelImpl();
     private boolean levelStarted;
@@ -36,7 +37,7 @@ public class LevelImpl implements Level {
     }
 
     @Override
-    public void initialize(FileController fileController, Controller controller) {
+    public void initialize(final FileController fileController, final Controller controller) {
         this.levelStarted = false;
         this.levelEnded = false;
         this.gameEnded = false;
@@ -96,7 +97,7 @@ public class LevelImpl implements Level {
     public void setCurrentLevel(final Levels currentLevel) {
         if (!currentLevel.equals(Levels.LEVEL_1)) {
             this.currentLevel = currentLevel;
-            while (this.levels.hasNext() && !this.levels.next().equals(this.currentLevel)) {
+            while (this.levels.hasNext() && !this.levels.next().equals(this.currentLevel)) { 
             }
         }
     }

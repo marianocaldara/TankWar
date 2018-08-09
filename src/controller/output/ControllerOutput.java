@@ -3,6 +3,9 @@ package controller.output;
 import java.util.List;
 import model.utility.Pair;
 
+/**
+ * Interface of the controller output.
+ */
 public interface ControllerOutput {
 
     /**
