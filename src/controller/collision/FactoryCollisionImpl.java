@@ -2,8 +2,6 @@ package controller.collision;
 
 import java.util.List;
 import java.util.Map;
-
-import model.Model;
 import model.object.Projectile;
 import model.object.Tank;
 import model.utility.Direction;

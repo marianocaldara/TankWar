@@ -44,7 +44,8 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
 
     /**
      * Constructor.
-     * 
+     * @param factoryCollision
+     *            a factory class to create a {@link Collision}.
      * @param playerTank
      *            the player {@link Tank}.
      * @param enemyTank
@@ -55,7 +56,7 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
      *            the the time in ms between two enemy shots.
      */
     public ControllerObjects(final FactoryCollision factoryCollision, final Tank playerTank, final Tank enemyTank,
-            final Input playerInput, double timeToShot) {
+            final Input playerInput, final double timeToShot) {
         this.playerTank = playerTank;
         this.enemyTank = enemyTank;
         this.playerInput = playerInput;
@@ -65,31 +66,34 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
         this.controllerOutput = new ControllerOutputImpl(this.projectiles, this.playerTank, this.enemyTank);
     }
 
-    public ControllerOutput getControllerOutput() {
+    /**
+     * Getter of the {@link ControllerOutput}.
+     * @return the controller output.
+     */
+    public final ControllerOutput getControllerOutput() {
         return this.controllerOutput;
     }
 
     @Override
-    public void playerShot(MouseEvent event) {
+    public final void playerShot(final MouseEvent event) {
         switch (event.getButton()) {
         case PRIMARY:
             this.projectiles.add(this.playerTank.shot());
             break;
         default:
-            ;
         }
 
     }
 
     @Override
-    public void updateProjectiles() {
+    public final void updateProjectiles() {
         this.projectiles.forEach(p -> p.update());
         this.checkProjectileCollision();
         this.deleteProjectiles(this.getDeadProjectiles());
     }
 
     @Override
-    public void movePlayerTank(KeyEvent event, boolean b) {
+    public final void movePlayerTank(final KeyEvent event, final boolean b) {
         switch (event.getCode()) {
         case UP:
             this.playerInput.getMovement().put(Direction.UP, b);
@@ -116,13 +120,12 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
             this.playerInput.getMovement().put(Direction.RIGHT, b);
             break;
         default:
-            ;
         }
 
     }
 
     @Override
-    public void updateTank() {
+    public final void updateTank() {
         this.playerTank.update(this.playerInput);
         this.enemyTank.update(AI.act(this.enemyTank, this.playerTank, this.getNearestProjectiles()));
         if (this.finalTime - this.initialTime > this.timeToShot && Calculate.distance(this.playerTank.getPosition(),
@@ -135,7 +138,7 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
     }
 
     @Override
-    public void movePlayerCannon(MouseEvent event) {
+    public final void movePlayerCannon(final MouseEvent event) {
         this.playerInput
                 .setTarget(Convertitor.viewToModel(new Pair<Double, Double>(event.getSceneX(), event.getSceneY())));
 
@@ -156,7 +159,7 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
      * @param deadProjectiles
      *            the list of dead {@link Projectile}.
      */
-    private void deleteProjectiles(List<Projectile> deadProjectiles) {
+    private void deleteProjectiles(final List<Projectile> deadProjectiles) {
         this.projectiles.removeAll(deadProjectiles);
     }
 

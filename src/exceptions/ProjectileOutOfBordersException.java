@@ -1,7 +1,5 @@
 package exceptions;
 
-import model.object.Projectile;
-
 /**
  * Exception threw when a {@link Projectile} goes out from the {@link World}
  * borders.

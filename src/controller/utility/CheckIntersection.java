@@ -3,9 +3,14 @@ package controller.utility;
 import model.utility.Pair;
 
 /**
- * Utility class to check the intersection between two objects
+ * Utility class to check the intersection between two objects.
  */
-public class CheckIntersection {
+public final class CheckIntersection {
+
+    /**
+     * Constructor.
+     */
+    private CheckIntersection() { }
 
     /**
      * Control if two objects intersect each other.
@@ -20,8 +25,8 @@ public class CheckIntersection {
      *            the dimension of the second object.
      * @return true if the two objects intersect, false otherwise.
      */
-    public static boolean intersects(Pair<Double, Double> positionFirst, Pair<Double, Double> dimensionFirst,
-            Pair<Double, Double> positionSecond, Pair<Double, Double> dimensionSecond) {
+    public static boolean intersects(final Pair<Double, Double> positionFirst, final Pair<Double, Double> dimensionFirst,
+            final Pair<Double, Double> positionSecond, final Pair<Double, Double> dimensionSecond) {
         if (positionFirst == null || dimensionFirst == null || positionSecond == null || dimensionSecond == null) {
             return false;
         }

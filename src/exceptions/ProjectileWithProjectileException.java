@@ -1,7 +1,5 @@
 package exceptions;
 
-import model.object.Projectile;
-
 /**
  * Exception threw when two {@link Projectile} collide each other.
  */

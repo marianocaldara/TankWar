@@ -1,7 +1,7 @@
 package exceptions;
 
 /**
- * Exception for Model
+ * Exception for Model.
  */
 public class TankDeadException extends IllegalStateException {
 
@@ -23,7 +23,7 @@ public class TankDeadException extends IllegalStateException {
      * @param msg
      *            {@inheritDoc IllegalStateException#IllegalStateException(String)}
      */
-    public TankDeadException(String msg) {
+    public TankDeadException(final String msg) {
         super(msg);
     }
 }

@@ -4,7 +4,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 /**
- * Interface to control {@link Tank}
+ * Interface to control {@link Tank}.
  */
 public interface ControllerTank {
 

@@ -7,21 +7,23 @@ import view.View;
 /**
  * Utility class to convert from model dimension to view dimension.
  */
-public class Convertitor {
-    private static Model WORLD;
-    private static View VIEW;
+public final class Convertitor {
+    private static Model world;
+    private static View view;
+
+    private Convertitor() { }
 
     /**
      * Initialize the fields.
      * 
-     * @param world
+     * @param model
      *            the game {@link Model}.
-     * @param view
+     * @param gameView
      *            the game {@link View}.
      */
-    public static void initialize(Model world, View view) {
-        WORLD = world;
-        VIEW = view;
+    public static void initialize(final Model model, final View gameView) {
+        world = model;
+        view = gameView;
     }
 
     /**
@@ -31,8 +33,8 @@ public class Convertitor {
      *            a {@link Pair} to convert.
      * @return a {@link Pair} of the new values.
      */
-    public static Pair<Double, Double> viewToModel(Pair<Double, Double> toConvert) {
-        return convertitor(toConvert, WORLD.getBounds(), VIEW.getBounds());
+    public static Pair<Double, Double> viewToModel(final Pair<Double, Double> toConvert) {
+        return convertitor(toConvert, world.getBounds(), view.getBounds());
     }
 
     /**
@@ -42,8 +44,8 @@ public class Convertitor {
      *            a {@link Pair} to convert.
      * @return a {@link Pair} of the new values.
      */
-    public static Pair<Double, Double> modelToView(Pair<Double, Double> toConvert) {
-        return convertitor(toConvert, VIEW.getBounds(), WORLD.getBounds());
+    public static Pair<Double, Double> modelToView(final Pair<Double, Double> toConvert) {
+        return convertitor(toConvert, view.getBounds(), world.getBounds());
     }
 
     /**
@@ -57,8 +59,8 @@ public class Convertitor {
      *            the {@link Model} or the {@link View} dimension.
      * @return the converted object.
      */
-    private static Pair<Double, Double> convertitor(Pair<Double, Double> toConvert, Pair<Double, Double> firstDimension,
-            Pair<Double, Double> secondDimension) {
+    private static Pair<Double, Double> convertitor(final Pair<Double, Double> toConvert, final Pair<Double, Double> firstDimension,
+            final Pair<Double, Double> secondDimension) {
         return new Pair<>(toConvert.getFirst() * firstDimension.getFirst() / secondDimension.getFirst(),
                 (toConvert.getSecond() * firstDimension.getSecond() / secondDimension.getSecond()));
     }

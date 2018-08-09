@@ -16,24 +16,30 @@ import model.utility.Pair;
 /**
  * Class AI implements methods to make enemy tank act like a player.
  */
-public class AI {
+public final class AI {
 
-    private final static int CRITICAL_DISTANCE = 300;
-    private static Pair<Double, Double> DIMENSION;
-    private static Input ENEMY_INPUT;
+    private static final int CRITICAL_DISTANCE = 300;
+    private static Pair<Double, Double> worldBounds;
+    private static Input enemyInput;
     private static final double MIN_DISTANCE = 70;
 
+    /**
+     * Constructor.
+     */
+    private AI() {
+        super();
+    }
     /**
      * Initialize the fields of the class.
      * 
      * @param dimension
      *            the dimension of the {@link World}.
-     * @param enemyInput
+     * @param input
      *            the enemy {@link Input}.
      */
-    public static void initialize(Pair<Double, Double> dimension, Input enemyInput) {
-        DIMENSION = dimension;
-        ENEMY_INPUT = enemyInput;
+    public static void initialize(final Pair<Double, Double> dimension, final Input input) {
+        worldBounds = dimension;
+        enemyInput = input;
     }
 
     /**
@@ -48,10 +54,10 @@ public class AI {
      *            the {@link List} of {@link Projectile}.
      * @return the enemy tank {@link Input}.
      */
-    public static Input act(Tank enemy, Tank player, List<Projectile> p) {
+    public static Input act(final Tank enemy, final Tank player, final List<Projectile> p) {
         move(enemy, player, p);
         target(enemy, player, p);
-        return ENEMY_INPUT;
+        return enemyInput;
 
     }
 
@@ -65,7 +71,7 @@ public class AI {
      * @param p
      *            the {@link List} of {@link Projectile}.
      */
-    private static void move(Tank enemy, Tank player, List<Projectile> projectiles) {
+    private static void move(final Tank enemy, final Tank player, final List<Projectile> projectiles) {
         if (projectiles.isEmpty()) {
             if ((int) Calculate.distance(enemy.getPosition(), player.getPosition()) > CRITICAL_DISTANCE) {
                 moveEnemy(enemy, player, true);
@@ -87,11 +93,11 @@ public class AI {
      * @param p
      *            the {@link List} of {@link Projectile}.
      */
-    private static void target(Tank enemy, Tank player, List<Projectile> p) {
+    private static void target(final Tank enemy, final Tank player, final List<Projectile> p) {
         if (p.isEmpty()) {
-            ENEMY_INPUT.setTarget(player.getPosition());
+            enemyInput.setTarget(player.getPosition());
         } else {
-            ENEMY_INPUT.setTarget(getNearest(p, enemy).getPosition());
+            enemyInput.setTarget(getNearest(p, enemy).getPosition());
         }
     }
 
@@ -107,28 +113,28 @@ public class AI {
      *            a {@link Boolean}. It's true if the enemy tank has to go closer,
      *            false otherwise.
      */
-    private static void moveEnemy(Tank enemy, Tank player, boolean b) {
+    private static void moveEnemy(final Tank enemy, final Tank player, final boolean b) {
         // RIGHT and LEFT
         if (enemy.getPosition().getFirst() > player.getPosition().getFirst()) {
-            ENEMY_INPUT.getMovement().put(Direction.LEFT, b);
-            ENEMY_INPUT.getMovement().put(Direction.RIGHT, !b);
+            enemyInput.getMovement().put(Direction.LEFT, b);
+            enemyInput.getMovement().put(Direction.RIGHT, !b);
         } else if (enemy.getPosition().getFirst() < player.getPosition().getFirst()) {
-            ENEMY_INPUT.getMovement().put(Direction.RIGHT, b);
-            ENEMY_INPUT.getMovement().put(Direction.LEFT, !b);
+            enemyInput.getMovement().put(Direction.RIGHT, b);
+            enemyInput.getMovement().put(Direction.LEFT, !b);
         } else if (enemy.getPosition().getFirst() == player.getPosition().getFirst()) {
-            ENEMY_INPUT.getMovement().put(Direction.RIGHT, false);
-            ENEMY_INPUT.getMovement().put(Direction.LEFT, false);
+            enemyInput.getMovement().put(Direction.RIGHT, false);
+            enemyInput.getMovement().put(Direction.LEFT, false);
         }
         // UP and DOWN
         if (enemy.getPosition().getSecond() - player.getPosition().getSecond() > 0) {
-            ENEMY_INPUT.getMovement().put(Direction.UP, b);
-            ENEMY_INPUT.getMovement().put(Direction.DOWN, !b);
+            enemyInput.getMovement().put(Direction.UP, b);
+            enemyInput.getMovement().put(Direction.DOWN, !b);
         } else if (enemy.getPosition().getSecond() - player.getPosition().getSecond() < 0) {
-            ENEMY_INPUT.getMovement().put(Direction.DOWN, b);
-            ENEMY_INPUT.getMovement().put(Direction.UP, !b);
+            enemyInput.getMovement().put(Direction.DOWN, b);
+            enemyInput.getMovement().put(Direction.UP, !b);
         } else if (enemy.getPosition().getSecond() == player.getPosition().getSecond()) {
-            ENEMY_INPUT.getMovement().put(Direction.DOWN, false);
-            ENEMY_INPUT.getMovement().put(Direction.UP, false);
+            enemyInput.getMovement().put(Direction.DOWN, false);
+            enemyInput.getMovement().put(Direction.UP, false);
         }
     }
 
@@ -140,31 +146,31 @@ public class AI {
      * @param p
      *            the {@link Projectile}.
      */
-    private static void goAway(Tank enemy, Projectile p) {
+    private static void goAway(final Tank enemy, final Projectile p) {
         // RIGHT and LEFT
         if ((enemy.getPosition().getFirst().intValue() - p.getPosition().getFirst().intValue()) < MIN_DISTANCE
                 && p.getPosition().getFirst().intValue() < enemy.getPosition().getFirst().intValue()) {
-            ENEMY_INPUT.getMovement().put(Direction.LEFT, false);
-            ENEMY_INPUT.getMovement().put(Direction.RIGHT, true);
+            enemyInput.getMovement().put(Direction.LEFT, false);
+            enemyInput.getMovement().put(Direction.RIGHT, true);
         } else if ((p.getPosition().getFirst().intValue() - (enemy.getPosition().getFirst().intValue()
                 + enemy.getDimension().getFirst().intValue())) < MIN_DISTANCE
                 && p.getPosition().getFirst().intValue() > enemy.getPosition().getFirst().intValue()) {
-            ENEMY_INPUT.getMovement().put(Direction.RIGHT, false);
-            ENEMY_INPUT.getMovement().put(Direction.LEFT, true);
+            enemyInput.getMovement().put(Direction.RIGHT, false);
+            enemyInput.getMovement().put(Direction.LEFT, true);
         }
         // UP and DOWN
         if ((enemy.getPosition().getSecond().intValue() - p.getPosition().getSecond().intValue()) < MIN_DISTANCE
                 && p.getPosition().getSecond().intValue() < enemy.getPosition().getSecond().intValue()
                 || enemy.getPosition().getSecond().intValue() <= 0) {
-            ENEMY_INPUT.getMovement().put(Direction.DOWN, true);
-            ENEMY_INPUT.getMovement().put(Direction.UP, false);
+            enemyInput.getMovement().put(Direction.DOWN, true);
+            enemyInput.getMovement().put(Direction.UP, false);
         } else if ((p.getPosition().getSecond().intValue() - (enemy.getPosition().getSecond().intValue()
                 + enemy.getDimension().getSecond().intValue())) < MIN_DISTANCE
                 && p.getPosition().getSecond().intValue() > enemy.getPosition().getSecond().intValue()
-                || enemy.getPosition().getSecond().intValue() + enemy.getDimension().getSecond().intValue() > DIMENSION
+                || enemy.getPosition().getSecond().intValue() + enemy.getDimension().getSecond().intValue() > worldBounds
                         .getSecond()) {
-            ENEMY_INPUT.getMovement().put(Direction.UP, true);
-            ENEMY_INPUT.getMovement().put(Direction.DOWN, false);
+            enemyInput.getMovement().put(Direction.UP, true);
+            enemyInput.getMovement().put(Direction.DOWN, false);
         }
     }
 
@@ -175,7 +181,7 @@ public class AI {
      *            the enemy {@link Tank}.
      * @return a new {@link Projectile}.
      */
-    public static Projectile shotEnemy(Tank enemy) {
+    public static Projectile shotEnemy(final Tank enemy) {
         return enemy.shot();
 
     }
@@ -189,18 +195,18 @@ public class AI {
      *            the enemy {@link Tank}.
      * @return the nearest projectile.
      */
-    private static Projectile getNearest(List<Projectile> projectiles, Tank enemy) {
+    private static Projectile getNearest(final List<Projectile> projectiles, final Tank enemy) {
         return projectiles.stream().sorted(new Comparator<Projectile>() {
 
             @Override
-            public int compare(Projectile o1, Projectile o2) {
+            public int compare(final Projectile o1, final Projectile o2) {
                 if ((int) Calculate.distance(o1.getPosition(), enemy.getPosition()) < (int) Calculate
                         .distance(o2.getPosition(), enemy.getPosition())) {
                     return 1;
-                } else
+                } else {
                     return 0;
             }
-        }).collect(Collectors.toList()).get(0);
+        } }).collect(Collectors.toList()).get(0);
 
     }
 
