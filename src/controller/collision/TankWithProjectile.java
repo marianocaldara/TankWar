@@ -38,12 +38,12 @@ public class TankWithProjectile implements Collision {
         updateTankLifeAndProjectiles(this.playerTank,
                 projectiles.stream()
                         .filter(p -> CheckIntersection.intersects(p.getPosition(), p.getBounds(),
-                                this.playerTank.getPosition(), this.playerTank.getDimension()))
+                                this.playerTank.getPosition(), Tank.getDimension()))
                         .collect(Collectors.toList()));
         updateTankLifeAndProjectiles(this.enemyTank,
                 projectiles.stream()
                         .filter(p -> CheckIntersection.intersects(p.getPosition(), p.getBounds(),
-                                this.enemyTank.getPosition(), this.enemyTank.getDimension()))
+                                this.enemyTank.getPosition(), Tank.getDimension()))
                         .collect(Collectors.toList()));
 
     }

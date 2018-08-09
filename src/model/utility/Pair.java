@@ -64,7 +64,7 @@ public class Pair<X, Y> {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((x == null) ? 0 : x.hashCode());
@@ -73,7 +73,7 @@ public class Pair<X, Y> {
     }
 
     @Override
-    public boolean equals(final Object obj) {
+    public final boolean equals(final Object obj) {
         if (this == obj) {
             return true;
         }

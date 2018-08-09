@@ -36,40 +36,40 @@ public class TankWithTank implements Collision {
     public final void manageCollision() {
         if (movement.get(Direction.RIGHT) && movement.get(Direction.UP)
                 && this.playerTank.getPosition().getFirst()
-                        + this.playerTank.getDimension().getFirst() >= this.enemyTank.getPosition().getFirst()
+                        + Tank.getDimension().getFirst() >= this.enemyTank.getPosition().getFirst()
                                 + MARGINAL_DISTANCE) {
             this.playerTank.setPosition(new Pair<>(this.playerTank.getPosition().getFirst(),
-                    this.enemyTank.getPosition().getSecond() + this.playerTank.getDimension().getSecond()));
+                    this.enemyTank.getPosition().getSecond() + Tank.getDimension().getSecond()));
         } else if (movement.get(Direction.RIGHT) && movement.get(Direction.DOWN)
                 && this.playerTank.getPosition().getFirst()
-                        + this.playerTank.getDimension().getFirst() >= this.enemyTank.getPosition().getFirst()
+                        + Tank.getDimension().getFirst() >= this.enemyTank.getPosition().getFirst()
                                 + MARGINAL_DISTANCE) {
             this.playerTank.setPosition(new Pair<>(this.playerTank.getPosition().getFirst(),
-                    this.enemyTank.getPosition().getSecond() - this.playerTank.getDimension().getSecond()));
+                    this.enemyTank.getPosition().getSecond() - Tank.getDimension().getSecond()));
         } else if (movement.get(Direction.LEFT) && movement.get(Direction.UP)
                 && this.playerTank.getPosition().getFirst() <= this.enemyTank.getPosition().getFirst()
-                        + this.enemyTank.getDimension().getFirst() - MARGINAL_DISTANCE) {
+                        + Tank.getDimension().getFirst() - MARGINAL_DISTANCE) {
             this.playerTank.setPosition(new Pair<>(this.playerTank.getPosition().getFirst(),
-                    this.enemyTank.getPosition().getSecond() + this.playerTank.getDimension().getSecond()));
+                    this.enemyTank.getPosition().getSecond() + Tank.getDimension().getSecond()));
         } else if (movement.get(Direction.LEFT) && movement.get(Direction.DOWN)
                 && this.playerTank.getPosition().getFirst() <= this.enemyTank.getPosition().getFirst()
-                        + this.enemyTank.getDimension().getFirst() - MARGINAL_DISTANCE) {
+                        + Tank.getDimension().getFirst() - MARGINAL_DISTANCE) {
             this.playerTank.setPosition(new Pair<>(this.playerTank.getPosition().getFirst(),
-                    this.enemyTank.getPosition().getSecond() - this.playerTank.getDimension().getSecond()));
+                    this.enemyTank.getPosition().getSecond() - Tank.getDimension().getSecond()));
         } else if (movement.get(Direction.RIGHT)) {
             this.playerTank.setPosition(
-                    new Pair<>(this.enemyTank.getPosition().getFirst() - this.playerTank.getDimension().getFirst(),
+                    new Pair<>(this.enemyTank.getPosition().getFirst() - Tank.getDimension().getFirst(),
                             this.playerTank.getPosition().getSecond()));
         } else if (movement.get(Direction.LEFT)) {
             this.playerTank.setPosition(
-                    new Pair<>(this.enemyTank.getPosition().getFirst() + this.playerTank.getDimension().getFirst(),
+                    new Pair<>(this.enemyTank.getPosition().getFirst() + Tank.getDimension().getFirst(),
                             this.playerTank.getPosition().getSecond()));
         } else if (movement.get(Direction.DOWN)) {
             this.playerTank.setPosition(new Pair<>(this.playerTank.getPosition().getFirst(),
-                    this.enemyTank.getPosition().getSecond() - this.playerTank.getDimension().getSecond()));
+                    this.enemyTank.getPosition().getSecond() - Tank.getDimension().getSecond()));
         } else if (movement.get(Direction.UP)) {
             this.playerTank.setPosition(new Pair<>(this.playerTank.getPosition().getFirst(),
-                    this.enemyTank.getPosition().getSecond() + this.playerTank.getDimension().getSecond()));
+                    this.enemyTank.getPosition().getSecond() + Tank.getDimension().getSecond()));
         }
     }
 

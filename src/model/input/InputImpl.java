@@ -39,22 +39,22 @@ public class InputImpl implements Input {
     }
 
     @Override
-    public Pair<Double, Double> getTargetPosition() {
+    public final Pair<Double, Double> getTargetPosition() {
         return this.target;
     }
 
     @Override
-    public void setTarget(final Pair<Double, Double> target) {
+    public final void setTarget(final Pair<Double, Double> target) {
         this.target = target;
     }
 
     @Override
-    public void setMovement(final Map<Direction, Boolean> movement) {
+    public final void setMovement(final Map<Direction, Boolean> movement) {
         this.movement = movement;
     }
 
     @Override
-    public Map<Direction, Boolean> getMovement() {
+    public final Map<Direction, Boolean> getMovement() {
         return this.movement;
     }
 }

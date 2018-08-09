@@ -67,7 +67,7 @@ public class ControllerOutputImpl implements ControllerOutput {
 
     @Override
     public final Pair<Double, Double> getTankDimension() {
-        return Convertitor.modelToView(this.playerTank.getDimension());
+        return Convertitor.modelToView(Tank.getDimension());
     }
 
     @Override

@@ -135,9 +135,9 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
      */
     private List<Projectile> getNearestProjectiles() {
         return this.projectiles.stream().filter(p -> (int) Calculate.distance(p.getPosition(),
-                new Pair<>(this.enemyTank.getPosition().getFirst() + this.enemyTank.getDimension().getFirst() / 2,
+                new Pair<>(this.enemyTank.getPosition().getFirst() + Tank.getDimension().getFirst() / 2,
                         this.enemyTank.getPosition().getSecond()
-                                + this.enemyTank.getDimension().getSecond() / 2)) < MIN_DISTANCE)
+                                + Tank.getDimension().getSecond() / 2)) < MIN_DISTANCE)
                 .collect(Collectors.toList());
 
     }

@@ -26,15 +26,15 @@ public class TankWithBorders implements Collision {
 
     @Override
     public final void manageCollision() {
-        if (tank.getPosition().getFirst() + tank.getDimension().getFirst() >= worldBounds.getFirst()) { // Exceeding
+        if (tank.getPosition().getFirst() + Tank.getDimension().getFirst() >= worldBounds.getFirst()) { // Exceeding
                                                                                                         // right
-            tank.getPosition().setFirst(worldBounds.getFirst() - tank.getDimension().getFirst());
+            tank.getPosition().setFirst(worldBounds.getFirst() - Tank.getDimension().getFirst());
         } else if (tank.getPosition().getFirst() <= 0) { // Exceeding left
             tank.getPosition().setFirst(0.0);
         }
-        if (tank.getPosition().getSecond() + tank.getDimension().getSecond() >= worldBounds.getSecond()) { // Exceeding
+        if (tank.getPosition().getSecond() + Tank.getDimension().getSecond() >= worldBounds.getSecond()) { // Exceeding
                                                                                                            // down
-            tank.getPosition().setSecond(worldBounds.getSecond() - tank.getDimension().getSecond());
+            tank.getPosition().setSecond(worldBounds.getSecond() - Tank.getDimension().getSecond());
         } else if (tank.getPosition().getSecond() <= 0) { // Exceeding up
             tank.getPosition().setSecond(0.0);
         }

@@ -45,8 +45,8 @@ public final class CheckCollision {
      *             if there is any collision.
      */
     public static void tankWithTank(final Tank playerTank, final Tank enemyTank) throws TankWithTankException {
-        if (CheckIntersection.intersects(playerTank.getPosition(), playerTank.getDimension(), enemyTank.getPosition(),
-                enemyTank.getDimension())) {
+        if (CheckIntersection.intersects(playerTank.getPosition(), Tank.getDimension(), enemyTank.getPosition(),
+                Tank.getDimension())) {
             throw new TankWithTankException();
         }
     }
@@ -60,11 +60,13 @@ public final class CheckCollision {
      *             if there is any collision.
      */
     public static void tankWithProjectile(final List<Projectile> projectiles) throws TankWithProjectileException {
+        world.getPlayer();
+        world.getEnemy();
         if (projectiles.stream()
                 .anyMatch(p -> CheckIntersection.intersects(p.getPosition(), p.getBounds(),
-                        world.getPlayer().getPosition(), world.getPlayer().getDimension()))
+                        world.getPlayer().getPosition(), Tank.getDimension()))
                 || projectiles.stream().anyMatch(p -> CheckIntersection.intersects(p.getPosition(), p.getBounds(),
-                        world.getEnemy().getPosition(), world.getEnemy().getDimension()))) {
+                        world.getEnemy().getPosition(), Tank.getDimension()))) {
             throw new TankWithProjectileException();
         }
     }
@@ -80,9 +82,9 @@ public final class CheckCollision {
      */
     public static void tankWithBorders(final Tank tank) throws TankOutOfBordersException {
         if (tank.getPosition().getFirst() < 0
-                || tank.getPosition().getFirst() + tank.getDimension().getFirst() > world.getBounds().getFirst()
+                || tank.getPosition().getFirst() + Tank.getDimension().getFirst() > world.getBounds().getFirst()
                 || (tank.getPosition().getSecond() < 0 || tank.getPosition().getSecond()
-                        + tank.getDimension().getSecond() > world.getBounds().getSecond())) {
+                        + Tank.getDimension().getSecond() > world.getBounds().getSecond())) {
             throw new TankOutOfBordersException();
 
         }
