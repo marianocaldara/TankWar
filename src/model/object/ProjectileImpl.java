@@ -5,9 +5,6 @@ import model.utility.Pair;
 
 /**
  * Concrete implementation of {@link Projectile}.
- * 
- * @author Scu
- *
  */
 public class ProjectileImpl implements Projectile {
     private final Pair<Double, Double> position;
@@ -39,12 +36,12 @@ public class ProjectileImpl implements Projectile {
         this.speedX = speed * Math.cos(Math.toRadians(angle));
         this.speedY = speed * Math.sin(Math.toRadians(angle));
     }
-
-    public Pair<Double, Double> getPosition() {
+    @Override
+    public final Pair<Double, Double> getPosition() {
         return this.position;
     }
-
-    public void bounce(final Direction dir) {
+    @Override
+    public final void bounce(final Direction dir) {
         if (nrbounced >= MAX_BOUNCE) {
             throw new IllegalStateException();
         } else {
@@ -57,20 +54,20 @@ public class ProjectileImpl implements Projectile {
             nrbounced++;
         }
     }
-
-    public void setDead() {
+    @Override
+    public final void setDead() {
         this.alive = false;
     }
-
-    public boolean isAlive() {
+    @Override
+    public final boolean isAlive() {
         return this.alive;
     }
-
-    public Pair<Double, Double> getBounds() {
+    @Override
+    public final Pair<Double, Double> getBounds() {
         return new Pair<Double, Double>(DIMENSION.getFirst(), DIMENSION.getSecond());
     }
-
-    public void update() {
+    @Override
+    public final void update() {
         this.position.setFirst(this.position.getFirst() + this.speedX);
         this.position.setSecond(this.position.getSecond() + this.speedY);
     }

@@ -56,12 +56,12 @@ public class World implements Model {
     }
 
     @Override
-    public Input getPlayerInput() {
+    public final Input getPlayerInput() {
         return this.playerInput;
     }
 
     @Override
-    public Input getEnemyInput() {
+    public final Input getEnemyInput() {
         return this.enemyInput;
     }
 

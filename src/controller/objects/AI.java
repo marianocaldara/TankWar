@@ -153,7 +153,7 @@ public final class AI {
             enemyInput.getMovement().put(Direction.LEFT, false);
             enemyInput.getMovement().put(Direction.RIGHT, true);
         } else if ((p.getPosition().getFirst().intValue() - (enemy.getPosition().getFirst().intValue()
-                + enemy.getDimension().getFirst().intValue())) < MIN_DISTANCE
+                + Tank.getDimension().getFirst().intValue())) < MIN_DISTANCE
                 && p.getPosition().getFirst().intValue() > enemy.getPosition().getFirst().intValue()) {
             enemyInput.getMovement().put(Direction.RIGHT, false);
             enemyInput.getMovement().put(Direction.LEFT, true);
@@ -165,9 +165,9 @@ public final class AI {
             enemyInput.getMovement().put(Direction.DOWN, true);
             enemyInput.getMovement().put(Direction.UP, false);
         } else if ((p.getPosition().getSecond().intValue() - (enemy.getPosition().getSecond().intValue()
-                + enemy.getDimension().getSecond().intValue())) < MIN_DISTANCE
+                + Tank.getDimension().getSecond().intValue())) < MIN_DISTANCE
                 && p.getPosition().getSecond().intValue() > enemy.getPosition().getSecond().intValue()
-                || enemy.getPosition().getSecond().intValue() + enemy.getDimension().getSecond().intValue() > worldBounds
+                || enemy.getPosition().getSecond().intValue() + Tank.getDimension().getSecond().intValue() > worldBounds
                         .getSecond()) {
             enemyInput.getMovement().put(Direction.UP, true);
             enemyInput.getMovement().put(Direction.DOWN, false);

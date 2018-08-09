@@ -3,7 +3,9 @@ package model.utility;
 /**
  * Generic class to calculate main operation like distance, probabilty.
  */
-public class Calculate {
+public final class Calculate {
+    private Calculate() {
+    }
     /**
      * Calculate the distance between two points.
      * 
@@ -15,14 +17,14 @@ public class Calculate {
      * 
      * @see Pair
      */
-    public static double distance(Pair<Double, Double> pos1, Pair<Double, Double> pos2) {
+    public static double distance(final Pair<Double, Double> pos1, final Pair<Double, Double> pos2) {
         return Math.sqrt(
                 Math.pow(pos1.getFirst() - pos2.getFirst(), 2) + Math.pow(pos1.getSecond() - pos2.getSecond(), 2));
     }
 
     /**
      * 
-     * @return
+     * @return probability
      */
     public static double probability() {
         return Math.random() * 100;
@@ -39,7 +41,7 @@ public class Calculate {
      * 
      * @see Pair
      */
-    public static double angle(Pair<Double, Double> pos0, Pair<Double, Double> pos1) {
+    public static double angle(final Pair<Double, Double> pos0, final Pair<Double, Double> pos1) {
         double angle = Math
                 .toDegrees(Math.atan2(pos1.getSecond() - pos0.getSecond(), pos1.getFirst() - pos0.getFirst()));
 
