@@ -113,7 +113,6 @@ public class GameWorldController extends ViewController {
      * Repaint the objects of the {@link View}.
      */
     private void repaint() {
-
         this.drawBackGround();
         this.drawTank();
         this.drawCannon();
@@ -123,7 +122,7 @@ public class GameWorldController extends ViewController {
     }
 
     /**
-     * Draw the lifes of the two {@link Tank}.
+     * Draw the lives of the two {@link Tank}.
      */
     private void drawLives() {
         this.playerLives.forEach(p -> this.worldGroup.getChildren().removeAll(this.playerLives));
@@ -154,11 +153,9 @@ public class GameWorldController extends ViewController {
     }
 
     /**
-     * 
+     * Draw the background of the scene.
      */
     private void drawBackGround() {
-        this.worldCanvas.setWidth(ViewUtils.getScene().getWidth());
-        this.worldCanvas.setHeight(ViewUtils.getScene().getHeight());
         this.backGround.setFitWidth(ViewUtils.getScene().getWidth());
         this.backGround.setFitHeight(ViewUtils.getScene().getHeight());
     }
