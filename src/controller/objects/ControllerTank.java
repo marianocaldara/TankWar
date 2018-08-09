@@ -1,7 +1,7 @@
 package controller.objects;
 
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
+import model.utility.Direction;
+import model.utility.Pair;
 
 /**
  * Interface to control {@link Tank}.
@@ -11,13 +11,13 @@ public interface ControllerTank {
     /**
      * Modify the player {@link Input} according to the keyboard input.
      * 
-     * @param event
-     *            the {@link KeyEvent}.
+     * @param direction
+     *            the {@link Direction}.
      * @param b
      *            a {@link Boolean}. It's true if the key is pressed, false
      *            otherwise.
      */
-    void movePlayerTank(KeyEvent event, boolean b);
+    void movePlayerTank(Direction direction, boolean b);
 
     /**
      * Update the two {@link Tank} and check the collisions.
@@ -27,9 +27,9 @@ public interface ControllerTank {
     /**
      * Rotate the player cannon in the position targeted by mouse.
      * 
-     * @param event
-     *            the {@link MouseEvent}
+     * @param target
+     *            the target position.
      */
-    void movePlayerCannon(MouseEvent event);
+    void movePlayerCannon(Pair<Double, Double> target);
 
 }

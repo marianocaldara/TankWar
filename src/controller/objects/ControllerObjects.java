@@ -8,14 +8,11 @@ import controller.collision.FactoryCollision;
 import controller.output.ControllerOutput;
 import controller.output.ControllerOutputImpl;
 import controller.utility.CheckCollision;
-import controller.utility.Convertitor;
 import exceptions.ProjectileOutOfBordersException;
 import exceptions.ProjectileWithProjectileException;
 import exceptions.TankOutOfBordersException;
 import exceptions.TankWithProjectileException;
 import exceptions.TankWithTankException;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import model.input.Input;
 import model.object.Projectile;
 import model.object.Tank;
@@ -75,13 +72,8 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
     }
 
     @Override
-    public final void playerShot(final MouseEvent event) {
-        switch (event.getButton()) {
-        case PRIMARY:
-            this.projectiles.add(this.playerTank.shot());
-            break;
-        default:
-        }
+    public final void playerShot() {
+        this.projectiles.add(this.playerTank.shot());
 
     }
 
@@ -93,34 +85,8 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
     }
 
     @Override
-    public final void movePlayerTank(final KeyEvent event, final boolean b) {
-        switch (event.getCode()) {
-        case UP:
-            this.playerInput.getMovement().put(Direction.UP, b);
-            break;
-        case DOWN:
-            this.playerInput.getMovement().put(Direction.DOWN, b);
-            break;
-        case LEFT:
-            this.playerInput.getMovement().put(Direction.LEFT, b);
-            break;
-        case RIGHT:
-            this.playerInput.getMovement().put(Direction.RIGHT, b);
-            break;
-        case W:
-            this.playerInput.getMovement().put(Direction.UP, b);
-            break;
-        case S:
-            this.playerInput.getMovement().put(Direction.DOWN, b);
-            break;
-        case A:
-            this.playerInput.getMovement().put(Direction.LEFT, b);
-            break;
-        case D:
-            this.playerInput.getMovement().put(Direction.RIGHT, b);
-            break;
-        default:
-        }
+    public final void movePlayerTank(final Direction dir, final boolean b) {
+       this.playerInput.getMovement().put(dir, b);
 
     }
 
@@ -131,16 +97,15 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
         if (this.finalTime - this.initialTime > this.timeToShot && Calculate.distance(this.playerTank.getPosition(),
                 this.enemyTank.getPosition()) < MIN_DISTANCE_TO_SHOT) {
             this.initialTime = System.currentTimeMillis();
-            this.projectiles.add(AI.shotEnemy(this.enemyTank)); // da sistemare
+            this.projectiles.add(AI.shotEnemy(this.enemyTank));
         }
         this.finalTime = System.currentTimeMillis();
         this.checkTankCollision();
     }
 
     @Override
-    public final void movePlayerCannon(final MouseEvent event) {
-        this.playerInput
-                .setTarget(Convertitor.viewToModel(new Pair<Double, Double>(event.getSceneX(), event.getSceneY())));
+    public final void movePlayerCannon(final Pair<Double, Double> target) {
+        this.playerInput.setTarget(target);
 
     }
 
@@ -177,6 +142,9 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
 
     }
 
+    /**
+     * Check the collision of the two {@link Tank}.
+     */
     private void checkTankCollision() {
         try {
             CheckCollision.tankWithBorders(this.playerTank);
@@ -197,6 +165,9 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
 
     }
 
+    /**
+     * Check the collision of the {@link Projectile}.
+     */
     private void checkProjectileCollision() {
         this.projectiles.forEach(p -> {
             try {
