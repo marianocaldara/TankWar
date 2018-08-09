@@ -13,23 +13,17 @@ import model.utility.Pair;
  */
 public final class ProcessInputImpl implements ProcessInput {
 
-    private static final ProcessInputImpl SINGLETON = new ProcessInputImpl();
     private ControllerObjects controllerObjects;
     private Level level;
 
-
-    private ProcessInputImpl() { }
-
     /**
-     * Getter of the controller input.
-     * @return a {@link ProcessInputImpl}.
+     * Constructor.
+     * @param controllerObjects
+     *          the {@link ControllerObjects}
+     * @param level
+     *          the {@link Level}.
      */
-    public static ProcessInputImpl getProcessInput() {
-        return SINGLETON;
-    }
-
-    @Override
-    public void initialize(final ControllerObjects controllerObjects, final Level level) {
+    public ProcessInputImpl(final ControllerObjects controllerObjects, final Level level) {
         this.controllerObjects = controllerObjects;
         this.level = level;
 

@@ -1,21 +1,9 @@
 package controller.levels;
 
-import controller.Controller;
-import controller.loader.FileController;
-
 /**
  * Interface for the levels' control.
  */
 public interface Level {
-
-    /**
-     * Initialize the fields.
-     * @param fileController
-     *          the {@link FileController}.
-     * @param controller
-     *          the game {@link Controller}.
-     */
-    void initialize(FileController fileController, Controller controller);
 
     /**
      * Control if the level is started.

@@ -1,7 +1,5 @@
 package controller.input;
 
-import controller.levels.Level;
-import controller.objects.ControllerObjects;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
@@ -10,14 +8,6 @@ import javafx.scene.input.MouseEvent;
  */
 public interface ProcessInput {
 
-    /**
-     * Initialize the fields of {@link ProcessInputImpl}.
-     * @param controllerObjects
-     *          the {@link ControllerObjects}.
-     * @param level
-     *          the {@link Level}.
-     */
-    void initialize(ControllerObjects controllerObjects, Level level);
     /**
      * Setter for the keyboard input.
      * @param event

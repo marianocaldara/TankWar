@@ -28,7 +28,9 @@ public final class ControllerImpl implements Controller {
     private View view;
     private GameLoopImpl gameLoop;
     private double timeToShot;
+    private Level level;
     private FactoryCollision factoryCollision;
+    private ProcessInput controllerInput;
 
     /**
      * Private constructor.
@@ -52,7 +54,7 @@ public final class ControllerImpl implements Controller {
         Convertitor.initialize(this.world, this.view);
         CheckCollision.initialize(this.world);
         this.file = new FileControllerImpl(this.world);
-        LevelImpl.getLevelImpl().initialize(this.file, this);
+        this.level = new LevelImpl(this.file, this);
         this.timeToShot = DEFAULT_TIME_TO_SHOT;
         this.factoryCollision = new FactoryCollisionImpl(this.world.getBounds());
     }
@@ -69,12 +71,12 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public ProcessInput getControllerInput() {
-        return ProcessInputImpl.getProcessInput();
+        return this.controllerInput;
     }
 
     @Override
     public Level getLevel() {
-        return LevelImpl.getLevelImpl();
+        return this.level;
     }
 
     @Override
@@ -93,7 +95,7 @@ public final class ControllerImpl implements Controller {
         this.controllerObjects = new ControllerObjects(this.factoryCollision, this.world.getPlayer(),
                 this.world.getEnemy(), this.world.getPlayerInput(), this.timeToShot);
         AI.initialize(this.world.getBounds(), this.world.getEnemyInput());
-        ProcessInputImpl.getProcessInput().initialize(this.controllerObjects, LevelImpl.getLevelImpl());
+        this.controllerInput = new ProcessInputImpl(this.controllerObjects, this.level);
     }
 
     @Override
