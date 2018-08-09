@@ -32,7 +32,7 @@ public final class ControllerImpl implements Controller {
      * Private constructor.
      */
     private ControllerImpl() {
-    };
+    }
 
     /**
      * Getter of the object {@link ControllerImpl}.

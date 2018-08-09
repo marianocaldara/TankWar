@@ -106,9 +106,7 @@ public class GameWorldController extends ViewController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-
-        else {
+            } else {
             this.repaint();
         }
 

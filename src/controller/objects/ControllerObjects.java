@@ -70,13 +70,12 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
     }
 
     @Override
-    public void playerShot(MouseEvent event) {
+    public void playerShot(final MouseEvent event) {
         switch (event.getButton()) {
         case PRIMARY:
             this.projectiles.add(this.playerTank.shot());
             break;
         default:
-            ;
         }
 
     }
@@ -116,7 +115,6 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
             this.playerInput.getMovement().put(Direction.RIGHT, b);
             break;
         default:
-            ;
         }
 
     }

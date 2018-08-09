@@ -18,7 +18,7 @@ import model.utility.Pair;
  */
 public class AI {
 
-    private final static int CRITICAL_DISTANCE = 300;
+    private static final int CRITICAL_DISTANCE = 300;
     private static Pair<Double, Double> DIMENSION;
     private static Input ENEMY_INPUT;
     private static final double MIN_DISTANCE = 70;
@@ -189,7 +189,7 @@ public class AI {
      *            the enemy {@link Tank}.
      * @return the nearest projectile.
      */
-    private static Projectile getNearest(List<Projectile> projectiles, Tank enemy) {
+    private static Projectile getNearest(final List<Projectile> projectiles, Tank enemy) {
         return projectiles.stream().sorted(new Comparator<Projectile>() {
 
             @Override
@@ -197,8 +197,9 @@ public class AI {
                 if ((int) Calculate.distance(o1.getPosition(), enemy.getPosition()) < (int) Calculate
                         .distance(o2.getPosition(), enemy.getPosition())) {
                     return 1;
-                } else
+                } else {
                     return 0;
+                }
             }
         }).collect(Collectors.toList()).get(0);
 

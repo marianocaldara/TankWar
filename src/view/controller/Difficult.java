@@ -60,6 +60,6 @@ public enum Difficult {
      * 
      * @return the period of shot in milliseconds.
      */
-    abstract public double getTimeShot();
+    public abstract double getTimeShot();
 
 }

@@ -1,6 +1,8 @@
 package model.input;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import model.utility.Direction;
 import model.utility.Pair;
@@ -18,14 +20,20 @@ public class InputImpl implements Input {
 
     private Map<Direction, Boolean> movement;
     private Pair<Double, Double> target;
-
+    /**
+     * Constructor.
+     */
     public InputImpl() {
         this.movement = new HashMap<>();
         Arrays.asList(Direction.values()).forEach(d -> this.movement.put(d, false));
         this.target = new Pair<>(0.0, 0.0);
     }
-
-    public InputImpl(Map<Direction, Boolean> movement, Pair<Double, Double> target) {
+    /**
+     * Constructor.
+     * @param movement next movement to do.
+     * @param target next target that cannon have to aim
+     */
+    public InputImpl(final Map<Direction, Boolean> movement, final Pair<Double, Double> target) {
         this.movement = movement;
         this.target = target;
     }

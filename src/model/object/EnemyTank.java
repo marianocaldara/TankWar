@@ -12,9 +12,14 @@ import model.utility.Pair;
  */
 public class EnemyTank extends PlayerTank implements Tank {
     /**
-     * {@inheritDoc}
+     * Constructor
+     * {@link PlayerTank#PlayerTank(Pair, int, double, double)}.
+     * @param position initial position of tank
+     * @param lifes of tank
+     * @param speed initial speed
+     * @param projectileSpeed projectile's speed
      */
-    public EnemyTank(Pair<Double, Double> position, int lifes, double speed, double projectileSpeed) {
+    public EnemyTank(final Pair<Double, Double> position, final int lifes, final double speed, final double projectileSpeed) {
         super(position, lifes, speed, projectileSpeed);
         super.cannon = new EnemyTank.Cannon();
     }
