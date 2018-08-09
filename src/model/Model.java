@@ -1,14 +1,13 @@
 package model;
 
 import model.input.Input;
-import model.input.TankInput;
 import model.object.Tank;
 import model.utility.Pair;
 
 /**
  * Model interface contain all elements that game needs.
- * <p>
- * Create player, and enemy, and give possibility to return them.
+ * 
+ * <p>Create player, and enemy, and give possibility to return them.
  */
 public interface Model {
     /**
@@ -20,6 +19,8 @@ public interface Model {
      *            nr of lifes
      * @param speed
      *            speed of movement
+     * @param projectileSpeed
+     *            speed of projectile
      */
     void configPlayerTank(Pair<Double, Double> position, int lifes, double speed, double projectileSpeed);
 
@@ -32,6 +33,8 @@ public interface Model {
      *            nr of lifes
      * @param speed
      *            speed of movement
+     * @param projectileSpeed
+     *            speed of projectile
      */
     void configEnemyTank(Pair<Double, Double> position, int lifes, double speed, double projectileSpeed);
 
@@ -41,9 +44,8 @@ public interface Model {
      * @return player's Tank
      */
     Tank getPlayer();
-
     /**
-     * Getter for enemy
+     * Getter for enemy.
      * 
      * @return enemie's Tank
      */

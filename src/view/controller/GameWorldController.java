@@ -107,7 +107,6 @@ public class GameWorldController extends ViewController {
         } else {
             this.repaint();
         }
-
     }
 
     /**

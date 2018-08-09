@@ -197,7 +197,6 @@ public final class AI {
      */
     private static Projectile getNearest(final List<Projectile> projectiles, final Tank enemy) {
         return projectiles.stream().sorted(new Comparator<Projectile>() {
-
             @Override
             public int compare(final Projectile o1, final Projectile o2) {
                 if ((int) Calculate.distance(o1.getPosition(), enemy.getPosition()) < (int) Calculate
@@ -205,9 +204,8 @@ public final class AI {
                     return 1;
                 } else {
                     return 0;
+                }
             }
-        } }).collect(Collectors.toList()).get(0);
-
+        }).collect(Collectors.toList()).get(0);
     }
-
 }

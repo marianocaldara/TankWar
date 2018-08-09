@@ -8,7 +8,7 @@ import model.utility.Pair;
  */
 public interface Projectile {
     /**
-     * Getter for position
+     * Getter for position.
      * 
      * @return the position in x and y in Double
      * @see Pair
@@ -16,36 +16,31 @@ public interface Projectile {
     Pair<Double, Double> getPosition();
 
     /**
-     * Bounce a projectile in opposite direction
+     * Bounce a projectile in opposite direction.
      * 
      * @param dir
      *            the direction of the border where projectile bounce
      * @see Direction
      */
-    void bounce(final Direction dir);
-
+    void bounce(Direction dir);
     /**
-     * Set dead projectile
+     * Set dead projectile.
      */
     void setDead();
-
     /**
-     * Getter for {@link #isAlive}
+     * Getter for {@link #isAlive}.
      * 
      * @return a boolean, true if is alive, false if this projectile have collided
      */
     boolean isAlive();
-
     /**
      * Get projectile's dimension.
      * 
      * @return {@link Pair} according to {@link #dimension} of Projectile
      */
     Pair<Double, Double> getBounds();
-
     /**
-     * update position of projectile according to speed
+     * update position of projectile according to speed.
      */
     void update();
-
 }

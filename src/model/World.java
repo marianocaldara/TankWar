@@ -11,7 +11,7 @@ import model.utility.Pair;
  * Implementation of Model interface.
  */
 public class World implements Model {
-    private final static Pair<Double, Double> DIMENSION = new Pair<>(600.0, 400.0);
+    private static final Pair<Double, Double> DIMENSION = new Pair<>(600.0, 400.0);
     private Tank player;
     private Tank enemy;
     private Input playerInput;
@@ -27,31 +27,31 @@ public class World implements Model {
     }
 
     @Override
-    public void configPlayerTank(final Pair<Double, Double> position, int lifes, final double speed,
+    public final void configPlayerTank(final Pair<Double, Double> position, final int lifes, final double speed,
             final double projectileSpeed) {
         this.player = new PlayerTank(position, lifes, speed, projectileSpeed);
         this.playerInput = new InputImpl();
     }
 
     @Override
-    public void configEnemyTank(final Pair<Double, Double> position, int lifes, final double speed,
+    public final void configEnemyTank(final Pair<Double, Double> position, final int lifes, final double speed,
             final double projectileSpeed) {
         this.enemy = new EnemyTank(position, lifes, speed, projectileSpeed);
         this.enemyInput = new InputImpl();
     }
 
     @Override
-    public Tank getPlayer() {
+    public final Tank getPlayer() {
         return this.player;
     }
 
     @Override
-    public Tank getEnemy() {
+    public final Tank getEnemy() {
         return this.enemy;
     }
 
     @Override
-    public Pair<Double, Double> getBounds() {
+    public final Pair<Double, Double> getBounds() {
         return DIMENSION;
     }
 

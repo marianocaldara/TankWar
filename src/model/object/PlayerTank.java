@@ -9,12 +9,16 @@ import model.input.InputImpl;
 import model.utility.Calculate;
 import model.utility.Direction;
 import model.utility.Pair;
-
+/**
+ * Main tank controlled by Player.
+ */
 public class PlayerTank implements Tank {
-
+    /**
+     * nr of lifes.
+     */
     protected int lifes;
     protected Pair<Double, Double> position;
-    protected final static Pair<Double, Double> DIMENSION = new Pair<>(25.0, 25.0);
+    protected static final Pair<Double, Double> DIMENSION = new Pair<>(25.0, 25.0);
     protected double speed;
     protected double speedX = 0;
     protected double speedY = 0;

@@ -10,13 +10,13 @@ import model.utility.Pair;
  *
  */
 public class ProjectileImpl implements Projectile {
-    final private Pair<Double, Double> position;
+    private final Pair<Double, Double> position;
     private double speedX;
     private double speedY;
     private boolean alive = true;
     private int nrbounced = 0;
-    private final static int MAX_BOUNCE = 1;
-    private final static Pair<Double, Double> DIMENSION = new Pair<>(5.0, 5.0);
+    private static final int MAX_BOUNCE = 1;
+    private static final Pair<Double, Double> DIMENSION = new Pair<>(5.0, 5.0);
 
     /**
      * Constructor.
@@ -34,7 +34,7 @@ public class ProjectileImpl implements Projectile {
      * @see Math#cos(double)
      * @see Math#sin(double)
      */
-    public ProjectileImpl(final Pair<Double, Double> position, final double angle, double speed) {
+    public ProjectileImpl(final Pair<Double, Double> position, final double angle, final double speed) {
         this.position = position;
         this.speedX = speed * Math.cos(Math.toRadians(angle));
         this.speedY = speed * Math.sin(Math.toRadians(angle));

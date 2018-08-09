@@ -1,5 +1,4 @@
 package exceptions;
-
 /**
  * Exception threw when two {@link Projectile} collide each other.
  */

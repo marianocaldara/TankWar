@@ -17,7 +17,7 @@ public interface TankInput {
     /**
      * Setter for next movement.
      * 
-     * @param movement.
+     * @param movement
      *            map with directions and boolean.
      */
     void setMovement(Map<Direction, Boolean> movement);
