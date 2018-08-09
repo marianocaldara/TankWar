@@ -15,6 +15,7 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
@@ -28,7 +29,7 @@
       </BorderPane>
       <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
          <center>
-            <Label text="SHOT KEYS" textFill="WHITE" BorderPane.alignment="CENTER">
+            <Label alignment="CENTER" text="PAUSE" textFill="WHITE" BorderPane.alignment="CENTER">
                <font>
                   <Font name="System Bold" size="40.0" />
                </font>
@@ -53,6 +54,15 @@
       </BorderPane>
       <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <center>
+            <ImageView fitHeight="44.0" fitWidth="50.0" pickOnBounds="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../../../res/images/pause.png" />
+               </image>
+            </ImageView>
+         </center>
+      </BorderPane>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <center>
             <ImageView fitHeight="133.0" fitWidth="169.0" pickOnBounds="true" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../../../res/images/shotKeys.png" />
@@ -60,13 +70,23 @@
             </ImageView>
          </center>
       </BorderPane>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <center>
             <ImageView fx:id="exitButton" fitHeight="71.0" fitWidth="85.0" onMouseClicked="#exitAction" pickOnBounds="true" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../../../res/images/809860_arrows_512x512.png" />
                </image>
             </ImageView>
+         </center>
+      </BorderPane>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3" />
+      <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+         <center>
+            <Label text="SHOT KEYS" textFill="WHITE" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="40.0" />
+               </font>
+            </Label>
          </center>
       </BorderPane>
    </children>
