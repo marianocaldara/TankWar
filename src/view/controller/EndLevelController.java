@@ -25,7 +25,7 @@ public class EndLevelController extends ViewController {
     private GridPane endLevelGrid;
 
     @Override
-    public void init(Controller controller) {
+    public final void init(final Controller controller) {
         this.endLevel = new FadeTransition(Duration.seconds(3), this.endLevelGrid);
         this.endLevel.setFromValue(1.0);
         this.endLevel.setToValue(0.5);

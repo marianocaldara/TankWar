@@ -5,14 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controller.Controller;
-import controller.levels.LevelImpl;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import view.scene.ViewScenes;
 import view.utility.ViewUtils;
 
@@ -23,10 +20,12 @@ import view.utility.ViewUtils;
 public class GameWorldController extends ViewController {
 
     private static final double LIFE_OPACITY = 0.6;
-    private static final double WIDTH_RAPPORT = 30; // serve per ridisegnare le vite
-    private static final double HEIGHT_RAPPORT = 20; // serve per ridisegnare le vite
-    private Image life = new Image("res/life.png", 40, 40, false, false); // immagine della vita
-    private Image projectile = new Image("res/ball.png", 10, 10, false, false); // immagine del proiettile
+    private static final double WIDTH_RAPPORT = 30; 
+    private static final double HEIGHT_RAPPORT = 20; 
+    private static final double LIFE_DIMENSION = 40;
+    private static final double PROJECTILE_DIMENSION = 10;
+    private Image life = new Image("res/life.png", LIFE_DIMENSION, LIFE_DIMENSION, false, false); 
+    private Image projectile = new Image("res/ball.png", PROJECTILE_DIMENSION, PROJECTILE_DIMENSION, false, false); 
     private List<ImageView> projectiles = new ArrayList<>();
     private List<ImageView> playerLives = new ArrayList<>();
     private List<ImageView> enemyLives = new ArrayList<>();
@@ -53,9 +52,8 @@ public class GameWorldController extends ViewController {
     @FXML
     private ImageView enemyCannon;
 
-    // inizializza il controller
     @Override
-    public void init(Controller controller) {
+    public final void init(final Controller controller) {
         this.controller = controller;
     }
 
@@ -106,9 +104,7 @@ public class GameWorldController extends ViewController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-
-        else {
+        } else {
             this.repaint();
         }
 

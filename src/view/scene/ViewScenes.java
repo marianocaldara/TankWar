@@ -19,11 +19,14 @@ import view.stage.SettingStage;
  */
 public enum ViewScenes {
 
+    /**
+     * The menu stage.
+     */
     MENU {
         private SceneChanger menu = new MenuStage();
 
         @Override
-        public void setGameStage(double width, double height, Controller controller) throws IOException {
+        public void setGameStage(final double width, final double height, final Controller controller) throws IOException {
             menu.setStage(width, height, controller);
         }
 
@@ -34,11 +37,14 @@ public enum ViewScenes {
 
     },
 
+    /**
+     * The settings stage.
+     */
     SETTING {
         private SceneChanger setting = new SettingStage();
 
         @Override
-        public void setGameStage(double width, double height, Controller controller) throws IOException {
+        public void setGameStage(final double width, final double height, final Controller controller) throws IOException {
             setting.setStage(width, height, controller);
 
         }
@@ -50,11 +56,14 @@ public enum ViewScenes {
 
     },
 
+    /**
+     * The instruction stage.
+     */
     ISTRUCTION {
         private SceneChanger istruction = new InstructionStage();
 
         @Override
-        public void setGameStage(double width, double height, Controller controller) throws IOException {
+        public void setGameStage(final double width, final double height, final Controller controller) throws IOException {
             istruction.setStage(width, height, controller);
 
         }
@@ -66,12 +75,15 @@ public enum ViewScenes {
 
     },
 
+    /**
+     * The loading level stage.
+     */
     LOADING {
 
         private SceneChanger loader = new LoadingStage();
 
         @Override
-        public void setGameStage(double width, double height, Controller controller) throws IOException {
+        public void setGameStage(final double width, final double height, final Controller controller) throws IOException {
             loader.setStage(width, height, controller);
 
         }
@@ -83,12 +95,15 @@ public enum ViewScenes {
 
     },
 
+    /**
+     * The game world stage.
+     */
     GAME_WORLD {
 
         private SceneChanger world = new GameWorldStage();
 
         @Override
-        public void setGameStage(double width, double height, Controller controller) throws IOException {
+        public void setGameStage(final double width, final double height, final Controller controller) throws IOException {
             world.setStage(width, height, controller);
         }
 
@@ -99,12 +114,15 @@ public enum ViewScenes {
         }
     },
 
+    /**
+     * The game over stage.
+     */
     LOSE {
 
         private SceneChanger gameOver = new LoseStage();
 
         @Override
-        public void setGameStage(double width, double height, Controller controller) throws IOException {
+        public void setGameStage(final double width, final double height, final Controller controller) throws IOException {
             gameOver.setStage(width, height, controller);
 
         }
@@ -116,12 +134,15 @@ public enum ViewScenes {
 
     },
 
+    /**
+     * The ending level stage.
+     */
     END_LEVEL {
 
         private SceneChanger endLevel = new EndingLevelStage();
 
         @Override
-        public void setGameStage(double width, double height, Controller controller) throws IOException {
+        public void setGameStage(final double width, final double height, final Controller controller) throws IOException {
             endLevel.setStage(width, height, controller);
 
         }
@@ -133,12 +154,15 @@ public enum ViewScenes {
 
     },
 
+    /**
+     * The ending game stage.
+     */
     END_GAME {
 
         private SceneChanger endGame = new EndingGameStage();
 
         @Override
-        public void setGameStage(double width, double height, Controller controller) throws IOException {
+        public void setGameStage(final double width, final double height, final Controller controller) throws IOException {
             endGame.setStage(width, height, controller);
 
         }
@@ -151,11 +175,15 @@ public enum ViewScenes {
     };
 
     /**
-     * This method allow to switch to the desired stage
-     * 
-     * @param event
-     *            the action event.
+     * This method allows to switch the stages.
+     * @param width
+     *          the scene width.
+     * @param height
+     *          the scene height.
+     * @param controller
+     *          the game {@link Controller}.
      * @throws IOException
+     *          throw a new {@link IOException}.
      */
     public abstract void setGameStage(double width, double height, Controller controller) throws IOException;
 
@@ -164,6 +192,7 @@ public enum ViewScenes {
      * 
      * @return the current game stage.
      * @throws IOException
+     *          throw a new {@link IOException}.
      */
     public abstract SceneChanger getGameStage() throws IOException;
 

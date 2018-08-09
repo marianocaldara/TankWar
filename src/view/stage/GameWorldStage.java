@@ -22,7 +22,7 @@ public class GameWorldStage implements SceneChanger {
     private GameWorldController gameWorld;
 
     @Override
-    public void setStage(double width, double height, Controller controller) throws IOException {
+    public final void setStage(final double width, final double height, final Controller controller) throws IOException {
         final FXMLLoader loader = new FXMLLoader(
                 getClass().getResource("/view/JavaFX/" + controller.getLevel().getCurrentLevel().getName() + ".fxml"));
         final Parent root = loader.load();
@@ -39,7 +39,7 @@ public class GameWorldStage implements SceneChanger {
     }
 
     @Override
-    public ViewController getController() {
+    public final ViewController getController() {
         return this.gameWorld;
     }
 

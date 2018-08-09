@@ -43,7 +43,7 @@ public class SettingController extends ViewController {
      *            the event of the difficultBox.
      */
     @FXML
-    void difficultAction(ActionEvent event) {
+    void difficultAction(final ActionEvent event) {
         if (this.difficultBox.getValue().equals(Difficult.EASY.getName())) {
             this.controller.setTimeToShot(Difficult.EASY.getTimeShot());
         } else if (this.difficultBox.getValue().equals(Difficult.MEDIUM.getName())) {
@@ -60,7 +60,7 @@ public class SettingController extends ViewController {
      *            the event of the levelBox.
      */
     @FXML
-    void levelAction(ActionEvent event) {
+    void levelAction(final ActionEvent event) {
         if (this.levelsBox.getValue().equals(Levels.LEVEL_1.getName())) {
             this.controller.getLevel().setCurrentLevel(Levels.LEVEL_1);
         } else if (this.levelsBox.getValue().equals(Levels.LEVEL_2.getName())) {
@@ -77,7 +77,7 @@ public class SettingController extends ViewController {
      *            the {@link MouseEvent} of the exit image.
      */
     @FXML
-    void exitAction(MouseEvent event) {
+    void exitAction(final MouseEvent event) {
         try {
             ViewScenes.MENU.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(), controller);
         } catch (IOException e) {
@@ -86,7 +86,7 @@ public class SettingController extends ViewController {
     }
 
     @FXML
-    void instructionAction(ActionEvent event) {
+    final void instructionAction(final ActionEvent event) {
         try {
             ViewScenes.ISTRUCTION.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(),
                     controller);
@@ -96,7 +96,7 @@ public class SettingController extends ViewController {
     }
 
     @Override
-    public void init(Controller controller) {
+    public final void init(final Controller controller) {
         this.controller = controller;
         Arrays.asList(Levels.values()).forEach(l -> this.levelsBox.getItems().add(l.getName()));
         Arrays.asList(Difficult.values()).forEach(d -> this.difficultBox.getItems().add(d.getName()));

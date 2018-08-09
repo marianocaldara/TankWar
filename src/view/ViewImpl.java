@@ -24,23 +24,24 @@ public class ViewImpl implements View {
      * @param primaryStage
      *            the first stage.
      * @throws IOException
+     *          throw a new {@link IOException}.
      */
-    public ViewImpl(Stage primaryStage) throws IOException {
+    public ViewImpl(final Stage primaryStage) throws IOException {
         ViewUtils.setPrimaryStage(primaryStage);
     }
 
     @Override
-    public Pair<Double, Double> getBounds() {
+    public final Pair<Double, Double> getBounds() {
         return new Pair<>(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight());
     }
 
     @Override
-    public GameWorldController getGameWorldController() throws IOException {
+    public final GameWorldController getGameWorldController() throws IOException {
         return (GameWorldController) ViewScenes.GAME_WORLD.getGameStage().getController();
     }
 
     @Override
-    public void launchView(Controller controller) {
+    public final void launchView(final Controller controller) {
         this.controller = controller;
         try {
             ViewScenes.MENU.setGameStage(WIDTH, HEIGHT, this.controller);

@@ -26,7 +26,7 @@ public class LoadController extends ViewController {
     private GridPane loaderGrid;
 
     @Override
-    public void init(Controller controller) {
+    public final void init(final Controller controller) {
         String name = controller.getLevel().getCurrentLevel().getName();
         for (int i = 0; i < name.length(); i++) {
             this.nameLevel += name.substring(i, i + 1) + " ";
