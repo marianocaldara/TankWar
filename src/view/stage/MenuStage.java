@@ -21,7 +21,7 @@ public class MenuStage implements SceneChanger {
     private MenuController menuController;
 
     @Override
-    public void setStage(double width, double height, Controller controller) throws IOException {
+    public final void setStage(final double width, final double height, final Controller controller) throws IOException {
         final FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/javaFX/Menu.fxml"));
         final Parent root = loader.load();
         this.menuController = loader.getController();
@@ -36,7 +36,7 @@ public class MenuStage implements SceneChanger {
     }
 
     @Override
-    public ViewController getController() {
+    public final ViewController getController() {
         return this.menuController;
     }
 

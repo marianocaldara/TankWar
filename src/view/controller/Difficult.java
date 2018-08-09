@@ -1,34 +1,43 @@
 package view.controller;
 
-/*
+/**
  * Enumeration that describe the difficult of the game.
  * The difficult depend to the frequency of shot of the enemy tank.
  */
 public enum Difficult {
 
+    /**
+     * The easy difficult of the game.
+     */
     EASY("Easy") {
 
         @Override
         public double getTimeShot() {
-            return 3000;
+            return TimeToShot.EASY_TIME.getTime();
         }
 
     },
 
+    /**
+     * The medium diffiuclt of the game.
+     */
     MEDIUM("Medium") {
 
         @Override
         public double getTimeShot() {
-            return 1000;
+            return TimeToShot.MEDIUM_TIME.getTime();
         }
 
     },
 
+    /**
+     * The hard difficult of the game.
+     */
     HARD("Hard") {
 
         @Override
         public double getTimeShot() {
-            return 500;
+            return TimeToShot.HARD_TIME.getTime();
         }
 
     };
@@ -41,8 +50,7 @@ public enum Difficult {
      * @param difficultName
      *            the name of the difficult.
      */
-
-    private Difficult(String difficultName) {
+    Difficult(final String difficultName) {
         this.difficultName = difficultName;
     }
 
@@ -56,7 +64,7 @@ public enum Difficult {
     }
 
     /**
-     * Getter of the frequency time of shot of the enemy {@link Tank}.
+     * Getter of the frequency time of shot of the enemy {@link Tank} according to the enum {@link TimeToShot}.
      * 
      * @return the period of shot in milliseconds.
      */

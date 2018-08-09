@@ -21,7 +21,7 @@ public class EndingLevelStage implements SceneChanger {
     private EndLevelController endLevel = new EndLevelController();
 
     @Override
-    public void setStage(double width, double height, Controller controller) throws IOException {
+    public final void setStage(final double width, final double height, final Controller controller) throws IOException {
         final FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/JavaFX/FadeLevelEnded.fxml"));
         final Parent root = loader.load();
         this.endLevel = loader.getController();
@@ -37,7 +37,7 @@ public class EndingLevelStage implements SceneChanger {
     }
 
     @Override
-    public ViewController getController() {
+    public final ViewController getController() {
         return this.endLevel;
     }
 

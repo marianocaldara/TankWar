@@ -30,44 +30,47 @@ public class MenuController extends ViewController {
     private JFXButton exit;
 
     @Override
-    public void init(Controller controller) {
+    public final void init(final Controller controller) {
         this.controller = controller;
 
     }
 
     /**
-     * This method allow to switch to the game world stage
+     * This method allow to switch to the game world stage.
      * 
      * @param event
      *            the action event.
      * @throws IOException
+     *            throw a new {@link IOException}.
      */
-    public void playAction(ActionEvent event) throws IOException {
+    public void playAction(final ActionEvent event) throws IOException {
         ViewScenes.LOADING.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(),
                 this.controller);
     }
 
     /**
-     * This method allow to switch to the settings stage
+     * This method allow to switch to the settings stage.
      * 
      * @param event
      *            the action event.
      * @throws IOException
+     *          throw a new {@link IOException}.
      */
-    public void settingsAction(ActionEvent event) throws IOException {
+    public void settingsAction(final ActionEvent event) throws IOException {
         ViewScenes.SETTING.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(),
                 this.controller);
 
     }
 
     /**
-     * This method allow to exit the GUI
+     * This method allow to exit the GUI.
      * 
      * @param event
      *            the action event.
      * @throws IOException
+     *          throw a new {@link IOException}.
      */
-    public void exitAction(ActionEvent event) throws IOException {
+    public void exitAction(final ActionEvent event) throws IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Requested");
         alert.setHeaderText("Are you really sure you wanna to quit ?");

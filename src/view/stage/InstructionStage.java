@@ -21,7 +21,7 @@ public class InstructionStage implements SceneChanger {
     private InstructionController instruction;
 
     @Override
-    public void setStage(double width, double height, Controller controller) throws IOException {
+    public final void setStage(final double width, final double height, final Controller controller) throws IOException {
         final FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/JavaFX/Instruction.fxml"));
         final Parent root = loader.load();
         this.instruction = loader.getController();
@@ -37,7 +37,7 @@ public class InstructionStage implements SceneChanger {
     }
 
     @Override
-    public ViewController getController() {
+    public final ViewController getController() {
         return this.instruction;
     }
 

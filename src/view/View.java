@@ -22,7 +22,9 @@ public interface View {
      * Getter of the {@link GameWorldController}.
      * 
      * @return the game world controller.
-     * @throws IOException.
+     * @throws IOException
+     *          throw a new {@link IOException}.
+     * 
      */
     GameWorldController getGameWorldController() throws IOException;
 
@@ -32,6 +34,6 @@ public interface View {
      * @param controller
      *            the game {@link Controller}.
      */
-    public void launchView(Controller controller);
+    void launchView(Controller controller);
 
 }

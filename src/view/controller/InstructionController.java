@@ -30,7 +30,7 @@ public class InstructionController extends ViewController {
      *            the mouse event.
      */
     @FXML
-    void exitAction(MouseEvent event) {
+    void exitAction(final MouseEvent event) {
         try {
             ViewScenes.SETTING.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(),
                     controller);
@@ -40,7 +40,7 @@ public class InstructionController extends ViewController {
     }
 
     @Override
-    public void init(Controller controller) {
+    public final void init(final Controller controller) {
         this.controller = controller;
 
     }

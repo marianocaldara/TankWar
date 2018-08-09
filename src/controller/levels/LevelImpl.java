@@ -97,8 +97,7 @@ public final class LevelImpl implements Level {
     public void setCurrentLevel(final Levels currentLevel) {
         if (!currentLevel.equals(Levels.LEVEL_1)) {
             this.currentLevel = currentLevel;
-            while (this.levels.hasNext() && !this.levels.next().equals(this.currentLevel)) { 
-            }
+            while (this.levels.hasNext() && !this.levels.next().equals(this.currentLevel)) { }
         }
     }
 

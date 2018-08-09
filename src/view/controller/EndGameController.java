@@ -25,7 +25,7 @@ public class EndGameController extends ViewController {
     private Label endGameLabel;
 
     @Override
-    public void init(Controller controller) {
+    public final void init(final Controller controller) {
         this.endGame = new FadeTransition(Duration.seconds(3), this.endGameGrid);
         this.endGame.setFromValue(1.0);
         this.endGame.setToValue(0.5);
