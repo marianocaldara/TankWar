@@ -83,7 +83,7 @@ public class Pair<X, Y> {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        if (!(obj instanceof Pair) || !(obj instanceof Pair<?, ?>)) {
+        if (!(obj instanceof Pair)) {
             return false;
         }
         final Pair<?, ?> other = (Pair<?, ?>) obj;

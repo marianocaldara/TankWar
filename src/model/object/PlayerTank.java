@@ -77,7 +77,7 @@ public class PlayerTank implements Tank {
     @Override
     public final void update(final Input i) throws TankDeadException {
         if (!isAlive()) {
-            throw new TankDeadException("This Tank is dead");
+            throw new TankDeadException("This Tank is dead, cannot updated");
         }
         this.setDirection(i.getMovement());
         this.updatePosition();
