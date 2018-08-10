@@ -25,7 +25,7 @@ public class TestProjectile {
         assertEquals(projectile.getPosition().getFirst().intValue(), 10);
         assertEquals(projectile.getPosition().getSecond().intValue(), 10);
     }
-    
+
     /**
      * Tests the bounce of a projectile.
      */
@@ -35,7 +35,8 @@ public class TestProjectile {
         projectile.bounce(Direction.RIGHT);
         projectile.update();
         assertEquals(projectile.getPosition().getFirst().intValue(), 6);
-   
+        projectile.update();
+        assertEquals(projectile.getPosition().getFirst().intValue(), 2);
     }
 
 }
