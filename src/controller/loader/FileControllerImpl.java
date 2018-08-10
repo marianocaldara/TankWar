@@ -45,9 +45,7 @@ public class FileControllerImpl implements FileController {
             this.world.configPlayerTank(
                     new Pair<Double, Double>((Double) playerFields.get(InitialStateFields.POSX.getName()),
                             (Double) playerFields.get(InitialStateFields.POSY.getName())),
-                    ((Long) playerFields.get(InitialStateFields.LIFES.getName())).intValue(),
-                    (Double) playerFields.get(InitialStateFields.SPEED.getName()),
-                    (Double) playerFields.get(InitialStateFields.P_SPEED.getName()));
+                    ((Long) playerFields.get(InitialStateFields.LIFES.getName())).intValue());
             this.world.configEnemyTank(
                     new Pair<Double, Double>((Double) enemyFields.get(InitialStateFields.POSX.getName()),
                             (Double) enemyFields.get(InitialStateFields.POSY.getName())),

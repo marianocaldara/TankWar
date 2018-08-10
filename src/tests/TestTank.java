@@ -22,7 +22,7 @@ public class TestTank {
     @Test
     public void testInitialStateTank() {
         final Model world = new World();
-        world.configPlayerTank(new Pair<>(0.0, 0.0), 3, 3, 4);
+        world.configPlayerTank(new Pair<>(0.0, 0.0), 3);
         world.configEnemyTank(new Pair<>(100.0, 100.0), 3, 3, 4);
         assertNotNull(world.getPlayer());
         assertNotNull(world.getEnemy());
@@ -40,7 +40,7 @@ public class TestTank {
     @Test
     public void testTankPosition() {
         final Model world = new World();
-        world.configPlayerTank(new Pair<>(0.0, 0.0), 3, 3, 4);
+        world.configPlayerTank(new Pair<>(0.0, 0.0), 3);
         world.configEnemyTank(new Pair<>(100.0, 100.0), 3, 3, 4);
         world.getPlayer().setPosition(new Pair<>(20.0, 20.0));
         world.getEnemy().setPosition(new Pair<>(300.0, 300.0));
@@ -56,7 +56,7 @@ public class TestTank {
     @Test
     public void testTankDead() {
         final Model world = new World();
-        world.configPlayerTank(new Pair<>(0.0, 0.0), 3, 3, 4);
+        world.configPlayerTank(new Pair<>(0.0, 0.0), 3);
         world.configEnemyTank(new Pair<>(100.0, 100.0), 3, 3, 4);
         assertTrue(world.getPlayer().isAlive());
         assertTrue(world.getEnemy().isAlive());

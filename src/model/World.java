@@ -2,11 +2,9 @@ package model;
 
 import model.input.Input;
 import model.input.InputImpl;
-import model.object.EnemyTank;
-import model.object.PlayerTank;
 import model.object.Tank;
 import model.utility.Pair;
-
+import model.factory.FactoryTank;
 /**
  * Implementation of Model interface.
  */
@@ -18,16 +16,15 @@ public class World implements Model {
     private Input enemyInput;
 
     @Override
-    public final void configPlayerTank(final Pair<Double, Double> position, final int lifes, final double speed,
-            final double projectileSpeed) {
-        this.player = new PlayerTank(position, lifes, speed, projectileSpeed);
+    public final void configPlayerTank(final Pair<Double, Double> position, final int lifes) {
+        this.player = FactoryTank.createPlayer(position, lifes);
         this.playerInput = new InputImpl();
     }
 
     @Override
     public final void configEnemyTank(final Pair<Double, Double> position, final int lifes, final double speed,
             final double projectileSpeed) {
-        this.enemy = new EnemyTank(position, lifes, speed, projectileSpeed);
+        this.enemy = FactoryTank.createEnemy(position, lifes, speed, projectileSpeed);
         this.enemyInput = new InputImpl();
     }
 

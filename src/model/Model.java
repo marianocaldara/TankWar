@@ -17,12 +17,8 @@ public interface Model {
      *            of Tank
      * @param lifes
      *            nr of lifes
-     * @param speed
-     *            speed of movement
-     * @param projectileSpeed
-     *            speed of projectile
      */
-    void configPlayerTank(Pair<Double, Double> position, int lifes, double speed, double projectileSpeed);
+    void configPlayerTank(Pair<Double, Double> position, int lifes);
 
     /**
      * Create a {@link Tank} controlled by computer.
