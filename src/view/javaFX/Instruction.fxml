@@ -72,7 +72,7 @@
       </BorderPane>
       <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <center>
-            <ImageView fx:id="exitButton" fitHeight="71.0" fitWidth="85.0" onMouseClicked="#exitAction" pickOnBounds="true" BorderPane.alignment="CENTER">
+            <ImageView fitHeight="71.0" fitWidth="85.0" onMouseClicked="#exitAction" pickOnBounds="true" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../../../res/images/809860_arrows_512x512.png" />
                </image>

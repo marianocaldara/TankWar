@@ -18,7 +18,7 @@
    <children>
       <BorderPane>
          <center>
-             <Label fx:id="endLevelLabel" text="L E V E L   C O M P L E T E !" textFill="WHITE" BorderPane.alignment="CENTER">
+             <Label text="L E V E L   C O M P L E T E !" textFill="WHITE" BorderPane.alignment="CENTER">
                <font>
                   <Font name="System Bold Italic" size="45.0" />
                </font>

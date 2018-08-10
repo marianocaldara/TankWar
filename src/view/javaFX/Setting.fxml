@@ -55,7 +55,7 @@
          <children>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                <center>
-                  <JFXButton fx:id="instructionButton" buttonType="RAISED" onAction="#instructionAction" text="INSTRUCTIONS" textFill="WHITE" BorderPane.alignment="CENTER">
+                  <JFXButton buttonType="RAISED" onAction="#instructionAction" text="INSTRUCTIONS" textFill="WHITE" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="System Bold" size="35.0" />
                      </font>

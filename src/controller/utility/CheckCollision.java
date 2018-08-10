@@ -47,7 +47,7 @@ public final class CheckCollision {
     public static void tankWithTank(final Tank playerTank, final Tank enemyTank) throws TankWithTankException {
         if (CheckIntersection.intersects(playerTank.getPosition(), Tank.getDimension(), enemyTank.getPosition(),
                 Tank.getDimension())) {
-            throw new TankWithTankException();
+            throw new TankWithTankException("Tank collides with a tank.");
         }
     }
 
@@ -67,7 +67,7 @@ public final class CheckCollision {
                         world.getPlayer().getPosition(), Tank.getDimension()))
                 || projectiles.stream().anyMatch(p -> CheckIntersection.intersects(p.getPosition(), p.getBounds(),
                         world.getEnemy().getPosition(), Tank.getDimension()))) {
-            throw new TankWithProjectileException();
+            throw new TankWithProjectileException("Tank collides with a projectile.");
         }
     }
 
@@ -85,7 +85,7 @@ public final class CheckCollision {
                 || tank.getPosition().getFirst() + Tank.getDimension().getFirst() > world.getBounds().getFirst()
                 || (tank.getPosition().getSecond() < 0 || tank.getPosition().getSecond()
                         + Tank.getDimension().getSecond() > world.getBounds().getSecond())) {
-            throw new TankOutOfBordersException();
+            throw new TankOutOfBordersException("Tank out of borders.");
 
         }
     }
@@ -104,7 +104,7 @@ public final class CheckCollision {
                 || projectile.getPosition().getFirst() <= 0 || projectile.getPosition().getSecond()
                         + projectile.getBounds().getSecond() >= world.getBounds().getSecond()
                 || projectile.getPosition().getSecond() <= 0) {
-            throw new ProjectileOutOfBordersException();
+            throw new ProjectileOutOfBordersException("Projectile out of borders.");
 
         }
 
@@ -119,11 +119,11 @@ public final class CheckCollision {
      *             if there is any collision.
      */
     public static void projectileWithProjectile(final List<Projectile> projectiles) throws ProjectileWithProjectileException {
-        for (Projectile p : projectiles) {
-            for (Projectile x : projectiles) {
+        for (final Projectile p : projectiles) {
+            for (final Projectile x : projectiles) {
                 if (CheckIntersection.intersects(p.getPosition(), p.getBounds(), x.getPosition(), x.getBounds())
-                        && x != p) {
-                    throw new ProjectileWithProjectileException();
+                        && !x.equals(p)) {
+                    throw new ProjectileWithProjectileException("Projectile collides with a projectile.");
                 }
             }
         }

@@ -6,7 +6,6 @@ import controller.input.ProcessInput;
 import controller.input.ProcessInputImpl;
 import controller.levels.Level;
 import controller.levels.LevelImpl;
-import controller.loader.FileController;
 import controller.loader.FileControllerImpl;
 import controller.objects.AI;
 import controller.objects.ControllerObjects;
@@ -23,7 +22,6 @@ public final class ControllerImpl implements Controller {
     private static final ControllerImpl SINGLETON = new ControllerImpl();
     private static final double DEFAULT_TIME_TO_SHOT = 3000;
     private ControllerObjects controllerObjects;
-    private FileController file;
     private Model world;
     private View view;
     private GameLoopImpl gameLoop;
@@ -53,8 +51,7 @@ public final class ControllerImpl implements Controller {
         this.view = view;
         Convertitor.initialize(this.world, this.view);
         CheckCollision.initialize(this.world);
-        this.file = new FileControllerImpl(this.world);
-        this.level = new LevelImpl(this.file, this);
+        this.level = new LevelImpl(new FileControllerImpl(this.world), this);
         this.timeToShot = DEFAULT_TIME_TO_SHOT;
         this.factoryCollision = new FactoryCollisionImpl(this.world.getBounds());
     }

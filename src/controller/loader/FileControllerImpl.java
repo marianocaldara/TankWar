@@ -17,7 +17,7 @@ public class FileControllerImpl implements FileController {
 
     private static final String PATH = "res/levels/";
     private static final String EXTENSION = ".json";
-    private JSONParser json;
+    private final JSONParser json;
     private final Model world;
 
     /**
@@ -39,8 +39,8 @@ public class FileControllerImpl implements FileController {
         try {
             obj = this.json.parse(new FileReader(PATH + level.getName() + EXTENSION));
             jsonObject = (JSONObject) obj;
-            JSONObject playerFields = (JSONObject) jsonObject.get("playerTank");
-            JSONObject enemyFields = (JSONObject) jsonObject.get("enemyTank");
+            final JSONObject playerFields = (JSONObject) jsonObject.get("playerTank");
+            final JSONObject enemyFields = (JSONObject) jsonObject.get("enemyTank");
 
             this.world.configPlayerTank(
                     new Pair<Double, Double>((Double) playerFields.get(InitialStateFields.POSX.getName()),

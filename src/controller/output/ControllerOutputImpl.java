@@ -14,9 +14,9 @@ import model.utility.Pair;
  */
 public class ControllerOutputImpl implements ControllerOutput {
 
-    private List<Projectile> projectiles;
-    private Tank playerTank;
-    private Tank enemyTank;
+    private final List<Projectile> projectiles;
+    private final Tank playerTank;
+    private final Tank enemyTank;
 
     /**
      * Constructor.

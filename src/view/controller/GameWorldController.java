@@ -7,7 +7,6 @@ import java.util.List;
 import controller.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import view.scene.ViewScenes;
@@ -24,11 +23,11 @@ public class GameWorldController extends ViewController {
     private static final double HEIGHT_RAPPORT = 20; 
     private static final double LIFE_DIMENSION = 40;
     private static final double PROJECTILE_DIMENSION = 10;
-    private Image life = new Image("res/life.png", LIFE_DIMENSION, LIFE_DIMENSION, false, false); 
-    private Image projectile = new Image("res/ball.png", PROJECTILE_DIMENSION, PROJECTILE_DIMENSION, false, false); 
-    private List<ImageView> projectiles = new ArrayList<>();
-    private List<ImageView> playerLives = new ArrayList<>();
-    private List<ImageView> enemyLives = new ArrayList<>();
+    private final Image life = new Image("res/life.png", LIFE_DIMENSION, LIFE_DIMENSION, false, false); 
+    private final Image projectile = new Image("res/ball.png", PROJECTILE_DIMENSION, PROJECTILE_DIMENSION, false, false); 
+    private final List<ImageView> projectiles = new ArrayList<>();
+    private final List<ImageView> playerLives = new ArrayList<>();
+    private final List<ImageView> enemyLives = new ArrayList<>();
     private Controller controller;
 
     @FXML
@@ -42,9 +41,6 @@ public class GameWorldController extends ViewController {
 
     @FXML
     private Group worldGroup;
-
-    @FXML
-    private Canvas worldCanvas;
 
     @FXML
     private ImageView enemyTank;
@@ -128,7 +124,7 @@ public class GameWorldController extends ViewController {
         this.playerLives.forEach(p -> this.worldGroup.getChildren().removeAll(this.playerLives));
         this.playerLives.removeAll(this.playerLives);
         for (int i = 0; i < this.controller.getControllerOutput().getPlayerLifes(); i++) {
-            ImageView lifeImage = new ImageView(this.life);
+            final ImageView lifeImage = new ImageView(this.life);
             lifeImage.setLayoutX(i * ViewUtils.getScene().getWidth() / WIDTH_RAPPORT);
             lifeImage.setLayoutY(0);
             lifeImage.setFitWidth(ViewUtils.getScene().getWidth() / WIDTH_RAPPORT);
@@ -139,7 +135,7 @@ public class GameWorldController extends ViewController {
         this.enemyLives.forEach(p -> this.worldGroup.getChildren().removeAll(this.enemyLives));
         this.enemyLives.removeAll(this.enemyLives);
         for (int i = 0; i < this.controller.getControllerOutput().getEnemyLifes(); i++) {
-            ImageView lifeImage = new ImageView(this.life);
+            final ImageView lifeImage = new ImageView(this.life);
             lifeImage.setFitWidth(ViewUtils.getScene().getWidth() / WIDTH_RAPPORT);
             lifeImage.setFitHeight(ViewUtils.getScene().getHeight() / HEIGHT_RAPPORT);
             lifeImage.setLayoutX(ViewUtils.getScene().getWidth() - lifeImage.getFitWidth()
@@ -167,7 +163,7 @@ public class GameWorldController extends ViewController {
         this.worldGroup.getChildren().removeAll(this.projectiles);
         this.projectiles.removeAll(this.projectiles);
         this.controller.getControllerOutput().getProjectiles().forEach(p -> {
-            ImageView projectileImage = new ImageView(projectile);
+            final ImageView projectileImage = new ImageView(projectile);
             projectileImage.setLayoutX(p.getFirst());
             projectileImage.setLayoutY(p.getSecond());
             projectileImage.setFitWidth(this.controller.getControllerOutput().getProjectileDimension().getFirst());

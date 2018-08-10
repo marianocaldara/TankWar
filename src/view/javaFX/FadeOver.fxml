@@ -16,7 +16,7 @@
    <children>
       <BorderPane>
          <center>
-            <Label fx:id="gameOverLabel" text="G A M E    O V E R !" textFill="WHITE" BorderPane.alignment="CENTER">
+            <Label text="G A M E    O V E R !" textFill="WHITE" BorderPane.alignment="CENTER">
                <font>
                   <Font name="System Bold Italic" size="50.0" />
                </font>

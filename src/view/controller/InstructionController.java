@@ -4,9 +4,7 @@ import java.io.IOException;
 
 import controller.Controller;
 import javafx.fxml.FXML;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import view.scene.ViewScenes;
 import view.utility.ViewUtils;
 
@@ -17,12 +15,6 @@ public class InstructionController extends ViewController {
 
     private Controller controller;
 
-    @FXML
-    private GridPane instructionGrid;
-
-    @FXML
-    private ImageView exitButton;
-
     /**
      * Allow to return to the settings stage.
      * 
@@ -30,7 +22,7 @@ public class InstructionController extends ViewController {
      *            the mouse event.
      */
     @FXML
-    void exitAction(final MouseEvent event) {
+    public void exitAction(final MouseEvent event) {
         try {
             ViewScenes.SETTING.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(),
                     controller);

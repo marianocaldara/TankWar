@@ -17,15 +17,6 @@ public class World implements Model {
     private Input playerInput;
     private Input enemyInput;
 
-    /**
-     * Constructor.
-     * <p>
-     * Set player input and enemy input.
-     */
-    public World() {
-        super();
-    }
-
     @Override
     public final void configPlayerTank(final Pair<Double, Double> position, final int lifes, final double speed,
             final double projectileSpeed) {

@@ -32,12 +32,12 @@ public class ControllerObjects implements ControllerTank, ControllerProjectile {
     private final Tank playerTank;
     private final Tank enemyTank;
     private final Input playerInput;
-    private List<Projectile> projectiles;
-    private double timeToShot;
+    private final List<Projectile> projectiles;
+    private final double timeToShot;
     private long initialTime;
     private long finalTime;
-    private FactoryCollision factoryCollision;
-    private ControllerOutput controllerOutput;
+    private final FactoryCollision factoryCollision;
+    private final ControllerOutput controllerOutput;
 
     /**
      * Constructor.

@@ -4,6 +4,7 @@ import controller.levels.Level;
 import controller.objects.ControllerObjects;
 import controller.utility.Convertitor;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import model.utility.Direction;
 import model.utility.Pair;
@@ -13,8 +14,8 @@ import model.utility.Pair;
  */
 public final class ProcessInputImpl implements ProcessInput {
 
-    private ControllerObjects controllerObjects;
-    private Level level;
+    private final ControllerObjects controllerObjects;
+    private final Level level;
 
     /**
      * Constructor.
@@ -73,11 +74,8 @@ public final class ProcessInputImpl implements ProcessInput {
 
     @Override
     public void setMouseClicked(final MouseEvent event) {
-        switch (event.getButton()) {
-        case PRIMARY:
+        if (event.getButton().equals(MouseButton.PRIMARY)) {
             this.controllerObjects.playerShot();
-            break;
-        default:
         }
 
     }

@@ -3,7 +3,7 @@ package exceptions;
 /**
  * Exception threw when a {@link Tank} goes out from the {@link World} borders.
  */
-public class TankOutOfBordersException extends Exception {
+public class TankOutOfBordersException extends IllegalStateException {
 
     /**
      * 
@@ -15,6 +15,15 @@ public class TankOutOfBordersException extends Exception {
      */
     public TankOutOfBordersException() {
         super();
+    }
+
+    /**
+     * Constructor.
+     * @param msg
+     *          {@inheritDoc IllegalStateException#IllegalStateException(String)}
+     */
+    public TankOutOfBordersException(final String msg) {
+        super(msg);
     }
 
 }

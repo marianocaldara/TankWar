@@ -25,6 +25,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
      *            the game {@link View}.
      */
     public GameLoopImpl(final Controller controller, final View view) {
+        super();
         this.controller = controller;
         this.view = view;
     }

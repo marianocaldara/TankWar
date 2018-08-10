@@ -17,8 +17,8 @@ public class OOPTankwar extends Application {
 
     @Override
     public final void start(final Stage primaryStage) throws IOException {
-        Model world = new World();
-        View view = new ViewImpl(primaryStage);
+        final Model world = new World();
+        final View view = new ViewImpl(primaryStage);
         ControllerImpl.getController().initializeController(world, view);
         view.launchView(ControllerImpl.getController());
     }

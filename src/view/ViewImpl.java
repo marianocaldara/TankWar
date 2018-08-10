@@ -16,7 +16,6 @@ public class ViewImpl implements View {
 
     private static final double WIDTH = Screen.getPrimary().getBounds().getWidth() / 2;
     private static final double HEIGHT = Screen.getPrimary().getBounds().getHeight() / 2;
-    private Controller controller;
 
     /**
      * Instance a new {@link ViewImpl}.
@@ -42,9 +41,8 @@ public class ViewImpl implements View {
 
     @Override
     public final void launchView(final Controller controller) {
-        this.controller = controller;
         try {
-            ViewScenes.MENU.setGameStage(WIDTH, HEIGHT, this.controller);
+            ViewScenes.MENU.setGameStage(WIDTH, HEIGHT, controller);
         } catch (IOException e) {
             e.printStackTrace();
         }

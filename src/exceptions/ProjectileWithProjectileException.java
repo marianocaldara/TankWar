@@ -2,7 +2,7 @@ package exceptions;
 /**
  * Exception threw when two {@link Projectile} collide each other.
  */
-public class ProjectileWithProjectileException extends Exception {
+public class ProjectileWithProjectileException extends IllegalStateException {
 
     /**
      * 
@@ -14,6 +14,15 @@ public class ProjectileWithProjectileException extends Exception {
      */
     public ProjectileWithProjectileException() {
         super();
+    }
+
+    /**
+     * Constructor.
+     * @param msg
+     *          {@inheritDoc IllegalStateException#IllegalStateException(String)}
+     */
+    public ProjectileWithProjectileException(final String msg) {
+        super(msg);
     }
 
 }

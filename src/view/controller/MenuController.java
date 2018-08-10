@@ -3,11 +3,9 @@ package view.controller;
 import java.io.IOException;
 import java.util.Optional;
 
-import com.jfoenix.controls.JFXButton;
 
 import controller.Controller;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import view.scene.ViewScenes;
@@ -21,13 +19,6 @@ import javafx.scene.control.ButtonBar.ButtonData;
 public class MenuController extends ViewController {
 
     private Controller controller;
-
-    @FXML
-    private JFXButton play;
-    @FXML
-    private JFXButton settings;
-    @FXML
-    private JFXButton exit;
 
     @Override
     public final void init(final Controller controller) {
@@ -71,13 +62,13 @@ public class MenuController extends ViewController {
      *          throw a new {@link IOException}.
      */
     public void exitAction(final ActionEvent event) throws IOException {
-        Alert alert = new Alert(AlertType.CONFIRMATION);
+        final Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Requested");
         alert.setHeaderText("Are you really sure you wanna to quit ?");
-        ButtonType yes = new ButtonType("Yes", ButtonData.YES);
-        ButtonType no = new ButtonType("No", ButtonData.NO);
+        final ButtonType yes = new ButtonType("Yes", ButtonData.YES);
+        final ButtonType no = new ButtonType("No", ButtonData.NO);
         alert.getButtonTypes().setAll(yes, no);
-        Optional<ButtonType> result = alert.showAndWait();
+        final Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == yes) {
             System.exit(0);
         } else if (result.get() == no) {

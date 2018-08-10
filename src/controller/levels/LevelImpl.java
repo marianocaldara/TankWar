@@ -11,15 +11,15 @@ import controller.loader.FileController;
  */
 public final class LevelImpl implements Level { 
 
-    private boolean isLevelPaused;
-    private boolean isLevelStarted;
-    private boolean isLevelEnded;
-    private boolean isGameEnded;
-    private boolean isGameOver;
+    private boolean levelPaused;
+    private boolean levelStarted;
+    private boolean levelEnded;
+    private boolean gameEnded;
+    private boolean gameOver;
     private Iterator<Levels> levels;
     private Levels currentLevel;
-    private FileController fileController;
-    private Controller controller;
+    private final FileController fileController;
+    private final Controller controller;
 
     /**
      * Constructor.
@@ -29,11 +29,11 @@ public final class LevelImpl implements Level {
      *          the game {@link Controller}.
      */
     public LevelImpl(final FileController fileController, final Controller controller) {
-        this.isLevelPaused = false;
-        this.isLevelStarted = false;
-        this.isLevelEnded = false;
-        this.isGameEnded = false;
-        this.isGameOver = false;
+        this.levelPaused = false;
+        this.levelStarted = false;
+        this.levelEnded = false;
+        this.gameEnded = false;
+        this.gameOver = false;
         this.levels = Arrays.asList(Levels.values()).iterator();
         this.currentLevel = this.levels.next();
         this.fileController = fileController;
@@ -42,30 +42,30 @@ public final class LevelImpl implements Level {
 
     @Override
     public boolean isLevelStarted() {
-        return this.isLevelStarted;
+        return this.levelStarted;
     }
 
     @Override
     public boolean isGameOver() {
-        return this.isGameOver;
+        return this.gameOver;
     }
 
     @Override
     public boolean isLevelEnded() {
-        return this.isLevelEnded;
+        return this.levelEnded;
     }
 
     @Override
     public boolean isGameEnded() {
-        return this.isGameEnded;
+        return this.gameEnded;
     }
 
     @Override
     public void setLevelStarted() {
-        this.isLevelStarted = true;
-        this.isLevelEnded = false;
-        this.isGameEnded = false;
-        this.isGameOver = false;
+        this.levelStarted = true;
+        this.levelEnded = false;
+        this.gameEnded = false;
+        this.gameOver = false;
         this.fileController.loadLevel(this.currentLevel);
         this.controller.initializeObjects();
         this.controller.startGameLoop();
@@ -74,19 +74,19 @@ public final class LevelImpl implements Level {
 
     @Override
     public void setLevelEnded() {
-        this.isLevelStarted = false;
-        this.isLevelEnded = true;
+        this.levelStarted = false;
+        this.levelEnded = true;
         this.controller.getGameLoop().stopLoop();
         this.updateLevel();
     }
 
     @Override
     public void setLevelPaused() {
-        if (this.isLevelPaused) {
-            this.isLevelPaused = false;
+        if (this.levelPaused) {
+            this.levelPaused = false;
             this.controller.getGameLoop().resumeLoop();
         } else {
-            this.isLevelPaused = true;
+            this.levelPaused = true;
             this.controller.getGameLoop().pauseLoop();
         }
 
@@ -101,13 +101,13 @@ public final class LevelImpl implements Level {
     public void setCurrentLevel(final Levels currentLevel) {
         if (!currentLevel.equals(Levels.LEVEL_1)) {
             this.currentLevel = currentLevel;
-            while (this.levels.hasNext() && !this.levels.next().equals(this.currentLevel)) { }
+            while (this.levels.hasNext() && !this.levels.next().equals(this.currentLevel));
         }
     }
 
     @Override
     public void setGameOver() {
-        this.isGameOver = true;
+        this.gameOver = true;
         this.setGameEnded();
     }
 
@@ -118,13 +118,13 @@ public final class LevelImpl implements Level {
         if (this.levels.hasNext()) {
             this.currentLevel = this.levels.next();
         } else {
-            this.isGameEnded = true;
+            this.gameEnded = true;
             this.setGameEnded();
         }
     }
 
     private void setGameEnded() {
-        this.isLevelStarted = false;
+        this.levelStarted = false;
         this.controller.getGameLoop().stopLoop();
         this.levels = Arrays.asList(Levels.values()).iterator();
         this.currentLevel = this.levels.next();

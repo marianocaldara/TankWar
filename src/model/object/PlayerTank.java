@@ -14,11 +14,11 @@ import model.utility.Pair;
 public class PlayerTank implements Tank {
     private int lifes;
     private Pair<Double, Double> position;
-    private double speed;
-    private double speedX = 0;
-    private double speedY = 0;
+    private final double speed;
+    private double speedX;
+    private double speedY;
     private Cannon cannon = new Cannon();
-    private double projectileSpeed;
+    private final double projectileSpeed;
 
     /**
      * Constructor.
@@ -165,7 +165,7 @@ public class PlayerTank implements Tank {
         private static final double ANGLE_180 = 180;
         private static final double ANGLE_210 = 210;
         private static final double ANGLE_270 = 270;
-        private Pair<Double, Double> cannonDimension = new Pair<Double, Double>(WIDHT, HEIGHT);
+        private final Pair<Double, Double> cannonDimension = new Pair<Double, Double>(WIDHT, HEIGHT);
         private Pair<Double, Double> cannonPosition;
         private double angle;
 

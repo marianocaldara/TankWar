@@ -18,7 +18,7 @@
    <children>
       <BorderPane>
          <center>
-             <Label fx:id="endGameLabel" text="Y O U   W I N !" textFill="WHITE" BorderPane.alignment="CENTER">
+             <Label text="Y O U   W I N !" textFill="WHITE" BorderPane.alignment="CENTER">
                <font>
                   <Font name="System Bold Italic" size="50.0" />
                </font>

@@ -4,7 +4,7 @@ package exceptions;
  * Exception threw when a {@link Projectile} goes out from the {@link World}
  * borders.
  */
-public class ProjectileOutOfBordersException extends Exception {
+public class ProjectileOutOfBordersException extends IllegalStateException {
 
     /**
      * 
@@ -16,6 +16,15 @@ public class ProjectileOutOfBordersException extends Exception {
      */
     public ProjectileOutOfBordersException() {
         super();
+    }
+
+    /**
+     * Constructor.
+     * @param msg
+     *          {@inheritDoc IllegalStateException#IllegalStateException(String)}
+     */
+    public ProjectileOutOfBordersException(final String msg) {
+        super(msg);
     }
 
 }

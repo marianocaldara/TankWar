@@ -1,6 +1,7 @@
 package view.controller;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import controller.Controller;
 import javafx.animation.FadeTransition;
@@ -16,9 +17,6 @@ import view.utility.ViewUtils;
  */
 public class LoadController extends ViewController {
 
-    private FadeTransition play;
-    private String nameLevel = " ";
-
     @FXML
     private Label playLabel;
 
@@ -27,16 +25,17 @@ public class LoadController extends ViewController {
 
     @Override
     public final void init(final Controller controller) {
-        String name = controller.getLevel().getCurrentLevel().getName();
+        String nameLevel = " ";
+        final String name = controller.getLevel().getCurrentLevel().getName();
         for (int i = 0; i < name.length(); i++) {
-            this.nameLevel += name.substring(i, i + 1) + " ";
+            nameLevel += name.substring(i, i + 1) + " ";
         }
-        this.nameLevel += "!";
-        this.playLabel.setText(this.nameLevel.toUpperCase());
-        this.play = new FadeTransition(Duration.seconds(3), this.loaderGrid);
-        this.play.setFromValue(1.0);
-        this.play.setToValue(0.5);
-        this.play.setOnFinished(e -> {
+        nameLevel += "!";
+        this.playLabel.setText(nameLevel.toUpperCase(Locale.ENGLISH));
+        final FadeTransition play = new FadeTransition(Duration.seconds(3), this.loaderGrid);
+        play.setFromValue(1.0);
+        play.setToValue(0.5);
+        play.setOnFinished(e -> {
             try {
                 ViewScenes.GAME_WORLD.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(),
                         controller);
@@ -44,7 +43,7 @@ public class LoadController extends ViewController {
                 e1.printStackTrace();
             }
         });
-        this.play.play();
+        play.play();
     }
 
 }

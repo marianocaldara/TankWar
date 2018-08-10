@@ -4,7 +4,7 @@ package exceptions;
  * Exception threw when a @{@linkTank} and a {@link Projectile} collide each
  * other.
  */
-public class TankWithProjectileException extends Exception {
+public class TankWithProjectileException extends IllegalStateException {
 
     /**
      * 
@@ -16,6 +16,15 @@ public class TankWithProjectileException extends Exception {
      */
     public TankWithProjectileException() {
         super();
+    }
+
+    /**
+     * Constructor.
+     * @param msg
+     *          {@inheritDoc IllegalStateException#IllegalStateException(String)}
+     */
+    public TankWithProjectileException(final String msg) {
+        super(msg);
     }
 
 }

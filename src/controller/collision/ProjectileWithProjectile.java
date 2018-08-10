@@ -24,10 +24,10 @@ public class ProjectileWithProjectile implements Collision {
 
     @Override
     public final void manageCollision() {
-        for (Projectile p : projectiles) {
-            for (Projectile x : projectiles) {
+        for (final Projectile p : projectiles) {
+            for (final Projectile x : projectiles) {
                 if (CheckIntersection.intersects(p.getPosition(), p.getBounds(), x.getPosition(), x.getBounds())
-                        && x != p) {
+                        && !x.equals(p)) {
                     p.setDead();
                 }
             }

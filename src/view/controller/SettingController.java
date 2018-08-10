@@ -6,13 +6,11 @@ import controller.levels.Levels;
 import java.io.IOException;
 import java.util.Arrays;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import view.scene.ViewScenes;
 import view.utility.ViewUtils;
 
@@ -29,12 +27,6 @@ public class SettingController extends ViewController {
     @FXML
     private JFXComboBox<String> levelsBox;
 
-    @FXML
-    private GridPane settingsGrid;
-
-    @FXML
-    private JFXButton instructionButton;
-
     /**
      * Setter of the game difficult according to the selected item of the
      * difficultBox.
@@ -43,7 +35,7 @@ public class SettingController extends ViewController {
      *            the event of the difficultBox.
      */
     @FXML
-    void difficultAction(final ActionEvent event) {
+    public void difficultAction(final ActionEvent event) {
         if (this.difficultBox.getValue().equals(Difficult.EASY.getName())) {
             this.controller.setTimeToShot(Difficult.EASY.getTimeShot());
         } else if (this.difficultBox.getValue().equals(Difficult.MEDIUM.getName())) {
@@ -60,7 +52,7 @@ public class SettingController extends ViewController {
      *            the event of the levelBox.
      */
     @FXML
-    void levelAction(final ActionEvent event) {
+    public void levelAction(final ActionEvent event) {
         if (this.levelsBox.getValue().equals(Levels.LEVEL_1.getName())) {
             this.controller.getLevel().setCurrentLevel(Levels.LEVEL_1);
         } else if (this.levelsBox.getValue().equals(Levels.LEVEL_2.getName())) {
@@ -77,7 +69,7 @@ public class SettingController extends ViewController {
      *            the {@link MouseEvent} of the exit image.
      */
     @FXML
-    void exitAction(final MouseEvent event) {
+    public void exitAction(final MouseEvent event) {
         try {
             ViewScenes.MENU.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(), controller);
         } catch (IOException e) {
@@ -85,8 +77,14 @@ public class SettingController extends ViewController {
         }
     }
 
+    /**
+    * Allows to open the instruction stage.
+     * 
+     * @param event
+     *            the {@link ActionEvent} to pass to the instruction stage.
+     */
     @FXML
-    final void instructionAction(final ActionEvent event) {
+    public void instructionAction(final ActionEvent event) {
         try {
             ViewScenes.ISTRUCTION.setGameStage(ViewUtils.getScene().getWidth(), ViewUtils.getScene().getHeight(),
                     controller);
