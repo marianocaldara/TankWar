@@ -8,7 +8,7 @@ public enum Levels {
     /**
      * The list of levels of the game.
      */
-    LEVEL_1("Level1"), LEVEL_2("Level2"), LEVEL_3("Level3");
+    LEVEL_1("Level1"), LEVEL_2("Level2"), LEVEL_3("Level3"), LEVEL_4("Level4");
 
     private String levelName;
 
