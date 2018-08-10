@@ -12,6 +12,7 @@ import model.utility.Pair;
  * Main tank controlled by Player.
  */
 public class PlayerTank implements Tank {
+    private static final double ANGLE_MOVEMENT = 45;
     private int lifes;
     private Pair<Double, Double> position;
     private final double speed;
@@ -134,6 +135,10 @@ public class PlayerTank implements Tank {
         this.speedX = movement.keySet().stream().filter(d -> d.equals(Direction.LEFT) || d.equals(Direction.RIGHT))
                 .map(d -> movement.get(d) ? d.getSign() * speed : 0).collect(Collectors.summingDouble(x -> x))
                 .doubleValue();
+        if (this.speedX != 0 && this.speedY != 0) {
+            this.speedX *= Math.cos(Math.toRadians(ANGLE_MOVEMENT));
+            this.speedY *= Math.sin(Math.toRadians(ANGLE_MOVEMENT));
+        }
     }
 
     /**
