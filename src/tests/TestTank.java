@@ -1,14 +1,17 @@
 package tests;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.Test;
 
-import model.Model;
-import model.World;
+import model.factory.FactoryTank;
+import model.input.Input;
+import model.input.InputImpl;
+import model.object.Tank;
+import model.utility.Direction;
 import model.utility.Pair;
 
 /**
@@ -21,17 +24,16 @@ public class TestTank {
      */
     @Test
     public void testInitialStateTank() {
-        final Model world = new World();
-        world.configPlayerTank(new Pair<>(0.0, 0.0), 3);
-        world.configEnemyTank(new Pair<>(100.0, 100.0), 3, 3, 4);
-        assertNotNull(world.getPlayer());
-        assertNotNull(world.getEnemy());
-        assertSame(world.getPlayer().getLifes(), 3);
-        assertSame(world.getEnemy().getLifes(), 3);
-        assertSame(world.getPlayer().getPosition().getFirst().intValue(), 0);
-        assertSame(world.getPlayer().getPosition().getSecond().intValue(), 0);
-        assertSame(world.getEnemy().getPosition().getFirst().intValue(), 100);
-        assertSame(world.getEnemy().getPosition().getSecond().intValue(), 100);
+        final Tank playerTank = FactoryTank.createPlayer(new Pair<>(0.0, 0.0), 3);
+        final Tank enemyTank = FactoryTank.createEnemy(new Pair<>(100.0, 100.0), 3, 3, 4);
+        assertNotNull(playerTank);
+        assertNotNull(enemyTank);
+        assertEquals(playerTank.getLifes(), 3);
+        assertEquals(enemyTank.getLifes(), 3);
+        assertEquals(playerTank.getPosition().getFirst().intValue(), 0);
+        assertEquals(playerTank.getPosition().getSecond().intValue(), 0);
+        assertEquals(enemyTank.getPosition().getFirst().intValue(), 100);
+        assertEquals(enemyTank.getPosition().getSecond().intValue(), 100);
     }
 
     /**
@@ -39,15 +41,14 @@ public class TestTank {
      */
     @Test
     public void testTankPosition() {
-        final Model world = new World();
-        world.configPlayerTank(new Pair<>(0.0, 0.0), 3);
-        world.configEnemyTank(new Pair<>(100.0, 100.0), 3, 3, 4);
-        world.getPlayer().setPosition(new Pair<>(20.0, 20.0));
-        world.getEnemy().setPosition(new Pair<>(300.0, 300.0));
-        assertSame(world.getPlayer().getPosition().getFirst().intValue(), 20);
-        assertSame(world.getPlayer().getPosition().getSecond().intValue(), 20);
-        assertSame(world.getEnemy().getPosition().getFirst().intValue(), 300);
-        assertSame(world.getEnemy().getPosition().getSecond().intValue(), 300);
+        final Tank playerTank = FactoryTank.createPlayer(new Pair<>(0.0, 0.0), 3);
+        final Tank enemyTank = FactoryTank.createEnemy(new Pair<>(100.0, 100.0), 3, 3, 4);
+        playerTank.setPosition(new Pair<>(20.0, 20.0));
+        enemyTank.setPosition(new Pair<>(300.0, 300.0));
+        assertEquals(playerTank.getPosition().getFirst().intValue(), 20);
+        assertEquals(playerTank.getPosition().getSecond().intValue(), 20);
+        assertEquals(enemyTank.getPosition().getFirst().intValue(), 300);
+        assertEquals(enemyTank.getPosition().getSecond().intValue(), 300);
     }
 
     /**
@@ -55,14 +56,30 @@ public class TestTank {
      */
     @Test
     public void testTankDead() {
-        final Model world = new World();
-        world.configPlayerTank(new Pair<>(0.0, 0.0), 3);
-        world.configEnemyTank(new Pair<>(100.0, 100.0), 3, 3, 4);
-        assertTrue(world.getPlayer().isAlive());
-        assertTrue(world.getEnemy().isAlive());
-        world.getPlayer().damage(3);
-        world.getEnemy().damage(3);
-        assertFalse(world.getPlayer().isAlive());
-        assertFalse(world.getEnemy().isAlive());
+        final Tank playerTank = FactoryTank.createPlayer(new Pair<>(0.0, 0.0), 3);
+        final Tank enemyTank = FactoryTank.createEnemy(new Pair<>(100.0, 100.0), 3, 3, 4);
+        assertTrue(playerTank.isAlive());
+        assertTrue(enemyTank.isAlive());
+        playerTank.damage(3);
+        enemyTank.damage(3);
+        assertFalse(playerTank.isAlive());
+        assertFalse(enemyTank.isAlive());
+    }
+
+    /**
+     * Tests if the tank is correctly moving.
+     */
+    @Test
+    public void testTankMovement() {
+        final Tank playerTank = FactoryTank.createPlayer(new Pair<>(0.0, 0.0), 3);
+        final Tank enemyTank = FactoryTank.createEnemy(new Pair<>(100.0, 100.0), 3, 3, 4);
+        final Input playerInput = new InputImpl();
+        final Input enemyInput = new InputImpl();
+        playerInput.getMovement().put(Direction.DOWN, true);
+        enemyInput.getMovement().put(Direction.RIGHT, true);
+        playerTank.update(playerInput);
+        enemyTank.update(enemyInput);
+        assertEquals(playerTank.getPosition().getSecond().intValue(), 3);
+        assertEquals(enemyTank.getPosition().getFirst().intValue(), 103);
     }
 }
