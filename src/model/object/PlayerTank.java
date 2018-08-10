@@ -158,7 +158,7 @@ public class PlayerTank implements Tank {
      * Cannon of Tank, allows to shoot.
      */
     protected class Cannon {
-        private static final double WIDHT = 22.5;
+        private static final double WIDHT = 25.0;
         private static final double HEIGHT = 5.0;
         private static final double MARGINAL_DISTANCE = 10;
         private static final double ANGLE_150 = 150;

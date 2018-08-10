@@ -59,6 +59,8 @@ public class SettingController extends ViewController {
             this.controller.getLevel().setCurrentLevel(Levels.LEVEL_2);
         } else if (this.levelsBox.getValue().equals(Levels.LEVEL_3.getName())) {
             this.controller.getLevel().setCurrentLevel(Levels.LEVEL_3);
+        } else if (this.levelsBox.getValue().equals(Levels.LEVEL_4.getName())) {
+            this.controller.getLevel().setCurrentLevel(Levels.LEVEL_4);
         }
     }
 

@@ -16,7 +16,7 @@
    <children>
       <Group fx:id="worldGroup">
          <children>
-            <Canvas fx:id="worldCanvas" height="400.0" width="600.0"/>
+            <Canvas height="400.0" width="600.0"/>
             <ImageView fx:id="backGround" fitHeight="400.0" fitWidth="600.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="false">
                <image>
                   <Image url="@../../../res/images/level2_background.jpg" />
@@ -29,11 +29,11 @@
                <image>
                   <Image url="@../../../res/images/tankBeige.png" />
                </image></ImageView>
-            <ImageView fx:id="playerCannon" fitHeight="5" fitWidth="20" layoutX="26.5" layoutY="185" pickOnBounds="true">
+            <ImageView fx:id="playerCannon" fitHeight="5" fitWidth="25" layoutX="26.5" layoutY="185" pickOnBounds="true">
                <image>
                   <Image url="@../../../res/images/barrelBlack.png" />
                </image></ImageView>
-            <ImageView fx:id="enemyCannon" fitHeight="5" fitWidth="20" layoutX="523.5" layoutY="185" pickOnBounds="true">
+            <ImageView fx:id="enemyCannon" fitHeight="5" fitWidth="25" layoutX="523.5" layoutY="185" pickOnBounds="true">
                <image>
                   <Image url="@../../../res/images/barrelBeige.png" />
                </image></ImageView>
