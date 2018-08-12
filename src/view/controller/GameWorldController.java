@@ -23,8 +23,8 @@ public class GameWorldController extends ViewController {
     private static final double HEIGHT_RAPPORT = 20; 
     private static final double LIFE_DIMENSION = 40;
     private static final double PROJECTILE_DIMENSION = 10;
-    private final Image life = new Image("res/life.png", LIFE_DIMENSION, LIFE_DIMENSION, false, false); 
-    private final Image projectile = new Image("res/ball.png", PROJECTILE_DIMENSION, PROJECTILE_DIMENSION, false, false); 
+    private final Image life = new Image("res/images/life.png", LIFE_DIMENSION, LIFE_DIMENSION, false, false); 
+    private final Image projectile = new Image("res/images/ball.png", PROJECTILE_DIMENSION, PROJECTILE_DIMENSION, false, false); 
     private final List<ImageView> projectiles = new ArrayList<>();
     private final List<ImageView> playerLives = new ArrayList<>();
     private final List<ImageView> enemyLives = new ArrayList<>();

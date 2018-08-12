@@ -24,7 +24,7 @@ public class GameWorldStage implements SceneChanger {
     @Override
     public final void setStage(final double width, final double height, final Controller controller) throws IOException {
         final FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/view/JavaFX/" + controller.getLevel().getCurrentLevel().getName() + ".fxml"));
+                getClass().getResource("/view/javaFX/" + controller.getLevel().getCurrentLevel().getName() + ".fxml"));
         final Parent root = loader.load();
         this.gameWorld = loader.getController();
         this.gameWorld.init(controller);

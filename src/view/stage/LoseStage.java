@@ -22,7 +22,7 @@ public class LoseStage implements SceneChanger {
 
     @Override
     public final void setStage(final double width, final double height, final Controller controller) throws IOException {
-        final FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/JavaFX/FadeOver.fxml"));
+        final FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/javaFX/FadeOver.fxml"));
         final Parent root = loader.load();
         this.gameOverController = loader.getController();
         this.gameOverController.init(controller);

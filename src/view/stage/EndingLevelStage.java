@@ -22,7 +22,7 @@ public class EndingLevelStage implements SceneChanger {
 
     @Override
     public final void setStage(final double width, final double height, final Controller controller) throws IOException {
-        final FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/JavaFX/FadeLevelEnded.fxml"));
+        final FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/javaFX/FadeLevelEnded.fxml"));
         final Parent root = loader.load();
         this.endLevel = loader.getController();
         this.endLevel.init(controller);

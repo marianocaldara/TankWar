@@ -22,7 +22,7 @@ public class LoadingStage implements SceneChanger {
 
     @Override
     public final void setStage(final double width, final double height, final Controller controller) throws IOException {
-        final FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/JavaFX/FadePlay.fxml"));
+        final FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/javaFX/FadePlay.fxml"));
         final Parent root = loader.load();
         this.loader = loader.getController();
         this.loader.init(controller);

@@ -40,14 +40,14 @@
          <left>
             <ImageView fitHeight="86.0" fitWidth="131.0" pickOnBounds="true" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@../../../res/images/arrowKey.png" />
+                  <Image url="@../../res/images/arrowKey.png" />
                </image>
             </ImageView>
          </left>
          <center>
             <ImageView fitHeight="86.0" fitWidth="126.0" pickOnBounds="true" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@../../../res/images/wasdKey.png" />
+                  <Image url="@../../res/images/wasdKey.png" />
                </image>
             </ImageView>
          </center>
@@ -56,7 +56,7 @@
          <center>
             <ImageView fitHeight="44.0" fitWidth="50.0" pickOnBounds="true" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@../../../res/images/pause.png" />
+                  <Image url="@../../res/images/pause.png" />
                </image>
             </ImageView>
          </center>
@@ -65,7 +65,7 @@
          <center>
             <ImageView fitHeight="133.0" fitWidth="169.0" pickOnBounds="true" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@../../../res/images/shotKeys.png" />
+                  <Image url="@../../res/images/shotKeys.png" />
                </image>
             </ImageView>
          </center>
@@ -74,7 +74,7 @@
          <center>
             <ImageView fitHeight="71.0" fitWidth="85.0" onMouseClicked="#exitAction" pickOnBounds="true" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@../../../res/images/809860_arrows_512x512.png" />
+                  <Image url="@../../res/images/809860_arrows_512x512.png" />
                </image>
             </ImageView>
          </center>
