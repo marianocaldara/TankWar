@@ -64,7 +64,7 @@ public class MenuController extends ViewController {
     public void exitAction(final ActionEvent event) throws IOException {
         final Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Requested");
-        alert.setHeaderText("Are you really sure you wanna to quit ?");
+        alert.setHeaderText("Are you really sure you want to quit ?");
         final ButtonType yes = new ButtonType("Yes", ButtonData.YES);
         final ButtonType no = new ButtonType("No", ButtonData.NO);
         alert.getButtonTypes().setAll(yes, no);
