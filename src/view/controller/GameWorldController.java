@@ -156,10 +156,10 @@ public class GameWorldController extends ViewController {
      * Draw the background of the scene.
      */
     private void drawBackGround() {
-        this.worldCanvas.prefWidth(ViewUtils.getScene().getWidth());
-        this.worldCanvas.prefHeight(ViewUtils.getScene().getHeight());
-        this.backGround.setFitWidth(ViewUtils.getScene().getWidth());
-        this.backGround.setFitHeight(ViewUtils.getScene().getHeight());
+        this.worldCanvas.setWidth(ViewUtils.getScene().getWidth());
+        this.worldCanvas.setHeight(ViewUtils.getScene().getHeight());
+        this.backGround.setFitWidth(this.worldCanvas.getWidth());
+        this.backGround.setFitHeight(this.worldCanvas.getHeight());
     }
 
     /**
