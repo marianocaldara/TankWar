@@ -35,7 +35,6 @@ public class GameWorldStage implements SceneChanger {
         stage.hide();
         stage.setScene(scene);
         stage.show();
-        controller.getLevel().setLevelStarted();
     }
 
     @Override

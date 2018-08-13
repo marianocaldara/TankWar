@@ -42,7 +42,7 @@ public class GameWorldController extends ViewController {
 
     @FXML
     private Group worldGroup;
-    
+
     @FXML
     private Canvas worldCanvas;
 
@@ -55,6 +55,7 @@ public class GameWorldController extends ViewController {
     @Override
     public final void init(final Controller controller) {
         this.controller = controller;
+        this.controller.getLevel().setLevelStarted();
     }
 
     /**

@@ -23,9 +23,7 @@ import model.utility.Direction;
 import model.utility.Pair;
 
 /**
- * 
- * @author Scu
- *
+ * Test class for the game exceptions.
  */
 public class TestException {
 

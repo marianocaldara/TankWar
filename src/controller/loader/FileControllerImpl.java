@@ -1,7 +1,7 @@
 package controller.loader;
 
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -15,7 +15,7 @@ import model.utility.Pair;
  */
 public class FileControllerImpl implements FileController {
 
-    private static final String PATH = "res/levels/";
+    private static final String PATH = "/res/levels/";
     private static final String EXTENSION = ".json";
     private final JSONParser json;
     private final Model world;
@@ -37,7 +37,7 @@ public class FileControllerImpl implements FileController {
         Object obj;
         JSONObject jsonObject;
         try {
-            obj = this.json.parse(new FileReader(PATH + level.getName() + EXTENSION));
+            obj = this.json.parse(new InputStreamReader(getClass().getResourceAsStream(PATH + level.getName() + EXTENSION)));
             jsonObject = (JSONObject) obj;
             final JSONObject playerFields = (JSONObject) jsonObject.get("playerTank");
             final JSONObject enemyFields = (JSONObject) jsonObject.get("enemyTank");
