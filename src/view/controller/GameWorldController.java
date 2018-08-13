@@ -7,6 +7,7 @@ import java.util.List;
 import controller.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import view.scene.ViewScenes;
@@ -41,6 +42,9 @@ public class GameWorldController extends ViewController {
 
     @FXML
     private Group worldGroup;
+    
+    @FXML
+    private Canvas worldCanvas;
 
     @FXML
     private ImageView enemyTank;
@@ -152,6 +156,8 @@ public class GameWorldController extends ViewController {
      * Draw the background of the scene.
      */
     private void drawBackGround() {
+        this.worldCanvas.prefWidth(ViewUtils.getScene().getWidth());
+        this.worldCanvas.prefHeight(ViewUtils.getScene().getHeight());
         this.backGround.setFitWidth(ViewUtils.getScene().getWidth());
         this.backGround.setFitHeight(ViewUtils.getScene().getHeight());
     }
