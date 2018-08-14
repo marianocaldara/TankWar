@@ -106,6 +106,8 @@ public final class LevelImpl implements Level {
                     break;
                 }
             }
+        } else { 
+            this.currentLevel = currentLevel;
         }
     }
 
