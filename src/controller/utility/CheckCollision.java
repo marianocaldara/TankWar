@@ -2,7 +2,6 @@ package controller.utility;
 
 import java.util.List;
 
-import exceptions.FactoryException;
 import exceptions.ProjectileOutOfBordersException;
 import exceptions.ProjectileWithProjectileException;
 import exceptions.TankOutOfBordersException;
@@ -48,7 +47,7 @@ public final class CheckCollision {
     public static void tankWithTank(final Tank playerTank, final Tank enemyTank) throws TankWithTankException {
         if (CheckIntersection.intersects(playerTank.getPosition(), Tank.getDimension(), enemyTank.getPosition(),
                 Tank.getDimension())) {
-            FactoryException.throwTankWithTankException("Tank collides with a tank.");
+            throw new TankWithTankException("Tank collides with a tank.");
         }
     }
 
@@ -68,7 +67,7 @@ public final class CheckCollision {
                         world.getPlayer().getPosition(), Tank.getDimension()))
                 || projectiles.stream().anyMatch(p -> CheckIntersection.intersects(p.getPosition(), p.getBounds(),
                         world.getEnemy().getPosition(), Tank.getDimension()))) {
-            FactoryException.throwTankWithProjectileException("Tank collides with a projectile.");
+            throw new TankWithProjectileException("Tank collides with a projectile.");
         }
     }
 
@@ -86,7 +85,7 @@ public final class CheckCollision {
                 || tank.getPosition().getFirst() + Tank.getDimension().getFirst() > world.getBounds().getFirst()
                 || (tank.getPosition().getSecond() < 0 || tank.getPosition().getSecond()
                         + Tank.getDimension().getSecond() > world.getBounds().getSecond())) {
-            FactoryException.throwTankOutOfBordersException("Tank out of borders.");
+            throw new TankOutOfBordersException("Tank out of borders.");
 
         }
     }
@@ -105,7 +104,7 @@ public final class CheckCollision {
                 || projectile.getPosition().getFirst() <= 0 || projectile.getPosition().getSecond()
                         + projectile.getBounds().getSecond() >= world.getBounds().getSecond()
                 || projectile.getPosition().getSecond() <= 0) {
-            FactoryException.throwProjectileOutOfBordersException("Projectile out of borders.");
+            throw new ProjectileOutOfBordersException("Projectile out of borders.");
 
         }
 
@@ -124,7 +123,7 @@ public final class CheckCollision {
             for (final Projectile x : projectiles) {
                 if (CheckIntersection.intersects(p.getPosition(), p.getBounds(), x.getPosition(), x.getBounds())
                         && !x.equals(p)) {
-                    FactoryException.throwProjectileWithProjectileException("Projectile collides with a projectile.");
+                    throw new ProjectileWithProjectileException("Projectile collides with a projectile.");
                 }
             }
         }
