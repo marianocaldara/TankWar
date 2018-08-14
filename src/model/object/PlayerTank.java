@@ -3,6 +3,7 @@ package model.object;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import exceptions.FactoryException;
 import exceptions.TankDeadException;
 import model.input.Input;
 import model.utility.Calculate;
@@ -69,7 +70,7 @@ public class PlayerTank implements Tank {
     @Override
     public final Projectile shot() throws TankDeadException {
         if (!isAlive()) {
-            throw new TankDeadException("This Tank is dead, cannot shot");
+            FactoryException.throwTankDeadException("This Tank is dead, cannot shot");
         }
         return this.getCannon().shot();
     }
@@ -77,7 +78,7 @@ public class PlayerTank implements Tank {
     @Override
     public final void update(final Input i) throws TankDeadException {
         if (!isAlive()) {
-            throw new TankDeadException("This Tank is dead, cannot updated");
+            FactoryException.throwTankDeadException("This Tank is dead, cannot updated");
         }
         this.setDirection(i.getMovement());
         this.updatePosition();
