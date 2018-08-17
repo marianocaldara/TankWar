@@ -16,7 +16,7 @@ import model.World;
 /**
  * Test class for the levels.
  */
-public class TextLevels {
+public class TestLevels {
 
     /**
      * Test the setting of a level.
