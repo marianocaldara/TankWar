@@ -10,7 +10,7 @@ import view.View;
  * to manage the game loop.
  */
 public class GameLoopImpl extends Thread implements GameLoop {
-    private static final long MS_BETWEEN_FRAMES = 20;
+    private static final long TIME_FRAME = 20;
     private volatile boolean paused;
     private volatile boolean stopped;
     private final Controller controller;
@@ -61,7 +61,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
                     render();
                 }
             });
-            this.waitForNextFrame(current);
+            this.sleepTime(current);
         }
     }
 
@@ -121,11 +121,11 @@ public class GameLoopImpl extends Thread implements GameLoop {
      * @param current
      *            the current time in ms.
      */
-    private void waitForNextFrame(final long current) {
+    private void sleepTime(final long current) {
         final long dt = System.currentTimeMillis() - current;
-        if (dt < MS_BETWEEN_FRAMES) {
+        if (dt < TIME_FRAME) {
             try {
-                Thread.sleep(MS_BETWEEN_FRAMES - dt);
+                Thread.sleep(TIME_FRAME - dt);
             } catch (InterruptedException ex) {
             }
         }
