@@ -15,6 +15,8 @@ import model.utility.Pair;
  */
 public class TestProjectile {
 
+    private static final int PROJECTILE_POSITION = 6;
+
     /**
      * Tests the initial state of a projectile.
      */
@@ -34,7 +36,7 @@ public class TestProjectile {
         final Projectile projectile = new ProjectileImpl(new Pair<>(10.0, 10.0), 0, 4);
         projectile.bounce(Direction.RIGHT);
         projectile.update();
-        assertEquals(projectile.getPosition().getFirst().intValue(), 6);
+        assertEquals(projectile.getPosition().getFirst().intValue(), PROJECTILE_POSITION);
         projectile.update();
         assertEquals(projectile.getPosition().getFirst().intValue(), 2);
     }

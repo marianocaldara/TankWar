@@ -27,6 +27,8 @@ import model.utility.Pair;
  */
 public class TestException {
 
+    private static final double PLAYER_INITIAL_POSITION = 30.0;
+
     /**
      * Tests the exception threw by a projectile when it bounces two times.
      */
@@ -62,7 +64,7 @@ public class TestException {
      */
     @Test(expected = TankDeadException.class)
     public void testTankDead() {
-        final Tank playerTank = FactoryTank.createPlayer(new Pair<>(30.0, 30.0), 3);
+        final Tank playerTank = FactoryTank.createPlayer(new Pair<>(PLAYER_INITIAL_POSITION, PLAYER_INITIAL_POSITION), 3);
         playerTank.damage(3);
         playerTank.update(new InputImpl());
     }
@@ -73,7 +75,7 @@ public class TestException {
     @Test(expected = TankWithProjectileException.class)
     public void testTankWithProjectile() {
         final Model world = new World();
-        world.configPlayerTank(new Pair<>(30.0, 30.0), 3);
+        world.configPlayerTank(new Pair<>(PLAYER_INITIAL_POSITION, PLAYER_INITIAL_POSITION), 3);
         final Projectile projectile = new ProjectileImpl(new Pair<>(26.0, 30.0), 0, 4);
         CheckCollision.initialize(world);
         final List<Projectile> projectiles = new ArrayList<>();

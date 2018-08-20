@@ -15,6 +15,11 @@ import model.World;
  */
 public class TestFileController {
 
+    private static final int PLAYER_POSX = 14;
+    private static final int POSY = 175;
+    private static final int ENEMY_POSX = 536;
+    private static final int INITIAL_LIFE = 5;
+
     /**
      * Test the initial configuration read by the file controller.
      */
@@ -23,33 +28,33 @@ public class TestFileController {
         final Model world = new World();
         final FileController file = new FileControllerImpl(world);
         file.loadLevel(Levels.LEVEL_1);
-        assertEquals(world.getPlayer().getPosition().getFirst().intValue(), 14);
-        assertEquals(world.getPlayer().getPosition().getSecond().intValue(), 175);
-        assertEquals(world.getEnemy().getPosition().getFirst().intValue(), 536);
-        assertEquals(world.getEnemy().getPosition().getSecond().intValue(), 175);
-        assertEquals(world.getPlayer().getLifes(), 5);
-        assertEquals(world.getEnemy().getLifes(), 5);
+        assertEquals(world.getPlayer().getPosition().getFirst().intValue(), PLAYER_POSX);
+        assertEquals(world.getPlayer().getPosition().getSecond().intValue(), POSY);
+        assertEquals(world.getEnemy().getPosition().getFirst().intValue(), ENEMY_POSX);
+        assertEquals(world.getEnemy().getPosition().getSecond().intValue(), POSY);
+        assertEquals(world.getPlayer().getLifes(), INITIAL_LIFE);
+        assertEquals(world.getEnemy().getLifes(), INITIAL_LIFE);
         file.loadLevel(Levels.LEVEL_2);
-        assertEquals(world.getPlayer().getPosition().getFirst().intValue(), 14);
-        assertEquals(world.getPlayer().getPosition().getSecond().intValue(), 175);
-        assertEquals(world.getEnemy().getPosition().getFirst().intValue(), 536);
-        assertEquals(world.getEnemy().getPosition().getSecond().intValue(), 175);
+        assertEquals(world.getPlayer().getPosition().getFirst().intValue(), PLAYER_POSX);
+        assertEquals(world.getPlayer().getPosition().getSecond().intValue(), POSY);
+        assertEquals(world.getEnemy().getPosition().getFirst().intValue(), ENEMY_POSX);
+        assertEquals(world.getEnemy().getPosition().getSecond().intValue(), POSY);
         assertEquals(world.getPlayer().getLifes(), 4);
-        assertEquals(world.getEnemy().getLifes(), 5);
+        assertEquals(world.getEnemy().getLifes(), INITIAL_LIFE);
         file.loadLevel(Levels.LEVEL_3);
-        assertEquals(world.getPlayer().getPosition().getFirst().intValue(), 14);
-        assertEquals(world.getPlayer().getPosition().getSecond().intValue(), 175);
-        assertEquals(world.getEnemy().getPosition().getFirst().intValue(), 536);
-        assertEquals(world.getEnemy().getPosition().getSecond().intValue(), 175);
+        assertEquals(world.getPlayer().getPosition().getFirst().intValue(), PLAYER_POSX);
+        assertEquals(world.getPlayer().getPosition().getSecond().intValue(), POSY);
+        assertEquals(world.getEnemy().getPosition().getFirst().intValue(), ENEMY_POSX);
+        assertEquals(world.getEnemy().getPosition().getSecond().intValue(), POSY);
         assertEquals(world.getPlayer().getLifes(), 3);
-        assertEquals(world.getEnemy().getLifes(), 5);
+        assertEquals(world.getEnemy().getLifes(), INITIAL_LIFE);
         file.loadLevel(Levels.LEVEL_4);
-        assertEquals(world.getPlayer().getPosition().getFirst().intValue(), 14);
-        assertEquals(world.getPlayer().getPosition().getSecond().intValue(), 175);
-        assertEquals(world.getEnemy().getPosition().getFirst().intValue(), 536);
-        assertEquals(world.getEnemy().getPosition().getSecond().intValue(), 175);
+        assertEquals(world.getPlayer().getPosition().getFirst().intValue(), PLAYER_POSX);
+        assertEquals(world.getPlayer().getPosition().getSecond().intValue(), POSY);
+        assertEquals(world.getEnemy().getPosition().getFirst().intValue(), ENEMY_POSX);
+        assertEquals(world.getEnemy().getPosition().getSecond().intValue(), POSY);
         assertEquals(world.getPlayer().getLifes(), 2);
-        assertEquals(world.getEnemy().getLifes(), 5);
+        assertEquals(world.getEnemy().getLifes(), INITIAL_LIFE);
     }
 
 }

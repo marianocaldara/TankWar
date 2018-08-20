@@ -19,6 +19,10 @@ import model.utility.Pair;
  */
 public class TestTank {
 
+    private static final double INITIAL_PLAYER_POSITION = 20.0;
+    private static final double INITIAL_ENEMY_POSITION = 300.0;
+    private static final int ENEMY_UPDATE_POSITION = 103;
+
     /**
      * Tests the fields of a new tank where it's possible.
      */
@@ -43,12 +47,12 @@ public class TestTank {
     public void testTankPosition() {
         final Tank playerTank = FactoryTank.createPlayer(new Pair<>(0.0, 0.0), 3);
         final Tank enemyTank = FactoryTank.createEnemy(new Pair<>(100.0, 100.0), 3, 3, 4);
-        playerTank.setPosition(new Pair<>(20.0, 20.0));
-        enemyTank.setPosition(new Pair<>(300.0, 300.0));
-        assertEquals(playerTank.getPosition().getFirst().intValue(), 20);
-        assertEquals(playerTank.getPosition().getSecond().intValue(), 20);
-        assertEquals(enemyTank.getPosition().getFirst().intValue(), 300);
-        assertEquals(enemyTank.getPosition().getSecond().intValue(), 300);
+        playerTank.setPosition(new Pair<>(INITIAL_PLAYER_POSITION, INITIAL_PLAYER_POSITION));
+        enemyTank.setPosition(new Pair<>(INITIAL_ENEMY_POSITION, INITIAL_ENEMY_POSITION));
+        assertEquals(playerTank.getPosition().getFirst().intValue(), (int) INITIAL_PLAYER_POSITION);
+        assertEquals(playerTank.getPosition().getSecond().intValue(), (int) INITIAL_PLAYER_POSITION);
+        assertEquals(enemyTank.getPosition().getFirst().intValue(), (int) INITIAL_ENEMY_POSITION);
+        assertEquals(enemyTank.getPosition().getSecond().intValue(), (int) INITIAL_ENEMY_POSITION);
     }
 
     /**
@@ -80,6 +84,6 @@ public class TestTank {
         playerTank.update(playerInput);
         enemyTank.update(enemyInput);
         assertEquals(playerTank.getPosition().getSecond().intValue(), 3);
-        assertEquals(enemyTank.getPosition().getFirst().intValue(), 103);
+        assertEquals(enemyTank.getPosition().getFirst().intValue(), ENEMY_UPDATE_POSITION);
     }
 }
